@@ -1,0 +1,10 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "author": "Ress <git@x39.dev>",
+  "license": "MIT",
+  "scripts": {
+    "build": "hugo --minify",
+    "server": "hugo server --minify --disableLiveReload"
+  }
+}
