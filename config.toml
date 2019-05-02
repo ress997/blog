@@ -4,7 +4,7 @@ hasCJKLanguage = true
 pluralizeListTitles = false
 footnoteReturnLinkContents = "↩"
 paginatePath = ""
-baseURL = "https://ress.x39.dev/"
+baseURL = "https://blog.x39.dev/"
 theme = "ran"
 
 title = "未完成で完成形"
