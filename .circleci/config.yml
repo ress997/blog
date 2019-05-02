@@ -1,0 +1,76 @@
+version: 2
+jobs:
+
+  checkout_code:
+    docker:
+      - image: circleci/golang
+    working_directory: ~/hugo
+    steps:
+      - checkout
+      - save_cache:
+          key: hugo-cache-{{ epoch }}
+          paths:
+            - ~/hugo
+
+  build:
+    docker:
+      - image: circleci/golang
+        environment:
+          TZ: "Asia/Tokyo"
+          HUGO_VERSION: "0.55.4"
+    working_directory: ~/hugo
+    steps:
+      - restore_cache:
+          key: hugo-cache
+      - run:
+          name: deps
+          command: |
+            git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
+            wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
+            tar xzf hugo.tar.gz hugo
+            git clone https://github.com/ress997/blog.x39.dev.git public
+            rm -rf hugo.tar.gz public/*
+      - run:
+          name: make
+          command: |
+            ./hugo --minify
+            echo "blog.x39.dev" > public/CNAME
+      - save_cache:
+          key: hugo-cache-public-{{ epoch }}
+          paths:
+            - ~/hugo/public
+
+  deploy:
+    docker:
+      - image: circleci/golang
+    working_directory: ~/hugo/public
+    steps:
+      - restore_cache:
+          key: hugo-cache-public
+      - add_ssh_keys:
+          fingerprints:
+            - ""
+      - run:
+          name: push
+          command: |
+            git config --global user.name ress
+            git config --global user.email git@x39.dev
+            git add --all
+            git commit -m "Publish ${CIRCLE_SHA1} (Circle CI)"
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            git push git@github.com:ress997/blog.x39.dev.git
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - checkout_code
+      - build:
+          requires:
+            - checkout_code
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
