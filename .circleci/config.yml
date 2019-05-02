@@ -49,7 +49,7 @@ jobs:
           key: hugo-cache-public
       - add_ssh_keys:
           fingerprints:
-            - ""
+            - "c2:6b:3a:52:00:b2:cf:dd:37:7b:b5:77:e3:99:d4:50"
       - run:
           name: push
           command: |
