@@ -3,6 +3,7 @@ title: "HUGO 0.47: Hugo Reloaded リリース"
 date: 2018-08-17 20:54:38 +0900
 tags: ["Hugo"]
 toc: true
+thumbnail: "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumbnail/hugo-reloaded"
 ---
 最近嬉しい更新が多い Hugo に `minify` オプションが追加されました！
 

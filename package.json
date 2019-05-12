@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "hugo --minify",
+    "dev": "hugo server --disableLiveReload",
     "server": "hugo server --minify --disableLiveReload"
   }
 }
