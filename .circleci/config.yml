@@ -17,7 +17,7 @@ jobs:
       - image: circleci/golang
         environment:
           TZ: "Asia/Tokyo"
-          HUGO_VERSION: "0.55.4"
+          HUGO_VERSION: "0.55.5"
     working_directory: ~/hugo
     steps:
       - restore_cache:
