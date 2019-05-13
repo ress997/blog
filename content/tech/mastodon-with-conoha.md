@@ -9,7 +9,7 @@ toc: true
 - [MastodonアプリケーションイメージｘConoHaメールサーバーでMastodonのインスタンスを作る](https://www.conoha.jp/guide/mastodonconoha.php)
 
 ---
-いつも使っているConoHaにMastodonのテンプレートが公開されたので早速使用してみました！
+いつも使っている {{< affi conoha >}} にMastodonのテンプレートが公開されたので早速使用してみました！
 
 参考元: [Mastodonアプリケーションイメージの使い方](https://www.conoha.jp/guide/mastodon.php)
 

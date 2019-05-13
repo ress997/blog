@@ -21,6 +21,7 @@ thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:goo
 
 [params.author]
 name = "Ress"
+github = "ress997"
 
 [taxonomies]
 tag = "tags"
