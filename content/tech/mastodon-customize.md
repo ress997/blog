@@ -1,6 +1,6 @@
 ---
 title: "Mastodon をカスタマイズする"
-date: 2018-12-04 12:00:00 +0900
+date: 2017-12-04 12:00:00 +0900
 tags: ["mastodon", "RubyOnRails"]
 toc: true
 ---
