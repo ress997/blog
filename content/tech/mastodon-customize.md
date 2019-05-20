@@ -5,6 +5,7 @@ tags: ["mastodon", "RubyOnRails"]
 toc: true
 ---
 この記事は [Mastodon Advent Calendar 2017 - Qiita](https://qiita.com/advent-calendar/2017/mastodon) と [Mastodon 2 Advent Calendar 2017 - Adventar](https://adventar.org/calendars/2265) の5日目の記事です。
+
 昨日は [@xserver](https://qiita.com/xserver) さんによる [インスタンス運用アンチパターン](https://qiita.com/xserver/items/d6b616dca1f346a2313c) と [@Denmaaaa](https://adventar.org/users/17459) さんによる [具体的分析結果から考える神崎の倒し方](http://denmaaa.hatenablog.com/entry/2017/12/04/000000) でした。
 
 ## はじめに
@@ -13,7 +14,8 @@ Mastodon 使いやすくするために制限を緩和しようとしました�
 使用してるバージョンは **v2.0.0** です。
 
 ## 文字数制限の緩和
-**注意:** 長文を投稿することができるようになり TL(タイムライン) が荒れる可能性があります。 また、自分のインスタンスのみだけではなく他のインスタンスにも迷惑がかかるのでしっかりとルールを設定し行うことをすすめます。
+**注意:** 長文を投稿することができるようになり TL(タイムライン) が荒れる可能性があります。
+また、自分のインスタンスのみだけではなく他のインスタンスにも迷惑がかかるのでしっかりとルールを設定し行うことをすすめます。
 
 - 本体側の制限を緩和
 
@@ -25,21 +27,22 @@ Mastodon 使いやすくするために制限を緩和しようとしました�
 +  MAX_CHARS = 4096
 
    def validate(status)
-	 return unless status.local? && !status.reblog?
+     return unless status.local? && !status.reblog?
 ```
 
 - Web UI 側の制限を緩和
-```diff:app/javascript/mastodon/features/compose/components/compose_form.js
-		   </div>
 
-		   <div className='compose-form__publish'>
+```diff:app/javascript/mastodon/features/compose/components/compose_form.js
+           </div>
+
+           <div className='compose-form__publish'>
 -            <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
 -            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 500 || (text.length !== 0 && text.trim().length === 0)} block /></div>
 +            <div className='character-counter__wrapper'><CharacterCounter max={4096} text={text} /></div>
 +            <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={disabled || this.props.is_uploading || length(text) > 4096 || (text.length !== 0 && text.trim().length === 0)} block /></div>
-		   </div>
-		 </div>
-	   </div>
+           </div>
+         </div>
+       </div>
 ```
 
 ## 投稿画像の画質制限の緩和
@@ -56,8 +59,8 @@ Mastodon 使いやすくするために制限を緩和しようとしました�
 -  IMAGE_STYLES = { original: '1280x1280>', small: '400x400>' }.freeze
 +  IMAGE_STYLES = { original: '3840x2160>', small: '400x400>' }.freeze
    VIDEO_STYLES = {
-	 small: {
-	   convert_options: {
+     small: {
+       convert_options: {
 ```
 
 - 投稿画像のファイル容量制限を変更
@@ -97,17 +100,18 @@ $ui-highlight-color: #d3d900;
 表示名を追加します。
 
 ```diff:config/locales/en.yml
-	 title: "%{instance} Terms of Service and Privacy Policy"
+     title: "%{instance} Terms of Service and Privacy Policy"
    themes:
-	 default: Mastodon
+     default: Mastodon
 +    custom: Custom
    time:
-	 formats:
-	   default: "%b %d, %Y, %H:%M"
+     formats:
+       default: "%b %d, %Y, %H:%M"
 ```
 
 ## おまけ: 管理者権限の剥奪
 先日間違って一般ユーザーに Admin権限 を付与してしまったので権限を一般ユーザーに戻したときのメモです。
+
 
 まず Rails のコンソールを開きます
 
