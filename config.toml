@@ -15,9 +15,10 @@ googleAnalytics = "UA-128645055-2"
 description = "noob から hacker になりたい"
 dateformat = "2006-01-02"
 
-[params.images]
-icon = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
-thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumb"
+# TODO: 新しいアイコンに変更
+#[params.images]
+#icon = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
+#thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumb"
 
 [params.author]
 name = "Ress"
