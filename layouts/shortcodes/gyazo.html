@@ -1,0 +1,9 @@
+{{ $id := ( .Get "id" ) }}
+{{ $data := getJSON "https://api.gyazo.com/api/oembed?url=https://gyazo.com/" $id }}
+
+<figure{{ with (.Get "class") }} class="{{ . }}"{{ end }}>
+	<img class="lozad" data-src="{{ $data.url }}" alt="Gyazo" width="{{ $data.width }}" height="{{ $data.height }}">
+	<figcaption>
+		<a href="{{ $data.provider_url }}/{{ $id }}" target="_blank">{{ $data.provider_name }}</a>
+	</figcaption>
+</figure>

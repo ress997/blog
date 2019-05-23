@@ -16,7 +16,7 @@ toc: true
 ## サーバーを建ててみる
 せっかくなのでConoHaを使うのでアプリケーションサーバのメールサーバーも立ててみました。
 
-[![https://gyazo.com/eb4730f27ecba8e8e5db494e47c3b192](https://i.gyazo.com/eb4730f27ecba8e8e5db494e47c3b192.png)](https://gyazo.com/eb4730f27ecba8e8e5db494e47c3b192)
+{{< gyazo id="eb4730f27ecba8e8e5db494e47c3b192" >}}
 
 ### `.env.production` を編集する
 ConoHa のテンプレートを使用するとデータベースの部分は自動的に書き換わってると思うのでメールの部分を編集します

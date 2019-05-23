@@ -31,6 +31,6 @@ zplug はインストール済みで更新があったときのみ確認した�
 補足: `$ZPLUG_CACHE_DIR` は zplug を読み込むと設定されるので設定しなくても使えます.
 
 ## ちなみに
-{{< img src="https://qiita-image-store.s3.amazonaws.com/0/96420/c0333339-c65d-4b63-43f5-30acb1ddef00.png" w="560" h="228" >}}
+{{< gyazo id="6fc8e3fdbd49d32c4c79d3c0867338dc" >}}
 
 `zplug check` を計測してみましたが結構時間がかかってる処理だったので起動が早くなると思います!

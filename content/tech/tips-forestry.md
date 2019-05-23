@@ -19,7 +19,7 @@ forestry.io でサイトを更新するときにちょっと工夫しないと�
 ## ファイル名
 forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。
 
-![](https://res.cloudinary.com/dagsofv2s/f_auto,q_auto:good/blog/upload/f1e95b5e6055977a8d89acda799aadcf)
+{{< gyazo id="1ea8ec3fb841a73f518b776271fd6513" >}}
 
 `Add New` ボタンを押し `Create Pages` で設定する `TITLE` はファイル名に使用されます。
 

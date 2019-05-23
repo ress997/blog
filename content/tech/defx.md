@@ -43,7 +43,7 @@ call defx#custom#option('_', {
 
 カスタマイズを更に行いうとこんな感じにできます！
 
-{{< img src="https://res.cloudinary.com/dagsofv2s/f_auto,q_auto:good/blog/defx" w="948" h="516" >}}
+{{< gyazo id="8eb09ad73d009343f1667f1cc5ebfcb6" >}}
 
 ### 設定例
 私の設定は [GitHub にアップ][7] してるので最新はそちらを確認してください
