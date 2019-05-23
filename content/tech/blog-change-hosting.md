@@ -4,7 +4,7 @@ date: 2018-09-10 15:00:00 +0900
 tags: ["Hugo", "Netlify", "forestry"]
 toc: true
 ---
-[ブログのリニューアルした](https://ress.dotmiku.com/tech/blog-renewal/) ことを書きましたが今回 Netlify から Firebase Hosting にお引越ししました
+[ブログのリニューアルした]({{< ref "tech/blog-renewal.md" >}}) ことを書きましたが今回 Netlify から Firebase Hosting にお引越ししました
 
 ## TL;DR
 - Netlify がたまに落ちている
