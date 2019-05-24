@@ -1,6 +1,6 @@
 ---
 title: "hugo で sass を css に変換し style タグ内に挿入する方法"
-date: 2019-05-23T15:41:36+09:00
+date: 2019-05-22T15:41:36+09:00
 tags: ["sass", "scss", "hugo"]
 toc: true
 ---
