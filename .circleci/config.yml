@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: hugo-cache-{{ epoch }}
+          key: code-{{ epoch }}
           paths:
             - ~/hugo
 
@@ -20,7 +20,7 @@ jobs:
     working_directory: ~/bin
     steps:
       - run:
-          name: get hugo
+          name: Download hugo
           command: |
             wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
             tar xzf hugo.tar.gz hugo
@@ -38,44 +38,33 @@ jobs:
     working_directory: ~/hugo
     steps:
       - restore_cache:
-          key: hugo-cache
-      - run:
-          name: deps
-          command: |
-            git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
-            git clone https://github.com/ress997/blog.x39.dev.git public
-            rm -rf public/*
+          key: code
+      - run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
       - restore_cache:
           key: hugo-bin
-      - run:
-          name: make
-          command: |
-            ~/bin/hugo --minify
-            echo "blog.x39.dev" > public/CNAME
+      - run: ~/bin/hugo --minify
       - save_cache:
-          key: hugo-cache-public-{{ epoch }}
+          key: hugo-build-{{ epoch }}
           paths:
-            - ~/hugo/public
+            - ~/hugo
 
   deploy:
     docker:
-      - image: circleci/golang
-    working_directory: ~/hugo/public
+      - image: circleci/node
+    working_directory: ~/hugo
     steps:
       - restore_cache:
-          key: hugo-cache-public
-      - add_ssh_keys:
-          fingerprints:
-            - "c2:6b:3a:52:00:b2:cf:dd:37:7b:b5:77:e3:99:d4:50"
-      - run:
-          name: push
-          command: |
-            git config --global user.name ${CIRCLE_USERNAME}
-            git config --global user.email git@x39.dev
-            git add --all
-            git commit -m "Publish ${CIRCLE_SHA1} (Circle CI)"
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
-            git push git@github.com:ress997/blog.x39.dev.git
+          key: hugo-build
+      - restore_cache:
+          keys:
+            - firebase-deps-{{ checksum "package.json" }}
+            - firebase-deps
+      - run: yarn install
+      - save_cache:
+          key: firebase-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: yarn deploy
 
 workflows:
   version: 2

@@ -6,6 +6,10 @@
   "scripts": {
     "build": "hugo --minify",
     "dev": "hugo server --disableLiveReload",
-    "server": "hugo server --minify --disableLiveReload"
+    "server": "hugo server --minify --disableLiveReload",
+    "deploy": "firebase deploy --token $FIREBASE_TOKEN"
+  },
+  "devDependencies": {
+    "firebase-tools": "*"
   }
 }

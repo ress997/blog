@@ -1,3 +1,9 @@
+# vim:ft=conf:
+
+# firebase
+.firebase/
+
+# hugo
 /themes
 /resources
 /public
