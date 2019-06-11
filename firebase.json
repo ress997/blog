@@ -5,6 +5,47 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=604800"
+          }
+        ]
+      },
+      {
+        "source": "404.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=300"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/tech/tips-jekyll/",
+        "destination": "/tech/sass-jekyll/",
+        "type": 301
+      },
+      {
+        "source": "/tech/blog-change-hosting/",
+        "destination": "/tech/change-blog-hosting/",
+        "type": 301
+      }
     ]
   }
 }

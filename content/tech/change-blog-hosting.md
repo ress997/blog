@@ -3,7 +3,6 @@ title: "ブログを Netlify から Firebase に変えた"
 date: 2018-09-10 15:00:00 +0900
 tags: ["Hugo", "Netlify", "forestry"]
 toc: true
-aliases: "/tech/blog-change-hosting/"
 ---
 [ブログのリニューアルした]({{< ref "/tech/blog-renewal.md" >}}) ことを書きましたが今回 Netlify から Firebase Hosting にお引越ししました
 
