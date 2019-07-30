@@ -16,7 +16,7 @@ jobs:
     docker:
       - image: circleci/golang
         environment:
-          HUGO_VERSION: "0.55.6"
+          HUGO_VERSION: "0.56.2"
     working_directory: ~/bin
     steps:
       - run:
