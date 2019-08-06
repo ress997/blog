@@ -21,6 +21,6 @@ tags: ["hugo"]
 [1]:https://github.com/dim0627/hugo_theme_robust
 [2]:https://github.com/dim0627/hugo_theme_robust/commit/e7a073f0a31ee990b641824e7864c9edbf7191e5
 [3]:https://github.com/ress997/hugo-wolke
-[4]:https://github.com/39e/hugo-rerobust
+[4]:https://github.com/ress997/hugo-rerobust
 [5]:https://github.com/dim0627/hugo_theme_robust/issues/35
 [6]:https://github.com/dim0627/hugo_theme_robust/commit/d03ff2d04b47a4de868a094de7fc17fbadc8bf2a

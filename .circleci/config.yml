@@ -1,9 +1,15 @@
-version: 2
-jobs:
-
-  checkout_code:
+version: 2.1
+executors:
+  default:
     docker:
       - image: circleci/golang
+        environment:
+          TZ: "Asia/Tokyo"
+          HUGO_VERSION: "0.56.3"
+jobs:
+  checkout_code:
+    executor:
+      name: default
     working_directory: ~/hugo
     steps:
       - checkout
@@ -11,12 +17,9 @@ jobs:
           key: code-{{ epoch }}
           paths:
             - ~/hugo
-
   hugo:
-    docker:
-      - image: circleci/golang
-        environment:
-          HUGO_VERSION: "0.56.3"
+    executor:
+      name: default
     working_directory: ~/bin
     steps:
       - run:
@@ -29,12 +32,9 @@ jobs:
           key: hugo-bin-{{ .Environment.HUGO_VERSION }}
           paths:
             - ~/bin
-
   build:
-    docker:
-      - image: circleci/golang
-        environment:
-          TZ: "Asia/Tokyo"
+    executor:
+      name: default
     working_directory: ~/hugo
     steps:
       - restore_cache:
@@ -47,7 +47,6 @@ jobs:
           key: hugo-build-{{ epoch }}
           paths:
             - ~/hugo
-
   deploy:
     docker:
       - image: circleci/node
@@ -65,7 +64,6 @@ jobs:
           paths:
             - node_modules
       - run: yarn deploy
-
 workflows:
   version: 2
   build_and_deploy:

@@ -185,7 +185,7 @@ IME
 
 `eskk.vim` で仕様してます。
 
-## e.t.c.
+## etc.
 - `keybase`
 - `seahorse-git`
 

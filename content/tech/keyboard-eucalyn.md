@@ -25,7 +25,7 @@ macOS 10.13.4 で [Karabiner-Elements](https://pqrs.org/osx/karabiner/) を使�
 
 下記のコードを `~/.config/karabiner/assets/complex_modifications/eucalyn.json` などに保存するといいと思います！
 
-{{< gist 39e "8bf122fb4b8bf2f03bbabaa054db05e8 eucalyn-kari.json" >}}
+{{< gist ress997 "8bf122fb4b8bf2f03bbabaa054db05e8 eucalyn-kari.json" >}}
 
 注意点としては Karabiner-Elements はログイン後に起動するのでログインパスワード入力時は元の配置となります。
 (画面ロックは起動後なのでEucalyn配列となります。)
