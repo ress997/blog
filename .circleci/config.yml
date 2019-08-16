@@ -4,8 +4,7 @@ executors:
     docker:
       - image: circleci/golang
         environment:
-          TZ: "Asia/Tokyo"
-          HUGO_VERSION: "0.56.3"
+          HUGO_VERSION: "0.58.0"
 jobs:
   checkout_code:
     executor:
@@ -17,21 +16,6 @@ jobs:
           key: code-{{ epoch }}
           paths:
             - ~/hugo
-  hugo:
-    executor:
-      name: default
-    working_directory: ~/bin
-    steps:
-      - run:
-          name: Download hugo
-          command: |
-            wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
-            tar xzf hugo.tar.gz hugo
-            rm -rf hugo.tar.gz
-      - save_cache:
-          key: hugo-bin-{{ .Environment.HUGO_VERSION }}
-          paths:
-            - ~/bin
   build:
     executor:
       name: default
@@ -40,9 +24,13 @@ jobs:
       - restore_cache:
           key: code
       - run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
-      - restore_cache:
-          key: hugo-bin
-      - run: ~/bin/hugo --minify
+      - run:
+          name: Download hugo
+          command: |
+            wget "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
+            tar xzf hugo.tar.gz hugo
+            rm -rf hugo.tar.gz
+      - run: ./hugo --minify
       - save_cache:
           key: hugo-build-{{ epoch }}
           paths:
@@ -56,24 +44,21 @@ jobs:
           key: hugo-build
       - restore_cache:
           keys:
-            - firebase-deps-{{ checksum "package.json" }}
-            - firebase-deps
-      - run: yarn install
+            - yarn-dep-firebase
+      - run: yarn add firebase-tools
       - save_cache:
-          key: firebase-deps-{{ checksum "package.json" }}
+          key: yarn-dep-firebase-{{ epoch }}
           paths:
-            - node_modules
+            - ~/.cache/yarn
       - run: yarn deploy
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - checkout_code
-      - hugo
       - build:
           requires:
             - checkout_code
-            - hugo
       - deploy:
           filters:
             branches:

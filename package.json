@@ -9,7 +9,7 @@
     "server": "hugo server --minify --disableLiveReload",
     "deploy": "firebase deploy --token $FIREBASE_TOKEN"
   },
-  "devDependencies": {
+  "optionalDependencies": {
     "firebase-tools": "*"
   }
 }
