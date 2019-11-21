@@ -37,13 +37,38 @@
     ],
     "redirects": [
       {
-        "source": "/tech/tips-jekyll/",
-        "destination": "/tech/sass-jekyll/",
+        "source": "/news/renewal-instapaper-premium/",
+        "destination": "https://blog.39.gy/news/renewal-instapaper-premium/",
         "type": 301
       },
       {
-        "source": "/tech/blog-change-hosting/",
-        "destination": "/tech/change-blog-hosting/",
+        "source": "/post/change-github-account/",
+        "destination": "https://www.x39.dev/posts/change-github-account/",
+        "type": 301
+      },
+      {
+        "source": "/post/gather-information/",
+        "destination": "https://blog.39.gy/post/gather-information/",
+        "type": 301
+      },
+      {
+        "source": "/post/hp-chromebook-x360-14/",
+        "destination": "https://blog.39.gy/chromeos/hp-chromebook-x360-14/",
+        "type": 301
+      },
+      {
+        "source": "/post/intern-pepabo/",
+        "destination": "https://www.x39.dev/posts/intern-pepabo/",
+        "type": 301
+      },
+      {
+        "source": "/post/robust-maintainer/",
+        "destination": "https://www.x39.dev/posts/robust-maintainer/",
+        "type": 301
+      },
+      {
+        "source": "/tech/password-management/",
+        "destination": "https://blog.39.gy/post/password-management/",
         "type": 301
       }
     ]

@@ -16,15 +16,6 @@ jobs:
             tar xzf hugo.tar.gz hugo
             rm -rf hugo.tar.gz
       - run: ./hugo --minify
-      - run:
-          name: transform
-          command: |
-            export buf=$(mktemp)
-            go get -u github.com/ampproject/amppackager/cmd/transform
-            for f in $(find ./public/amp -type f); do
-              $GOPATH/bin/transform ${f} | tee $buf
-              cat $buf | tee ${f}
-            done
       - save_cache:
           key: hugo-build-{{ epoch }}
           paths:
