@@ -1,19 +1,25 @@
 ---
 title: "Mastodon をカスタマイズする"
 date: 2017-12-04 12:00:00 +0900
-tags: ["mastodon", "RubyOnRails"]
+tags:
+  - Mastodon
+  - Rails
 toc: true
+aliases:
+  - /tech/mastodon-customize/
 ---
 この記事は [Mastodon Advent Calendar 2017 - Qiita](https://qiita.com/advent-calendar/2017/mastodon) と [Mastodon 2 Advent Calendar 2017 - Adventar](https://adventar.org/calendars/2265) の5日目の記事です。
 
 昨日は [@xserver](https://qiita.com/xserver) さんによる [インスタンス運用アンチパターン](https://qiita.com/xserver/items/d6b616dca1f346a2313c) と [@Denmaaaa](https://adventar.org/users/17459) さんによる [具体的分析結果から考える神崎の倒し方](http://denmaaa.hatenablog.com/entry/2017/12/04/000000) でした。
 
 ## はじめに
+
 Mastodon 使いやすくするために制限を緩和しようとしましたが、ドキュメントがなく Rails 初心者の私が行った簡単なカスタマイズを書きたいと思います。
 
 使用してるバージョンは **v2.0.0** です。
 
 ## 文字数制限の緩和
+
 **注意:** 長文を投稿することができるようになり TL(タイムライン) が荒れる可能性があります。
 また、自分のインスタンスのみだけではなく他のインスタンスにも迷惑がかかるのでしっかりとルールを設定し行うことをすすめます。
 
@@ -46,6 +52,7 @@ Mastodon 使いやすくするために制限を緩和しようとしました�
 ```
 
 ## 投稿画像の画質制限の緩和
+
 **注意:** この機能を使用する際は AWS S3 などのストレージサービスを使用してない場合、容量をガンガン削られるので使用することをオススメします。
 
 変更箇所は2点です。
@@ -79,6 +86,7 @@ Mastodon 使いやすくするために制限を緩和しようとしました�
 これにより画像の制限をオリジナル画像では 1280x1280 から 3840x2160 へ緩和しファイルの容量制限を 8MB から 20MB へと変更されます。
 
 ## テーマ機能
+
 テーマ機能については [公式ドキュメント](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Customizing.md#customizing-style) がありますが日本語の記事がなかったので書こうと思いました。
 
 内容を変更したファイルを追加します
@@ -110,6 +118,7 @@ $ui-highlight-color: #d3d900;
 ```
 
 ## おまけ: 管理者権限の剥奪
+
 先日間違って一般ユーザーに Admin権限 を付与してしまったので権限を一般ユーザーに戻したときのメモです。
 
 
@@ -132,4 +141,5 @@ user.update(admin: false)
 ちなみに [ソースコード](https://git.io/vbIQC) を見ながら行いました。
 
 ## さいごに
+
 "ここはもっとこうするといいよ!" みたいなものがありましたら教えてください！

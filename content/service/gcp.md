@@ -1,8 +1,11 @@
 ---
 title: "Google Cloud Platform Tips"
 date: 2018-09-28 07:00:00 +0900
-tags: ["tips", "GCP"]
+tags:
+  - GCP
 toc: true
+aliases:
+  - /tech/tips-gcp/
 ---
 Google Cloud Platform を使用していく上でハマった点などを書いていきます。
 

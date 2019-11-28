@@ -1,17 +1,23 @@
 ---
 title: "NeoVim と dein.vim を使ってみる!"
 date: 2016-03-06 12:00:00 +0900
-tags: ["Vim", "neovim", "dein.vim"]
+tags:
+  - neovim
+  - dein.vim
 toc: true
+aliases:
+  - /tech/neovim-dein/
 ---
 最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
 ついでに Vim も NeoVim へシフトしてみたいと思います.
 
 ## NeoVim
+
 [こちら](https://qiita.com/lighttiger2505/items/440c32e40082dc310c1e) の記事に日本語で詳しくまとめてあるので参考にしてください
 ~~(まだまだ使いこなせてませんorz)~~
 
 ### 事前準備
+
 NeoVim を使用する場合 `.bash_profile` や `.zshenv` に次の一文を入れないと動かない場合があります.
 
 ```zsh
@@ -19,6 +25,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 ```
 
 ### インストール
+
 macOS では Homebrew を使用するとても簡単です!
 
 ```zsh
@@ -28,6 +35,7 @@ $ brew install neovim
 [他の環境の方は neovim の wiki に書いてあります](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 ### 設定
+
 NeoVim の設定ファイルである `$XDG_CONFIG_HOME/nvim/init.vim` に書きます.
 標準では `$XDG_CONFIG_HOME` は `$HOME/.config` となってます.
 
@@ -55,10 +63,12 @@ call s:load('plugins')
 ```
 
 ## dein.vim
+
 NeoBundle はオワコンだから dein 使おうと作者の Shougo 氏自身が reddit で発言したそうです.[^1]
 使ってみた感想としては速度も早くTOMLファイルで管理ができてとても使いやすかったです！
 
 ### 事前準備
+
 python3 を使用してるプラグインを動かすため Homebrew を使用して事前にインストールします.
 
 ```zsh
@@ -67,6 +77,7 @@ $ pip3 install -U neovim
 ```
 
 ### 設定
+
 プラグインに関する設定は `~/.config/nvim/rc/plugins.vim` に分割してるので自分の環境に合わせて見てください.
 
 ```vim:~/.config/nvim/rc/plugins.vim
@@ -114,6 +125,7 @@ endif
 `dein#load_state` の箇所で `finish` してる部分は そのまま `init.vim` or `vimrc` に書くと動作がおかしくなる可能性があるため適切に `if` などを使用してください
 
 #### プラグイン
+
 インストールするプラグインをTOML形式で書きます
 
 ```toml:~/.config/nvim/dein/plugins.toml
@@ -171,17 +183,19 @@ hook_source = '''
 Tomlファイルの位置や内容は自分の環境に合わせて使ってください！
 
 ### ちなみに
+
 dein.vim は neobundle みたいに各コマンドが用意してありませんが [haya14busa/dein-command.vim](https://github.com/haya14busa/dein-command.vim) を使うとコマンドを実行できるようになります!
 
 ## 最後に
+
 いろいろ書かせてもらいましたがまだまだ vim も neovim も使い始めたばかりなので間違ってたところなどありましたらコメント等で教えて下さい
 
 ### 参考人させていただいた記事
+
 - [dein.vimを使ってみる](http://qiita.com/yoza/items/2f8bd33a18225754f346)
 - [NeoVim、そしてdein.vimへ](http://qiita.com/okamos/items/2259d5c770d51b88d75b)
 - [NeoBundle から dein.vim に乗り換えたら爆速だった話](http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542)
 - [[dein.vim] hook の便利な使い方](http://qiita.com/delphinus35/items/cd221a450fd23506e81a)
 - [dein.vimによるプラグイン管理のマイベストプラクティス](http://qiita.com/kawaz/items/ee725f6214f91337b42b)
 
----
 [^1]: [冒頭部分](http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542)

@@ -1,16 +1,21 @@
 ---
 title: "Arch Linux パッケージを選定した"
 date: 2019-07-10T14:29:50+09:00
-tags: []
+tags:
+  - Arch Linux
 toc: true
+aliases:
+  - /tech/paclist-v1/
 ---
 Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。
 <!--more-->
 
 ## System
+
 今回パッケージを選ぶときに `python2`, `qt4`, `qt5`, `gtk2` を使用しないようにしました。
 
 ### Core
+
 - `intel-ucode`
 - `linux-zen`
 - `yay-bin`
@@ -18,6 +23,7 @@ Arch Linux を使用しててパッケージが増えすぎたので整理も兼
 今回は [ZEN Kernel](https://github.com/zen-kernel/zen-kernel) を使用しインテルのマイクロコードなどを追加しました
 
 ### Lib
+
 - `btrfs-progs`
 - `exfat-utils`
 - `libsecret`
@@ -29,6 +35,7 @@ Arch Linux を使用しててパッケージが増えすぎたので整理も兼
 Yubikey や Btrfs などのドライバを追加しました。
 
 ### Base
+
 - `wayland`
 	- `xorg-server-xwayland`
 
@@ -57,6 +64,7 @@ XDG ユーザーディレクトリに従ってディレクトリ構造を共通�
 - `pulseaudio-alsa`
 
 ### GUI
+
 - `adwaita-icon-theme`
 - `arc-gtk-theme`
 - `arc-icon-theme`
@@ -69,6 +77,7 @@ XDG ユーザーディレクトリに従ってディレクトリ構造を共通�
 	- `waybar`
 
 #### Tools
+
 - `fcitx5-anthy-git`
 	- `enchant-pure`
 
@@ -97,6 +106,7 @@ IME
 スクショ
 
 #### App
+
 - `opera`
 	- `profile-sync-daemon`
 
@@ -129,6 +139,7 @@ IME
 音楽プレイヤー
 
 ## Net
+
 - `connman-git`
 	- `iwd-git`
 - `connman-gtk`
@@ -136,6 +147,7 @@ IME
 `netctl` でもいいのですが `iwd` を使用したかったので
 
 ## Dev
+
 - `zsh`
 
 `zsh` 派なので
@@ -186,6 +198,7 @@ IME
 `eskk.vim` で仕様してます。
 
 ## etc.
+
 - `keybase`
 - `seahorse-git`
 

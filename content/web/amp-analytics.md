@@ -1,10 +1,15 @@
 ---
 title: "AMP で Google Analytics を利用する"
 date: 2016-05-17 12:00:00 +0900
-tags: ["AMP", "GoogleAnalytics"]
+tags:
+  - AMP
+  - GoogleAnalytics
 toc: true
+aliases:
+  - /tech/amp-analytics/
 ---
 ## やり方
+
 次のスクリプト分を `<head>` 内かつ AMP JS library[^1] よりも前に以下の内容を記述
 
 ```html
@@ -34,5 +39,4 @@ Body 先頭に以下の内容を記述
 
 ちなみに `amp-analytics` に `id` は必須ではないがデバッグのために追加しておくことが推奨
 
----
 [^1]: AMP JS library は `<script async src="https://cdn.ampproject.org/v0.js"></script>` です

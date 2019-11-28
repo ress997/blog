@@ -1,7 +1,10 @@
 ---
 title: "Speed Wi-Fi NEXT W06 を USBで接続する"
 date: 2019-06-11T16:32:30+09:00
-tags: ["Huawei", "Arch Linux", "WiMAX"]
+tags:
+  - Arch Linux
+  - Huawei
+  - WiMAX
 toc: true
 ---
 外出時にパソコンを使う機会が多くモバイルルーターを契約しました。
@@ -14,6 +17,7 @@ toc: true
 <!--more-->
 
 ## 環境
+
 モバイルルーターとパソコンとは Type-C の**通信可能**なケーブルで接続します
 
 - Arch Linux
@@ -23,6 +27,7 @@ toc: true
 今回 **Arch Linux** を使用してますが Ubuntu / Debian など他ディストリビューションの場合は読み替えて設定を行ってください。
 
 ## やり方
+
 まず `lsusb` で下記のようにルーターを認識してるか確認します
 
 ```bash

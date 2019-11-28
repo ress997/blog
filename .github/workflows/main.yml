@@ -1,5 +1,5 @@
 name: Build and Deploy
-on: [push, pull_request]
+on: [push, pull_request, repository_dispatch]
 jobs:
   main:
     name: Build and deploy
@@ -20,16 +20,16 @@ jobs:
         run: ./hugo --minify
       - name: Cache node_modules
         uses: actions/cache@preview
-        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-projectname-${{ github.sha }}
           restore-keys: ${{ runner.os }}-projectname-
       - name: Install firebase-tools
-        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         run: yarn add firebase-tools
       - name: Push file to Firebase Hosting
-        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: yarn deploy
+        run: yarn run deploy

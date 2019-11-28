@@ -1,8 +1,13 @@
 ---
 title: "Mastodon を触ったときのメモ"
 date: 2017-05-24 12:00:00 +0900
-tags: ["Mastodon", "CentOS", "Docker"]
+tags:
+  - Mastodon
+  - CentOS
+  - Docker
 toc: true
+aliases:
+  - /tech/mastodon/
 ---
 私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。
 
@@ -13,14 +18,17 @@ toc: true
 事前に必要そうな設定を行っていきます。
 
 ### Firewall
+
 ファイヤーウォールの設定をしていきます。
 
 現在の設定を確認します。
+
 ```
 firewall-cmd --list-all
 ```
 
 dmzゾーン を default設定 に変更します。
+
 ```
 firewall-cmd --set-default-zone=dmz
 ```
@@ -52,9 +60,11 @@ swapon /swapfile
 ```
 
 ## Install ･ Setting
+
 必要なものをどんどんインストールしていきます。
 
 ### Certbot
+
 SSL証明書(Let’s Encrypt ) を利用するためクライアントソフトをインストールします
 [ここ](https://certbot.eff.org/#centosrhel7-nginx) を参考にしました。
 
@@ -71,6 +81,7 @@ certbot certonly --standalone -d example.com --rsa-key-size 4096
 ```
 
 ### Nginx
+
 公開するために Web サーバーをインストールします。
 [ここ](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-red-hat-centos-packages) を参考にしました。
 
@@ -98,6 +109,7 @@ systemctl start nginx
 ```
 
 ### Docker
+
 Mastodon を簡単に動かすために仮想化ソフトをインストールします。
 [ここ](https://docs.docker.com/engine/installation/linux/centos/#docker-ce) を参考にしました。
 
@@ -114,6 +126,7 @@ systemctl start docker
 ```
 
 #### Docker Compose
+
 複数のコンテナからなるサービス (ここでは Mastodon のことです) を簡単に操作できるように Docker Compose をインストールします。
 [ここ](https://docs.docker.com/compose/install/) を参考にしました。
 
@@ -129,6 +142,7 @@ docker-compose --version
 ```
 
 ### Mastodon
+
 [ここ](https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Docker-Guide.md) を参考にしました。
 今回インストールするディレクトリは `/var/www/mstdn` とします。
 
@@ -208,6 +222,7 @@ S3_CLOUDFRONT_HOST=<S3のバケットドメインかCDNのドメイン>
 ```
 
 #### PostgreSQL のバージョンを固定化
+
 このままでは PostgreSQL のメインバージョンがアップデートされるとアップグレード作業をする必要が発生するのでバージョンを固定します。
 ([ここ](http://cryks.hateblo.jp/entry/2017/04/16/145547) を参考にしました)
 
@@ -217,6 +232,7 @@ S3_CLOUDFRONT_HOST=<S3のバケットドメインかCDNのドメイン>
 ```
 
 #### Sidekiq を冗長化する (オプション)
+
 Pawoo.net を運用してる pixiv で [実際に運用してみてわかった、大規模Mastodonインスタンスを運用するコツ](https://inside.pixiv.blog/harukasan/1284) という記事を見つけ読みました。
 
 > このうちpush、pullのキューは他のMastodonインスタンスのAPIをリクエストする必要があるため、ほかのMastodonインスタンスが応答できない状態に陥っているとかなりのキューが詰まれてしまい、defaultキューの処理も遅延させてしまいます。
@@ -274,6 +290,7 @@ Pawoo.net を運用してる pixiv で [実際に運用してみてわかった�
 ```
 
 ### セットアップ
+
 下記のコマンドでデータベースや必要なファイルのセットアップを行います。
 
 ```bash
@@ -290,6 +307,7 @@ sudo docker-compose up -d
 これでローカルに Mastodon を建てることができました。
 
 #### Nginx の設定
+
 Mastodonを外部に公開するためにWebサーバーの設定をします。
 [ここ](https://git.io/v9AaO) を参考に `/etc/nginx/conf.d/mastodon.conf` を作成しました。
 
@@ -317,6 +335,7 @@ sudo systemctl restart nginx
 お疲れ様です。これでサーバーを立てることができたと思います。
 
 ## Update
+
 1. リモートリポジトリの最新の履歴の取得します。
 	- `git fetch --tags`
 1. 最新のTagに変更する (例: v1.6.1 にする場合)
@@ -335,4 +354,5 @@ sudo systemctl restart nginx
 これで再起動ができてると思われます。
 
 ## さいごに
+
 色々と書きましたが今は違う構成をしてたりしてるのであくまでも参考程度にお願いします。

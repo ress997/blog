@@ -1,9 +1,16 @@
 ---
 title: "Amazon Lightsail に Pleroma をインストールしてみた"
 date: 2018-10-08 20:45:00 +0900
-tags: ["AWS", "Amazon S3", "Amazon Lightsail", "VPS", "Pleroma"]
+tags:
+  - AWS
+  - Amazon S3
+  - Amazon Lightsail
+  - Pleroma
 toc: true
+aliases:
+  - /tech/pleroma/
 ---
+
 今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。
 
@@ -34,6 +41,7 @@ apt -y install git build-essential openssl ssh sudo
 ```
 
 ## Caddy
+
 今回リバースプロキシには [Caddy](https://caddyserver.com/) を使用します。
 Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。
 
@@ -101,6 +109,7 @@ systemctl enable caddy.service
 サーバーはこれで用意できるのであとポート設定などは各自調べてください
 
 ## postgresql
+
 データベースをインストールします。
 今回は PostgreSQL 10 を使います。
 
@@ -116,6 +125,7 @@ apt install postgresql-10 postgresql-contrib-10
 ```
 
 ## Elixir/Erlang
+
 Pleroma を実行する Elixir/Erlang をインストールします。
 
 ```sh
@@ -126,6 +136,7 @@ apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
 ```
 
 ## pleroma
+
 ユーザーを追加しソースコードを git でダウンロードします。
 
 ```sh
@@ -166,6 +177,7 @@ MIX_ENV=prod mix ecto.migrate
 ```
 
 ### sample config
+
 見やすいように私は設定の順序を変更してます
 
 ```elixir
@@ -223,6 +235,7 @@ config :pleroma, :suggestions,
 設定についてはまた今度まとめたいと思います
 
 ### systemd
+
 `systemd` を設定します
 
 ```sh

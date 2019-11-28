@@ -1,8 +1,14 @@
 ---
 title: "キーボード配列を Eucalyn 配列に変更してみた"
 date: 2018-05-17 13:40:00 +0900
-tags: ["eucalyn", "keyboard", "Karabiner", "macOS"]
+tags:
+  - Eucalyn
+  - Keyboard
+  - Karabiner
+  - macOS
 toc: true
+aliases:
+  - /tech/keyboard-eucalyn/
 ---
 最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに [自作キーボード Advent Calendar](https://adventar.org/calendars/2114) という存在を知りました。
 
@@ -15,6 +21,7 @@ toc: true
 配列を一部変更されているので気をつけてください。
 
 ## Eucalyn 配列 (仮)
+
 この配列のいいところは左右交互に打てますが普段Vimを使ってる私からすると右手のホームポジションが少しずれてしまいます…
 ですが慣れてくると結構入力していても疲れなくなってきました!
 

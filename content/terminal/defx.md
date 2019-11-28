@@ -1,8 +1,12 @@
 ---
 title: "Defx.nvim を使う!"
 date: 2019-05-23T21:26:25+09:00
-tags: ["vim", "neovim", "defx.nvim"]
+tags:
+  - neovim
+  - defx.nvim
 toc: true
+aliases:
+  - /tech/defx/
 ---
 今まで vim でファイラーを使うとなったときに [NERDtree][1] しか使ってませんでしたが [@Shougo][2] さんがまた使いやすファイラーを作ったいたので紹介したいと思います。
 
@@ -11,6 +15,7 @@ toc: true
 vim ではなく [neovim][3] を使っています。またプラグイン管理には [dein.vim][4] を使用してます。各自自分が使用してる環境に読み替えて使用してください。
 
 ## 設定
+
 私は toml ファイルで管理しています。下記のように書くことでプラグインを追加できます
 
 ```
@@ -25,6 +30,7 @@ hook_add = '''
 私は `<Space>f` で開けるようにしてるので人によっては書き換えてください。
 
 ### カスタマイズ
+
 vscode みたいにファイルアイコンを表示したり [NERDtree][1] でもやってましたが Git の変更などを表示したかったためプラグインを追加して使ってます。
 
 ファイルアイコン表示するために [defx-icons][5]
@@ -46,6 +52,7 @@ call defx#custom#option('_', {
 {{< gyazo id="8eb09ad73d009343f1667f1cc5ebfcb6" >}}
 
 ### 設定例
+
 私の設定は [GitHub にアップ][7] してるので最新はそちらを確認してください
 
 ```toml
@@ -140,6 +147,7 @@ defx = '''
 `dein.vim` の機能ですが `autocmd FileType defx call s:defx_my_settings()` みたいな記述は `[plugins.ftplugin]` を使うとわかりやすく書けるのでぜひ使ってください。
 
 ## あとがき
+
 `defx.nvim` についてしらべると [@takkii][8] さんの記事しかありませんでした。
 
 そこでカスタマイズ性の高い `defx.nvim` を使ってほしいです！
