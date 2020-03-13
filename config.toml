@@ -4,43 +4,25 @@ hasCJKLanguage = true
 pluralizeListTitles = false
 footnoteReturnLinkContents = "↩"
 paginatePath = ""
+
 baseURL = "https://blog.x39.dev/"
-theme = "ran"
+theme = "robust"
 
 title = "未完成で完成形"
 copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"
 
-[[menu.main]]
-name = "About"
-url = "/about/"
-weight = 1
-
-[[menu.main]]
-name = "Profile"
-url = "https://x39.dev"
-weight = 2
-
-[[menu.main]]
-name = "Tag"
-url = "/tags/"
-weight = 5
-
-[outputs]
-page = ["HTML", "AMP"]
-
 [params]
 description = "noob から hacker になりたい"
 dateformat = "2006-01-02"
+thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumb"
 
 [params.author]
 name = "Ress"
 github = "ress997"
-
-# TODO: 新しいアイコンに変更
-#[params.images]
-#icon = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
-#thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumb"
+thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
 
 [taxonomies]
 tag = "tags"
+[outputs]
+page = ["HTML", "AMP"]

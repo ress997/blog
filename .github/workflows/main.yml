@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Download theme
-        run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
+        run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-robust.git themes/robust
       - name: Download hugo
         run: |
           VERSION=$(curl --silent "https://api.github.com/repos/gohugoio/hugo/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
