@@ -6,12 +6,11 @@ on:
   schedule:
     - cron: '0 6 * * *'
 jobs:
-  main:
-    name: Build and deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Download theme
         uses: actions/checkout@v2
@@ -19,36 +18,42 @@ jobs:
           repository: ress997/hugo-robust
           path: themes/robust
 
-      - name: Download hugo
-        run: |
-          VERSION=$(curl --silent "https://api.github.com/repos/gohugoio/hugo/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
-          wget "https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
-          tar xzf hugo.tar.gz hugo
-          rm -rf hugo.tar.gz
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
 
       - name: Build
-        run: ./hugo --minify
+        run: hugo --minify
+
+      - name: Save /public
+        uses: actions/upload-artifact@v1
+        with:
+          name: public
+          path: public
+
+  deploy:
+    name: Deploy
+    needs: build
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Load /public
+        uses: actions/download-artifact@v1
+        with:
+          name: public
 
       - name: Optimize AMP
         uses: asurbernardo/amp-optimizer-action@1.0.2
-        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         with:
           root: 'public/amp'
 
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
         with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-blog-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-blog
-
-      - name: Install firebase-tools
-        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
-        run: yarn add firebase-tools
-
-      - name: Push file to Firebase Hosting
-        if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
+          args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: yarn run deploy
