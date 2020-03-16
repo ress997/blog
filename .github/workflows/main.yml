@@ -10,29 +10,37 @@ jobs:
     name: Build and deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+      - name: checkout code
+        uses: actions/checkout@v2
+
       - name: Download theme
-        run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-robust.git themes/robust
+        uses: actions/checkout@v2
+        with:
+          repository: ress997/hugo-robust
+          path: themes/robust
+
       - name: Download hugo
         run: |
           VERSION=$(curl --silent "https://api.github.com/repos/gohugoio/hugo/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
           wget "https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_Linux-64bit.tar.gz" -O hugo.tar.gz
           tar xzf hugo.tar.gz hugo
           rm -rf hugo.tar.gz
+
       - name: Build
         run: ./hugo --minify
+
       - name: Cache node_modules
-        uses: actions/cache@preview
+        uses: actions/cache@v1
         if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         with:
           path: ~/.cache/yarn
-          key: ${{ runner.os }}-projectname-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-projectname-
+          key: ${{ runner.os }}-blog-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-blog
+
       - name: Install firebase-tools
         if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         run: yarn add firebase-tools
+
       - name: Push file to Firebase Hosting
         if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' && github.event_name != 'pull_request')
         env:
