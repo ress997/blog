@@ -14,6 +14,8 @@ AMP HTML のページを用意しようと思ったときに css を scss で書
 
 <!--more-->
 
+**追記**: `@charset "UTF-8";` が挿入されるようになったため変更 (2020/03/16)
+
 ## やり方
 
 テンプレートから `assets` にアクセスする方法は簡単で例のように書くと変換後の css を挿入できます。
@@ -24,7 +26,7 @@ AMP HTML のページを用意しようと思ったときに css を scss で書
 
 ```html
 {{ with resources.Get "main.scss" | toCSS | minify }}
-	<style>{{ .Content | safeCSS }}</style>
+	<style>{{ replace .Content `@charset "UTF-8";` "" | safeCSS }}</style>
 {{ end }}
 ```
 
