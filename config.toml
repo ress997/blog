@@ -4,10 +4,9 @@ hasCJKLanguage = true
 pluralizeListTitles = false
 footnoteReturnLinkContents = "↩"
 paginatePath = ""
-
-baseURL = "https://tech.39.gy/"
 theme = "ran"
 
+baseURL = "https://tech.39.gy/"
 title = "未完成で完成形"
 copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"
@@ -21,6 +20,9 @@ thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:goo
 name = "Ress"
 github = "ress997"
 thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
+
+[params.utteranc]
+repo = "ress997/blog-comment"
 
 [taxonomies]
 tag = "tags"
