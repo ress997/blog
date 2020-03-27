@@ -5,8 +5,6 @@ tags:
   - AMP
   - GoogleAnalytics
 toc: true
-aliases:
-  - /tech/amp-analytics/
 ---
 ## やり方
 

@@ -5,9 +5,6 @@ tags:
   - Jekyll
   - SCSS
 toc: true
-aliases:
-  - /tech/tips-jekyll/
-  - /tech/sass-jekyll/
 ---
 jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので
 

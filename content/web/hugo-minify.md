@@ -5,8 +5,6 @@ tags:
   - Hugo
 toc: true
 thumbnail: "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumbnail/hugo-reloaded"
-aliases:
-  - /news/hugo-reloaded/
 ---
 最近嬉しい更新が多い Hugo に `minify` オプションが追加されました！
 

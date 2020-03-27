@@ -4,8 +4,6 @@ date: 2019-07-10T14:29:50+09:00
 tags:
   - Arch Linux
 toc: true
-aliases:
-  - /tech/paclist-v1/
 ---
 Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。
 <!--more-->

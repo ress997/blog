@@ -5,8 +5,6 @@ tags:
   - AWS
   - Amazon Lightsail
 toc: true
-aliases:
-  - /news/amazon-lightsail-cheaper/
 ---
 [Developers.IO](https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/) でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。
 

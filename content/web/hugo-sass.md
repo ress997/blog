@@ -5,8 +5,6 @@ tags:
   - scss
   - hugo
 toc: true
-aliases:
-  - /tech/sass-hugo/
 ---
 以前 [Jekyll で行う方法]({{< ref "/web/jekyll-sass.md" >}}) を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。
 

@@ -15,8 +15,8 @@ jobs:
       - name: Download theme
         uses: actions/checkout@v2
         with:
-          repository: ress997/hugo-robust
-          path: themes/robust
+          repository: ress997/hugo-ran
+          path: themes/ran
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2

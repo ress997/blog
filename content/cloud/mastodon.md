@@ -6,8 +6,6 @@ tags:
   - CentOS
   - Docker
 toc: true
-aliases:
-  - /tech/mastodon/
 ---
 私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。
 

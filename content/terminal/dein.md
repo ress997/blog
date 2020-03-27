@@ -5,8 +5,6 @@ tags:
   - neovim
   - dein.vim
 toc: true
-aliases:
-  - /tech/neovim-dein/
 ---
 最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
 ついでに Vim も NeoVim へシフトしてみたいと思います.

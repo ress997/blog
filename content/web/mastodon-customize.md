@@ -5,8 +5,6 @@ tags:
   - Mastodon
   - Rails
 toc: true
-aliases:
-  - /tech/mastodon-customize/
 ---
 この記事は [Mastodon Advent Calendar 2017 - Qiita](https://qiita.com/advent-calendar/2017/mastodon) と [Mastodon 2 Advent Calendar 2017 - Adventar](https://adventar.org/calendars/2265) の5日目の記事です。
 

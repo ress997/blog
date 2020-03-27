@@ -5,8 +5,6 @@ tags:
   - zsh
   - zplug
 toc: true
-aliases:
-  - /tech/zplug-install/
 ---
 いつも使ってる [zplug](https://github.com/zplug/zplug) が遅いと感じ始めたのでちょっと工夫してみました!
 

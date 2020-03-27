@@ -5,8 +5,8 @@ pluralizeListTitles = false
 footnoteReturnLinkContents = "↩"
 paginatePath = ""
 
-baseURL = "https://blog.x39.dev/"
-theme = "robust"
+baseURL = "https://tech.39.gy/"
+theme = "ran"
 
 title = "未完成で完成形"
 copyright = "&copy; 2016 Ress"

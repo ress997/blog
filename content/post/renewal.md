@@ -9,9 +9,6 @@ tags:
   - Netlify CMS
   - WordPress
 toc: true
-aliases:
-  - /tech/blog-renewal/
-  - /tech/change-blog-hosting/
 ---
 いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。
 

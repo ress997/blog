@@ -4,8 +4,6 @@ date: 2018-09-20 16:00:00 +0900
 tags:
   - cloudinary
 toc: true
-aliases:
-  - /tech/cloudinary/
 ---
 最近[ホスティングを変更した]({{< ref "/post/renewal.md" >}})関係で 1GB 以上になると料金が発生します。
 そこで無料で使用できる画像管理サービスを探しました。

@@ -4,8 +4,6 @@ date: 2018-09-21 12:00:00 +0900
 tags:
   - forestry
 toc: true
-aliases:
-  - /tech/tips-forestry/
 ---
 forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!
 

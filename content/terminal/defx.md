@@ -5,8 +5,6 @@ tags:
   - neovim
   - defx.nvim
 toc: true
-aliases:
-  - /tech/defx/
 ---
 今まで vim でファイラーを使うとなったときに [NERDtree][1] しか使ってませんでしたが [@Shougo][2] さんがまた使いやすファイラーを作ったいたので紹介したいと思います。
 

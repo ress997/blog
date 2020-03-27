@@ -7,8 +7,6 @@ tags:
   - Amazon Lightsail
   - Pleroma
 toc: true
-aliases:
-  - /tech/pleroma/
 ---
 
 今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。

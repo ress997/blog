@@ -6,8 +6,6 @@ tags:
   - Mastodon
   - Ubuntu
 toc: true
-aliases:
-  - /tech/mastodon-with-conoha/
 ---
 **追記**: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました
 

@@ -5,8 +5,6 @@ tags:
   - zsh
   - zplug
 toc: true
-aliases:
-  - /tech/zplug/
 ---
 普段ターミナルで使っている zsh をもっと便利したいので私は高速な [zplugin](https://github.com/zdharma/zplugin) などがありますが [zplug](https://github.com/zplug/zplug) を使ってます。
 

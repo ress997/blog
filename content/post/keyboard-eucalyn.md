@@ -7,8 +7,6 @@ tags:
   - Karabiner
   - macOS
 toc: true
-aliases:
-  - /tech/keyboard-eucalyn/
 ---
 最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに [自作キーボード Advent Calendar](https://adventar.org/calendars/2114) という存在を知りました。
 
