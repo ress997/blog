@@ -1,6 +1,7 @@
 ---
 title: "このサイトについて"
 date: 2018-07-10 09:40:00 +0900
+disableComment: true
 ---
 [@ress](https://x39.dev) が日記や技術的なことメモ感覚で書いていきます。
 

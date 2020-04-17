@@ -7,7 +7,7 @@ paginatePath = ""
 theme = "ran"
 
 baseURL = "https://tech.39.gy/"
-title = "未完成で完成形"
+title = "完成形で未完成"
 copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"
 
@@ -24,7 +24,21 @@ thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:goo
 [params.utteranc]
 repo = "ress997/blog-comment"
 
+[[Menus.main]]
+name = "About"
+url = "/about/"
+weight = 1
+[[Menus.main]]
+name = "Portfolio"
+url = "https://portfolio.39.gy"
+weight = 2
+[[Menus.main]]
+name = "Profile"
+url = "https://profile.39.gy"
+weight = 3
+
 [taxonomies]
 tag = "tags"
+
 [outputs]
 page = ["HTML", "AMP"]
