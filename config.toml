@@ -21,7 +21,7 @@ name = "Ress"
 github = "ress997"
 thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
 
-[params.utteranc]
+[params.utterances]
 repo = "ress997/blog-comment"
 
 [[Menus.main]]
