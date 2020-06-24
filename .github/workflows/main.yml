@@ -25,7 +25,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: hugo --gc --minify
 
       - name: Save /public
         uses: actions/upload-artifact@v1
