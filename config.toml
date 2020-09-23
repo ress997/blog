@@ -30,11 +30,11 @@ url = "/about/"
 weight = 1
 [[Menus.main]]
 name = "Portfolio"
-url = "https://portfolio.39.gy"
+url = "https://portfolio.ress.39.gy"
 weight = 2
 [[Menus.main]]
 name = "Profile"
-url = "https://profile.39.gy"
+url = "https://ress.39.gy"
 weight = 3
 
 [taxonomies]
