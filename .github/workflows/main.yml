@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   push:
-  pull_request:
+    branches: [ $default-branch ]
   repository_dispatch:
   schedule:
     - cron: '0 6 * * *'
@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Download theme
         uses: actions/checkout@v2
@@ -28,7 +30,7 @@ jobs:
         run: hugo --gc --minify
 
       - name: Save /public
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: public
           path: public
@@ -36,24 +38,22 @@ jobs:
   deploy:
     name: Deploy
     needs: build
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
       - name: Load /public
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           name: public
+          path: public
 
       - name: Optimize AMP
         uses: asurbernardo/amp-optimizer-action@1.0.2
         with:
           root: 'public/amp'
 
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          cname: blog.ress.39.gy
