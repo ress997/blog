@@ -1,0 +1,156 @@
+<!doctype html><html amp i-amphtml-layout i-amphtml-no-boilerplate lang=ja transformed="google;v=4"><head><meta charset=utf-8><style amp-runtime i-amphtml-version=latest></style><meta content="width=device-width,minimum-scale=1,initial-scale=1" name=viewport><meta content=googleanalytics name=amp-google-client-id-api><meta content=#263238 name=theme-color><meta content="Hugo 0.75.1" name=generator><meta content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能" name=description><meta content="Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成" property=og:title><meta content=article property=og:type><meta content=https://tech.ress.39.gy/amp/tech/pleroma/ property=og:url><meta content=https://tech.ress.39.gy/img/thumb.png property=og:image><meta content=完成形で未完成 property=og:site_name><meta content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能" property=og:description><meta content=ja property=og:locale><meta content=完成形で未完成 name=twitter:site><meta content="Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成" name=twitter:title><meta content=https://tech.ress.39.gy/amp/tech/pleroma/ name=twitter:url><meta content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能" name=twitter:description><meta content=summary_large_image name=twitter:card><meta content=https://tech.ress.39.gy/img/thumb.png name=twitter:image><script async src=https://cdn.ampproject.org/v0.js></script><script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script><link href=https://tech-ress-39-gy.cdn.ampproject.org/i/s/tech.ress.39.gy/img/icon.png rel=icon><link href rel="dns-prefetch preconnect"><link href=https://tech-ress-39-gy.cdn.ampproject.org rel="dns-prefetch preconnect"><style amp-custom>html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul,dl{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}html{font-size:18px}body{font-family:arial,sans-serif;color:#343a40;line-height:1.6}.container{position:relative;width:100%;max-width:960px;margin:0 auto;padding:0 20px;box-sizing:border-box}@media screen and (max-width:640px){.container{width:85%;padding:0}}h1,h2,h3,h4,h5,h6{line-height:1.7;margin:1em 0 15px;padding:0}@media screen and (max-width:640px){h1,h2,h3,h4,h5,h6{line-height:1.4}}h1,h2,h3,h5{font-weight:700}h1{font-size:30px}h1 a{color:inherit}h2{font-size:24px}h3{font-size:20px}h4{font-size:20px;color:#868e96}h6{color:#868e96}p{color:#343a40;margin:15px 0}a{color:#1b6ec2;text-decoration:none;cursor:pointer}a:hover,a:active{color:#1b6ec2}em,i{font-style:italic}strong,b{font-weight:700}sub{vertical-align:sub;font-size:smaller}sup{vertical-align:super;font-size:smaller}hr{border:0;border-top:1px solid #f1f3f5;margin:1.5em auto}ol>li:before,ul>li:before{position:absolute;width:1.4em;margin-left:-1.4em;display:inline-block;box-sizing:border-box;text-align:right}ul>li:before{content:"\2022";padding-right:.3em;font-family:inherit;font-size:1.4em;line-height:1.2}ol{counter-reset:section}ol>li:before{counter-increment:section;content:counter(section)".";padding-right:.3em;font-family:inherit;font-size:1em;line-height:inherit}ol>li,ul>li{margin:0 auto .4em 1.4em;line-height:1.55}ol>li>ol,ol>li>ul,ul>li>ol,ul>li>ul{margin-top:.4em}li>ol>li,li>ul>li{font-size:.95em;margin:0 auto .38em 1.33em}dt{float:left;width:180px;overflow:auto;clear:left;text-align:right;white-space:nowrap;font-weight:700;margin-bottom:.4em}dd{margin-left:200px;margin-bottom:.4em}@media screen and (max-width:640px){dt{width:120px}dd{margin-left:140px}}table{margin-bottom:1rem;width:100%;border:1px solid #e9ecef;border-collapse:collapse}td,th{padding:.25rem .5rem;border:1px solid #e9ecef}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f1f3f5}blockquote{font-weight:300;padding:0 0 0 1.4rem;margin:0 2rem 1rem 0;border-left:.2em solid #dee2e6}blockquote p{color:#868e96}blockquote p:last-child{margin-bottom:0}a.footnote,.post p a.footnote,.post ol a.footnote,.post ul a.footnote{margin:0 3px;padding:0 2px;font-size:14px;text-align:center;border:1px solid #f1f3f5;border-radius:2px;-webkit-text-stroke:.25px;-webkit-transition:.2s ease-out all;text-decoration:none}a.footnote:hover,.post p a.footnote:hover,.post ol a.footnote:hover,.post ul a.footnote:hover{background:#f1f3f5}.footnotes{border-top:1px solid #f1f3f5;font-size:14px}img,amp-img{display:block;width:100%;height:auto;margin:0 0 1em;border-radius:5px}.gmnoprint img,.gmnoprint amp-img{max-width:none}::-moz-selection,::selection{color:#000;background:#f1f3f5}.clearfix:before,.clearfix:after{content:" ";display:table}.clearfix:after{clear:both}.center{text-align:center}.center-image{margin:0 auto;display:block}.right{text-align:right}.masthead{padding:20px 0;border-bottom:1px solid #eee}@media screen and (max-width:640px){.masthead{text-align:center}}.site-avatar{float:left;width:70px;height:70px;margin-right:15px}.site-avatar img,.site-avatar amp-img{border-radius:5px}@media screen and (max-width:640px){.site-avatar{float:none;display:block;margin:0 auto}}.site-info{float:left}@media screen and (max-width:640px){.site-info{float:none;display:block;margin:0 auto}}.site-name{margin:0;color:#333;cursor:pointer;font-family:helvetica,arial,sans-serif;font-weight:300;font-size:28px;letter-spacing:1px}.site-description{margin:-5px 0 0;color:#666;font-size:16px}@media screen and (max-width:640px){.site-description{margin:3px 0}}nav{float:right;margin-top:23px;font-family:helvetica,arial,sans-serif;font-size:18px}nav a{margin-left:20px;color:#333;text-align:right;font-weight:300;letter-spacing:1px}@media screen and (max-width:640px){nav{float:none;margin-top:9px;display:block;font-size:16px}nav a{margin:0 10px;color:#4183c4}}.posts>.post{padding-bottom:2em;border-bottom:1px solid #f1f3f5}.posts>.post:last-child{padding-bottom:1em;border-bottom:none}.post h1{margin-bottom:.1em}.post .date{font-weight:300;font-size:14px;color:#868e96;margin-right:3px}.post .tag{display:inline;font-weight:300;font-size:14px}.post .tag li{display:inline;margin:0}.post .tag li:before{content:''}.post .tag li>a{margin:3px 3px 3px 0;padding:.5px 4px;color:#343a40;background-color:#e9ecef;border-radius:3px}.post .comments{margin-top:10px}.post .read-more{font-size:15px}.pagination{font-weight:300;padding:2em 0;width:100%;display:inline-block}.pagination>.left{float:left}.pagination>.right{float:right}.pagination>.left,.pagination>.right{width:50%}.pagination>.left a,.pagination>.right a{color:#868e96}.pagination>.left a:hover,.pagination>.left a:focus,.pagination>.right a:hover,.pagination>.right a:focus{color:#495057}@media screen and (max-width:640px){.pagination{font-size:14px}}.tags>.label>li{margin:0;font-size:14px;font-weight:300;display:inline}.tags>.label>li:before{content:""}.tags>.label>li>a{display:inline-block;margin:1px;color:#343a40;background-color:#e9ecef;border-radius:3px}.tags>.label>li>a span{float:left;padding:.5px 5px}.tags>.label>li>a span.count{background-color:#dee2e6;border-radius:0 3px 3px 0}.wrapper-footer{margin-top:50px;border-top:1px solid #e9ecef;border-bottom:1px solid #e9ecef;background-color:#f1f3f5}footer{padding:10px 0 0;text-align:center}footer p{font-size:14px}footer .svg-icon{display:block;font-size:0;list-style:none;margin:0;text-align:center}footer .svg-icon li{display:inline-block;margin:10px}footer .svg-icon svg{height:30px;width:30px}footer .svg-icon em{font-size:18px;line-height:1.5;margin-top:-.75em;position:absolute;text-align:center;top:50%;right:0;bottom:0;left:0}pre,code{font-family:monospace}pre{font-size:14px;background:#f8f9fa;padding:.45em .45em .45em .625em;border:1px solid #dee2e6;border-radius:3px;margin:1em 0;overflow:auto}pre::scrollbar,pre::-webkit-scrollbar{display:none}code{font-size:90%}#TableOfContents{padding:0 2rem;margin:0}#TableOfContents>ul{content:"ToC";background-color:#eceff1;border-radius:4px;display:inline-block;font-size:.8rem;padding:.5rem 1rem;word-break:break-all;list-style:none}#TableOfContents>ul>li{margin:0}#TableOfContents>ul>li:before{content:none;list-style:none}#TableOfContents ul ul{padding-left:1rem}#TableOfContents ul ul>li{font-weight:700;margin:.5rem 0}#TableOfContents ul ul ul{padding-left:1rem}#TableOfContents ul ul ul>li{list-style-type:disc;font-weight:500}#TableOfContents li{color:#90a4ae}@media(max-width:768px){#TableOfContents{padding:1rem}#TableOfContents>ul{width:100%}}</style><link as=script href=https://cdn.ampproject.org/v0.js rel=preload><link href=https://tech.ress.39.gy/tech/pleroma/ rel=canonical><link crossorigin=use-credentials href=https://tech.ress.39.gy/amp/tech/gcp/ rel=prefetch><link crossorigin=use-credentials href=https://tech.ress.39.gy/amp/tech/hugo-sass/ rel=prefetch><link href=https://tech.ress.39.gy/ rel=prerender><title>Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成</title><link href=https://tech.ress.39.gy/img/icon.png rel=apple-touch-icon></head><body><amp-analytics class="i-amphtml-layout-fixed i-amphtml-layout-size-defined" i-amphtml-layout=fixed id=analytics1 style=width:1px;height:1px; type=googleanalytics><script type=application/json>{"vars":{"account":"UA-128645055-2"},"triggers":{"trackPageview":{"on":"visible","request":"pageview"}}}</script></amp-analytics><header class="masthead clearfix"><div class=container><div class=site-info><h1 class=site-name><a href=https://tech.ress.39.gy/>完成形で未完成</a></h1><p class=site-description>noob から hacker になりたい</p></div><nav><a href=/about/>About</a>
+<a href=https://portfolio.ress.39.gy>Portfolio</a>
+<a href=https://ress.39.gy>Profile</a></nav></div></header><main class=container><article class=post><h1><a href=https://tech.ress.39.gy/amp/tech/pleroma/>Amazon Lightsail に Pleroma をインストールしてみた</a></h1><div class=meta><time class=date datetime=2018-10-08T20:45:00+09:00>2018-10-08</time><ul class=tag><li><a href=https://tech.ress.39.gy/tags/aws>AWS</a></li><li><a href=https://tech.ress.39.gy/tags/amazon-s3>Amazon S3</a></li><li><a href=https://tech.ress.39.gy/tags/amazon-lightsail>Amazon Lightsail</a></li><li><a href=https://tech.ress.39.gy/tags/pleroma>Pleroma</a></li></ul></div><nav id=TableOfContents><ul><li><a href=#tldr>TL;DR</a></li><li><a href=#setup>Setup</a></li><li><a href=#caddy>Caddy</a></li><li><a href=#postgresql>postgresql</a></li><li><a href=#elixirerlang>Elixir/Erlang</a></li><li><a href=#pleroma>pleroma</a><ul><li><a href=#sample-config>sample config</a></li><li><a href=#systemd>systemd</a></li></ul></li><li><a href=#補足説明>補足説明</a></li></ul></nav><div class=entry><p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。</p><p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください</p><h2 id=tldr>TL;DR</h2><ul><li>Amazon Lightsail<ul><li>OS: Ubuntu LTS 16.04.5</li></ul></li><li>Amazon S3<ul><li>Static website hosting 有効化すること</li></ul></li></ul><h2 id=setup>Setup</h2><p>事前に必要なものをインストールしていきます。
+ついでにタイムゾーンと言語設定を日本に変更します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>apt update
+apt -y dist-upgrade
+apt -y autoremove
+
+apt -y install language-pack-ja
+update-locale LANG<span style=color:#f92672>=</span>ja_JP.UTF-8
+
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+
+apt -y install git build-essential openssl ssh sudo
+</code></pre></div><h2 id=caddy>Caddy</h2><p>今回リバースプロキシには <a href=https://caddyserver.com/>Caddy</a> を使用します。
+Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl https://getcaddy.com | bash -s personal
+
+chown root:root /usr/local/bin/caddy
+chmod <span style=color:#ae81ff>755</span> /usr/local/bin/caddy
+setcap <span style=color:#e6db74>&#39;cap_net_bind_service=+ep&#39;</span> /usr/local/bin/caddy
+
+<span style=color:#75715e># グループ・ユーザーが存在しない場合のみ実行してください。</span>
+<span style=color:#75715e># グループ一覧: /etc/group</span>
+<span style=color:#75715e># ユーザー一覧: /etc/passwd</span>
+groupadd --system -g <span style=color:#ae81ff>33</span> www-data
+useradd <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  -g www-data --no-user-group <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --home-dir /var/www --no-create-home <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --shell /usr/sbin/nologin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --system --uid <span style=color:#ae81ff>33</span> www-data
+
+<span style=color:#75715e># 使用するフォルダを用意します</span>
+mkdir -p /etc/caddy
+chown -R root:root /etc/caddy
+mkdir -p /etc/ssl/caddy
+chown -R root:www-data /etc/ssl/caddy
+chmod <span style=color:#ae81ff>770</span> /etc/ssl/caddy
+
+<span style=color:#75715e># 設定ファイルを作成します</span>
+<span style=color:#75715e># domain.tld など実際に使用する環境に合わせて変更してください</span>
+cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/caddy/Caddyfile
+</span><span style=color:#e6db74>http:// {
+</span><span style=color:#e6db74>  gzip
+</span><span style=color:#e6db74>  root /var/www/html
+</span><span style=color:#e6db74>}
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>social.domain.tld {
+</span><span style=color:#e6db74>  gzip
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>  tls social@domain.tld
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>  proxy / localhost:4000 {
+</span><span style=color:#e6db74>    websocket
+</span><span style=color:#e6db74>    transparent
+</span><span style=color:#e6db74>  }
+</span><span style=color:#e6db74>}
+</span><span style=color:#e6db74>EOL</span>
+
+<span style=color:#75715e># 公開用フォルダを作成します</span>
+mkdir -p /var/www/html
+cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /var/www/html/index.html
+</span><span style=color:#e6db74>&lt;h1&gt;Hello World!&lt;/h1&gt;
+</span><span style=color:#e6db74>EOL</span>
+chown -R www-data:www-data /var/www
+chmod <span style=color:#ae81ff>555</span> /var/www
+
+<span style=color:#75715e># systemd を設定します</span>
+curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+chown root:root /etc/systemd/system/caddy.service
+chmod <span style=color:#ae81ff>644</span> /etc/systemd/system/caddy.service
+systemctl daemon-reload
+systemctl start caddy.service
+systemctl enable caddy.service
+</code></pre></div><p>サーバーはこれで用意できるのであとポート設定などは各自調べてください</p><h2 id=postgresql>postgresql</h2><p>データベースをインストールします。
+今回は PostgreSQL 10 を使います。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/apt/sources.list.d/pgdg.list
+</span><span style=color:#e6db74>deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+</span><span style=color:#e6db74>EOL</span>
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt update
+
+apt install postgresql-10 postgresql-contrib-10
+</code></pre></div><h2 id=elixirerlang>Elixir/Erlang</h2><p>Pleroma を実行する Elixir/Erlang をインストールします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb <span style=color:#f92672>&amp;&amp;</span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
+apt update
+
+apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
+</code></pre></div><h2 id=pleroma>pleroma</h2><p>ユーザーを追加しソースコードを git でダウンロードします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>adduser pleroma
+usermod -aG sudo pleroma
+
+su pleroma
+cd ~
+git clone https://git.pleroma.social/pleroma/pleroma
+cd pleroma/
+</code></pre></div><p>依存関係をダウンロードします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mix deps.get
+</code></pre></div><p>設定ファイルを作成します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># まずは自動生成</span>
+mix generate_config
+cp config/generated_config.exs config/prod.secret.exs
+</code></pre></div><p><code>config/prod.secret.exs</code> を次項のサンプルを例に編集します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>vi config/prod.secret.exs
+</code></pre></div><p>データベースの設定をします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo su postgres -c <span style=color:#e6db74>&#39;psql -f config/setup_db.psql&#39;</span>
+MIX_ENV<span style=color:#f92672>=</span>prod mix ecto.migrate
+</code></pre></div><h3 id=sample-config>sample config</h3><p>見やすいように私は設定の順序を変更してます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-elixir data-lang=elixir>use <span style=color:#a6e22e>Mix.Config</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Web.Endpoint</span>,
+   <span style=color:#e6db74>url</span>: [<span style=color:#e6db74>host</span>: <span style=color:#e6db74>&#34;インスタンスURL&#34;</span>, <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https&#34;</span>, <span style=color:#e6db74>port</span>: <span style=color:#ae81ff>443</span>],
+   <span style=color:#e6db74>secret_key_base</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Repo</span>,
+  <span style=color:#e6db74>adapter</span>: <span style=color:#a6e22e>Ecto.Adapters.Postgres</span>,
+  <span style=color:#e6db74>username</span>: <span style=color:#e6db74>&#34;pleroma&#34;</span>,
+  <span style=color:#e6db74>password</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>,
+  <span style=color:#e6db74>database</span>: <span style=color:#e6db74>&#34;pleroma_dev&#34;</span>,
+  <span style=color:#e6db74>hostname</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>,
+  <span style=color:#e6db74>pool_size</span>: <span style=color:#ae81ff>10</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:instance</span>,
+  <span style=color:#e6db74>name</span>: <span style=color:#e6db74>&#34;インスタンス名&#34;</span>,
+  <span style=color:#e6db74>email</span>: <span style=color:#e6db74>&#34;メールアドレス&#34;</span>,
+  <span style=color:#e6db74>dedupe_media</span>: false,
+  <span style=color:#e6db74>limit</span>: <span style=color:#ae81ff>5000</span>,
+  <span style=color:#e6db74>registrations_open</span>: true
+<span style=color:#75715e># limit は文字数制限です</span>
+<span style=color:#75715e># registrations_open は新規登録するかの設定です</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:media_proxy</span>,
+  <span style=color:#e6db74>enabled</span>: false,
+  <span style=color:#e6db74>redirect_on_failure</span>: true
+
+<span style=color:#75715e># 今回東京リージョンのS3を使います</span>
+config <span style=color:#e6db74>:ex_aws</span>, <span style=color:#e6db74>:s3</span>,
+  <span style=color:#e6db74>access_key_id</span>: <span style=color:#e6db74>&#34;XXXXXXXXXXXX&#34;</span>,
+  <span style=color:#e6db74>secret_access_key</span>: <span style=color:#e6db74>&#34;YYYYYYYYYYYYYYYYYYYYY&#34;</span>,
+  <span style=color:#e6db74>region</span>: <span style=color:#e6db74>&#34;ap-northeast-1&#34;</span>,
+  <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https://&#34;</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>,
+  <span style=color:#e6db74>bucket</span>: <span style=color:#e6db74>&#34;bucket名&#34;</span>,
+  <span style=color:#e6db74>public_endpoint</span>: <span style=color:#e6db74>&#34;s3.dualstack.ap-northeast-1.amazonaws.com&#34;</span>
+
+<span style=color:#75715e># この部分でアップロード先をS3に変更します</span>
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Upload</span>,
+  <span style=color:#e6db74>uploader</span>: <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>
+
+<span style=color:#75715e># 各機能の有効化します</span>
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:fe</span>,
+  <span style=color:#e6db74>show_instance_panel</span>: true,
+  <span style=color:#e6db74>scope_options_enabled</span>: true,
+  <span style=color:#e6db74>collapse_message_with_subject</span>: true
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:suggestions</span>,
+  <span style=color:#e6db74>enabled</span>: true
+</code></pre></div><p>設定についてはまた今度まとめたいと思います</p><h3 id=systemd>systemd</h3><p><code>systemd</code> を設定します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+</code></pre></div><p><code>/etc/systemd/system/pleroma.service</code> の <code>Environment</code> と書いてる下に <code>Environment=&#34;MIX_ENV=prod&#34;</code> を追記します</p><p>run <code>systemctl enable --now pleroma.service</code></p><h2 id=補足説明>補足説明</h2><p>今回コピペするとすべて用意できるように <code>cat</code> コマンドを使ってファイルを作成してます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; 書き込む対象のファイル
+</span><span style=color:#e6db74>ファイルの内容
+</span><span style=color:#e6db74>EOL</span> <span style=color:#75715e># 書き込み終了</span>
+</code></pre></div></div></article><div class=pagination><span class=left><a href=https://tech.ress.39.gy/amp/tech/hugo-sass/>《 hugo で sass を css に変換し style タグ内に挿入する方法</a></span>
+<span class=right><a href=https://tech.ress.39.gy/amp/tech/gcp/>Google Cloud Platform Tips 》</a></span></div></main><footer class=wrapper-footer><ul class=svg-icon><li><a class="icon-21 rss" href=https://tech.ress.39.gy/index.xml title=RSS><svg viewbox="0 0 512 512"><path d="M201.8 347.2c0 20.3-16.5 36.8-36.8 36.8s-36.8-16.5-36.8-36.8 16.5-36.8 36.8-36.8S201.8 326.8 201.8 347.2zM128.2 204.7v54.5c68.5.7 124 56.3 124.7 124.7h54.5C306.7 285.3 226.9 205.4 128.2 204.7zM128.2 166.6c57.9.3 112.3 22.9 153.2 63.9 41 41 63.7 95.5 63.9 153.5h54.5c-.3-149.9-121.7-271.4-271.6-271.9V166.6H128.2z"></path></svg></a></li><li><a class="icon-13 github" href=https://github.com/ress997 title=GitHub><svg viewbox="0 0 512 512"><path d="M256 70.7c-102.6.0-185.9 83.2-185.9 185.9.0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9-8.4-21.5-20.6-27.2-20.6-27.2-16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9-41.3-4.7-84.7-20.6-84.7-91.9.0-20.3 7.3-36.9 19.2-49.9-1.9-4.7-8.3-23.6 1.8-49.2.0.0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9.0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4.0 24.9.0 44.9.0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"></path></svg></a></li></ul><p>© 2016 Ress</p></footer></body></html>

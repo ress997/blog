@@ -1,0 +1,156 @@
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><link rel=canonical href=https://tech.ress.39.gy/tech/pleroma/><link rel=amphtml type=text/html href=https://tech.ress.39.gy/amp/tech/pleroma/ title=完成形で未完成><title>Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成</title><meta name=theme-color content="#263238"><meta name=generator content="Hugo 0.75.1"><meta name=description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta property="og:title" content="Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成"><meta property="og:type" content="article"><meta property="og:url" content="https://tech.ress.39.gy/tech/pleroma/"><meta property="og:image" content="https://tech.ress.39.gy/img/thumb.png"><meta property="og:site_name" content="完成形で未完成"><meta property="og:description" content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta property="og:locale" content="ja"><meta name=twitter:site content="完成形で未完成"><meta name=twitter:title content="Amazon Lightsail に Pleroma をインストールしてみた | 完成形で未完成"><meta name=twitter:url content="https://tech.ress.39.gy/tech/pleroma/"><meta name=twitter:description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://tech.ress.39.gy/img/thumb.png"><link rel=icon href=https://tech.ress.39.gy/img/icon.png><link rel=apple-touch-icon href=https://tech.ress.39.gy/img/icon.png><link rel=stylesheet href=https://tech.ress.39.gy/main.min.ba76399c0dc86c7bb332a42e7ff716330a341427ce11d13db92aa955a46334c6.css><script>(function(e,t,n,i,s,a,c){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};a=t.createElement(i);c=t.getElementsByTagName(i)[0];a.async=true;a.src=s;c.parentNode.insertBefore(a,c)})(window,document,"galite","script","https://cdn.jsdelivr.net/npm/ga-lite@2/dist/ga-lite.min.js");galite('create',"UA-128645055-2",'auto',{'useAmpClientId':true});galite('send','pageview');</script></head><body><header class="masthead clearfix"><div class=container><div class=site-info><h1 class=site-name><a href=https://tech.ress.39.gy/>完成形で未完成</a></h1><p class=site-description>noob から hacker になりたい</p></div><nav><a href=/about/>About</a>
+<a href=https://portfolio.ress.39.gy>Portfolio</a>
+<a href=https://ress.39.gy>Profile</a></nav></div></header><main class=container><article class=post><h1>Amazon Lightsail に Pleroma をインストールしてみた</h1><div class=meta><time class=date datetime=2018-10-08T20:45:00+09:00>2018-10-08</time><ul class=tag><li><a href=https://tech.ress.39.gy/tags/aws>AWS</a></li><li><a href=https://tech.ress.39.gy/tags/amazon-s3>Amazon S3</a></li><li><a href=https://tech.ress.39.gy/tags/amazon-lightsail>Amazon Lightsail</a></li><li><a href=https://tech.ress.39.gy/tags/pleroma>Pleroma</a></li></ul></div><nav id=TableOfContents><ul><li><a href=#tldr>TL;DR</a></li><li><a href=#setup>Setup</a></li><li><a href=#caddy>Caddy</a></li><li><a href=#postgresql>postgresql</a></li><li><a href=#elixirerlang>Elixir/Erlang</a></li><li><a href=#pleroma>pleroma</a><ul><li><a href=#sample-config>sample config</a></li><li><a href=#systemd>systemd</a></li></ul></li><li><a href=#補足説明>補足説明</a></li></ul></nav><div class=entry><p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。</p><p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください</p><h2 id=tldr>TL;DR</h2><ul><li>Amazon Lightsail<ul><li>OS: Ubuntu LTS 16.04.5</li></ul></li><li>Amazon S3<ul><li>Static website hosting 有効化すること</li></ul></li></ul><h2 id=setup>Setup</h2><p>事前に必要なものをインストールしていきます。
+ついでにタイムゾーンと言語設定を日本に変更します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>apt update
+apt -y dist-upgrade
+apt -y autoremove
+
+apt -y install language-pack-ja
+update-locale LANG<span style=color:#f92672>=</span>ja_JP.UTF-8
+
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+
+apt -y install git build-essential openssl ssh sudo
+</code></pre></div><h2 id=caddy>Caddy</h2><p>今回リバースプロキシには <a href=https://caddyserver.com/>Caddy</a> を使用します。
+Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl https://getcaddy.com | bash -s personal
+
+chown root:root /usr/local/bin/caddy
+chmod <span style=color:#ae81ff>755</span> /usr/local/bin/caddy
+setcap <span style=color:#e6db74>&#39;cap_net_bind_service=+ep&#39;</span> /usr/local/bin/caddy
+
+<span style=color:#75715e># グループ・ユーザーが存在しない場合のみ実行してください。</span>
+<span style=color:#75715e># グループ一覧: /etc/group</span>
+<span style=color:#75715e># ユーザー一覧: /etc/passwd</span>
+groupadd --system -g <span style=color:#ae81ff>33</span> www-data
+useradd <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  -g www-data --no-user-group <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --home-dir /var/www --no-create-home <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --shell /usr/sbin/nologin <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  --system --uid <span style=color:#ae81ff>33</span> www-data
+
+<span style=color:#75715e># 使用するフォルダを用意します</span>
+mkdir -p /etc/caddy
+chown -R root:root /etc/caddy
+mkdir -p /etc/ssl/caddy
+chown -R root:www-data /etc/ssl/caddy
+chmod <span style=color:#ae81ff>770</span> /etc/ssl/caddy
+
+<span style=color:#75715e># 設定ファイルを作成します</span>
+<span style=color:#75715e># domain.tld など実際に使用する環境に合わせて変更してください</span>
+cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/caddy/Caddyfile
+</span><span style=color:#e6db74>http:// {
+</span><span style=color:#e6db74>  gzip
+</span><span style=color:#e6db74>  root /var/www/html
+</span><span style=color:#e6db74>}
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>social.domain.tld {
+</span><span style=color:#e6db74>  gzip
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>  tls social@domain.tld
+</span><span style=color:#e6db74>
+</span><span style=color:#e6db74>  proxy / localhost:4000 {
+</span><span style=color:#e6db74>    websocket
+</span><span style=color:#e6db74>    transparent
+</span><span style=color:#e6db74>  }
+</span><span style=color:#e6db74>}
+</span><span style=color:#e6db74>EOL</span>
+
+<span style=color:#75715e># 公開用フォルダを作成します</span>
+mkdir -p /var/www/html
+cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /var/www/html/index.html
+</span><span style=color:#e6db74>&lt;h1&gt;Hello World!&lt;/h1&gt;
+</span><span style=color:#e6db74>EOL</span>
+chown -R www-data:www-data /var/www
+chmod <span style=color:#ae81ff>555</span> /var/www
+
+<span style=color:#75715e># systemd を設定します</span>
+curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+chown root:root /etc/systemd/system/caddy.service
+chmod <span style=color:#ae81ff>644</span> /etc/systemd/system/caddy.service
+systemctl daemon-reload
+systemctl start caddy.service
+systemctl enable caddy.service
+</code></pre></div><p>サーバーはこれで用意できるのであとポート設定などは各自調べてください</p><h2 id=postgresql>postgresql</h2><p>データベースをインストールします。
+今回は PostgreSQL 10 を使います。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/apt/sources.list.d/pgdg.list
+</span><span style=color:#e6db74>deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+</span><span style=color:#e6db74>EOL</span>
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt update
+
+apt install postgresql-10 postgresql-contrib-10
+</code></pre></div><h2 id=elixirerlang>Elixir/Erlang</h2><p>Pleroma を実行する Elixir/Erlang をインストールします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb <span style=color:#f92672>&amp;&amp;</span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
+apt update
+
+apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
+</code></pre></div><h2 id=pleroma>pleroma</h2><p>ユーザーを追加しソースコードを git でダウンロードします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>adduser pleroma
+usermod -aG sudo pleroma
+
+su pleroma
+cd ~
+git clone https://git.pleroma.social/pleroma/pleroma
+cd pleroma/
+</code></pre></div><p>依存関係をダウンロードします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mix deps.get
+</code></pre></div><p>設定ファイルを作成します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># まずは自動生成</span>
+mix generate_config
+cp config/generated_config.exs config/prod.secret.exs
+</code></pre></div><p><code>config/prod.secret.exs</code> を次項のサンプルを例に編集します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>vi config/prod.secret.exs
+</code></pre></div><p>データベースの設定をします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo su postgres -c <span style=color:#e6db74>&#39;psql -f config/setup_db.psql&#39;</span>
+MIX_ENV<span style=color:#f92672>=</span>prod mix ecto.migrate
+</code></pre></div><h3 id=sample-config>sample config</h3><p>見やすいように私は設定の順序を変更してます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-elixir data-lang=elixir>use <span style=color:#a6e22e>Mix.Config</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Web.Endpoint</span>,
+   <span style=color:#e6db74>url</span>: [<span style=color:#e6db74>host</span>: <span style=color:#e6db74>&#34;インスタンスURL&#34;</span>, <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https&#34;</span>, <span style=color:#e6db74>port</span>: <span style=color:#ae81ff>443</span>],
+   <span style=color:#e6db74>secret_key_base</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Repo</span>,
+  <span style=color:#e6db74>adapter</span>: <span style=color:#a6e22e>Ecto.Adapters.Postgres</span>,
+  <span style=color:#e6db74>username</span>: <span style=color:#e6db74>&#34;pleroma&#34;</span>,
+  <span style=color:#e6db74>password</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>,
+  <span style=color:#e6db74>database</span>: <span style=color:#e6db74>&#34;pleroma_dev&#34;</span>,
+  <span style=color:#e6db74>hostname</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>,
+  <span style=color:#e6db74>pool_size</span>: <span style=color:#ae81ff>10</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:instance</span>,
+  <span style=color:#e6db74>name</span>: <span style=color:#e6db74>&#34;インスタンス名&#34;</span>,
+  <span style=color:#e6db74>email</span>: <span style=color:#e6db74>&#34;メールアドレス&#34;</span>,
+  <span style=color:#e6db74>dedupe_media</span>: false,
+  <span style=color:#e6db74>limit</span>: <span style=color:#ae81ff>5000</span>,
+  <span style=color:#e6db74>registrations_open</span>: true
+<span style=color:#75715e># limit は文字数制限です</span>
+<span style=color:#75715e># registrations_open は新規登録するかの設定です</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:media_proxy</span>,
+  <span style=color:#e6db74>enabled</span>: false,
+  <span style=color:#e6db74>redirect_on_failure</span>: true
+
+<span style=color:#75715e># 今回東京リージョンのS3を使います</span>
+config <span style=color:#e6db74>:ex_aws</span>, <span style=color:#e6db74>:s3</span>,
+  <span style=color:#e6db74>access_key_id</span>: <span style=color:#e6db74>&#34;XXXXXXXXXXXX&#34;</span>,
+  <span style=color:#e6db74>secret_access_key</span>: <span style=color:#e6db74>&#34;YYYYYYYYYYYYYYYYYYYYY&#34;</span>,
+  <span style=color:#e6db74>region</span>: <span style=color:#e6db74>&#34;ap-northeast-1&#34;</span>,
+  <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https://&#34;</span>
+
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>,
+  <span style=color:#e6db74>bucket</span>: <span style=color:#e6db74>&#34;bucket名&#34;</span>,
+  <span style=color:#e6db74>public_endpoint</span>: <span style=color:#e6db74>&#34;s3.dualstack.ap-northeast-1.amazonaws.com&#34;</span>
+
+<span style=color:#75715e># この部分でアップロード先をS3に変更します</span>
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Upload</span>,
+  <span style=color:#e6db74>uploader</span>: <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>
+
+<span style=color:#75715e># 各機能の有効化します</span>
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:fe</span>,
+  <span style=color:#e6db74>show_instance_panel</span>: true,
+  <span style=color:#e6db74>scope_options_enabled</span>: true,
+  <span style=color:#e6db74>collapse_message_with_subject</span>: true
+config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:suggestions</span>,
+  <span style=color:#e6db74>enabled</span>: true
+</code></pre></div><p>設定についてはまた今度まとめたいと思います</p><h3 id=systemd>systemd</h3><p><code>systemd</code> を設定します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+</code></pre></div><p><code>/etc/systemd/system/pleroma.service</code> の <code>Environment</code> と書いてる下に <code>Environment="MIX_ENV=prod"</code> を追記します</p><p>run <code>systemctl enable --now pleroma.service</code></p><h2 id=補足説明>補足説明</h2><p>今回コピペするとすべて用意できるように <code>cat</code> コマンドを使ってファイルを作成してます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; 書き込む対象のファイル
+</span><span style=color:#e6db74>ファイルの内容
+</span><span style=color:#e6db74>EOL</span> <span style=color:#75715e># 書き込み終了</span>
+</code></pre></div></div></article><div class=pagination><span class=left><a href=https://tech.ress.39.gy/tech/hugo-sass/>&#12298; hugo で sass を css に変換し style タグ内に挿入する方法</a></span>
+<span class=right><a href=https://tech.ress.39.gy/tech/gcp/>Google Cloud Platform Tips &#12299;</a></span></div><script src=https://utteranc.es/client.js repo=ress997/blog-comment issue-term=pathname theme=github-light crossorigin=anonymous async></script></main><footer class=wrapper-footer><ul class=svg-icon><li><a href=https://tech.ress.39.gy/index.xml class="icon-21 rss" title=RSS><svg viewBox="0 0 512 512"><path d="M201.8 347.2c0 20.3-16.5 36.8-36.8 36.8s-36.8-16.5-36.8-36.8 16.5-36.8 36.8-36.8S201.8 326.8 201.8 347.2zM128.2 204.7v54.5c68.5.7 124 56.3 124.7 124.7h54.5C306.7 285.3 226.9 205.4 128.2 204.7zM128.2 166.6c57.9.3 112.3 22.9 153.2 63.9 41 41 63.7 95.5 63.9 153.5h54.5c-.3-149.9-121.7-271.4-271.6-271.9V166.6H128.2z"/></svg></a></li><li><a href=https://github.com/ress997 class="icon-13 github" title=GitHub><svg viewBox="0 0 512 512"><path d="M256 70.7c-102.6.0-185.9 83.2-185.9 185.9.0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9-8.4-21.5-20.6-27.2-20.6-27.2-16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9-41.3-4.7-84.7-20.6-84.7-91.9.0-20.3 7.3-36.9 19.2-49.9-1.9-4.7-8.3-23.6 1.8-49.2.0.0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9.0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4.0 24.9.0 44.9.0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"/></svg></a></li></ul><p>&copy; 2016 Ress</p></footer></body></html>
