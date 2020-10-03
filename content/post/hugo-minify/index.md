@@ -4,7 +4,7 @@ date: 2018-08-17 20:54:38 +0900
 tags:
   - Hugo
 toc: true
-thumbnail: "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumbnail/hugo-reloaded"
+image: "thumbnail.png"
 categories:
   - tech
 ---
