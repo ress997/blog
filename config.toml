@@ -7,7 +7,7 @@ paginatePath = ""
 theme = "stack"
 
 baseURL = "https://blog.ress.39.gy/"
-title = "完成形で未完成"
+title = "りーすぶろぐ"
 copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"
 
@@ -21,12 +21,12 @@ rssFullContent = true
 [params.sidebar]
 	emoji = "🦋"
 	avatar = "img/avatar.png"
-	subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+	subtitle = "noob から hacker になりたい"
 [params.article]
 	math = false
 	[params.article.license]
 		enabled = true
-		default = "Licenced under CC BY-NC-SA 4.0"
+		default = "Licensed under CC BY-NC-SA 4.0"
 [params.comments]
 	enabled = false
 	provider = "disqus"
