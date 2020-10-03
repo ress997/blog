@@ -6,7 +6,7 @@ tags:
   - hugo
 toc: true
 ---
-以前 [Jekyll で行う方法]({{< ref "/web/jekyll-sass.md" >}}) を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。
+以前 [Jekyll で行う方法]({{< ref "/tech/jekyll-sass.md" >}}) を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。
 
 AMP HTML のページを用意しようと思ったときに css を scss で書いてた場合に外部ツールを使って挿入するしてもいいですが静的サイトジェネレータ側で行えるのであれば完結するため紹介します！
 

@@ -6,7 +6,7 @@ footnoteReturnLinkContents = "↩"
 paginatePath = ""
 theme = "ran"
 
-baseURL = "https://tech.ress.39.gy/"
+baseURL = "https://blog.ress.39.gy/"
 title = "完成形で未完成"
 copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"

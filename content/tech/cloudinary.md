@@ -5,7 +5,7 @@ tags:
   - cloudinary
 toc: true
 ---
-最近[ホスティングを変更した]({{< ref "/post/renewal.md" >}})関係で 1GB 以上になると料金が発生します。
+最近[ホスティングを変更した]({{< ref "/tech/renewal.md" >}})関係で 1GB 以上になると料金が発生します。
 そこで無料で使用できる画像管理サービスを探しました。
 
 Gyazo や imgix など様々なサービスと比較していった中で cloudinary を使うことにしました。

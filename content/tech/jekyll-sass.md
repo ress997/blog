@@ -10,7 +10,7 @@ jekyll を使って scss を css に変換し style タグ内に挿入したか�
 
 AMP HTML ページを用意する場合などに使えます。
 
-**追記**: [hugo で行う方法も追記しました]({{< ref "/web/hugo-sass.md" >}})
+**追記**: [hugo で行う方法も追記しました]({{< ref "/tech/hugo-sass.md" >}})
 
 ## やり方
 
