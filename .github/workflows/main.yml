@@ -1,7 +1,8 @@
 name: Build and Deploy
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+    - main
   repository_dispatch:
   schedule:
     - cron: '0 6 * * *'
@@ -17,8 +18,8 @@ jobs:
       - name: Download theme
         uses: actions/checkout@v2
         with:
-          repository: ress997/hugo-ran
-          path: themes/ran
+          repository: CaiJimmy/hugo-theme-stack
+          path: themes/stack
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2

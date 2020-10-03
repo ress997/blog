@@ -4,7 +4,7 @@ hasCJKLanguage = true
 pluralizeListTitles = false
 footnoteReturnLinkContents = "↩"
 paginatePath = ""
-theme = "ran"
+theme = "stack"
 
 baseURL = "https://blog.ress.39.gy/"
 title = "完成形で未完成"
@@ -12,33 +12,79 @@ copyright = "&copy; 2016 Ress"
 googleAnalytics = "UA-128645055-2"
 
 [params]
-description = "noob から hacker になりたい"
-dateformat = "2006-01-02"
-thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/thumb"
+mainSections = ["post"]
+featuredImageField = "image"
+rssFullContent = true
+[params.dateFormat]
+	published = "Jan 02, 2006"
+	lastUpdated = "Jan 02, 2006 15:04 JST"
+[params.sidebar]
+	emoji = "🦋"
+	avatar = "img/avatar.png"
+	subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+[params.article]
+	math = false
+	[params.article.license]
+		enabled = true
+		default = "Licenced under CC BY-NC-SA 4.0"
+[params.comments]
+	enabled = false
+	provider = "disqus"
+[params.widgets]
+	enabled = ['archives', 'tag-cloud']
+	[params.widgets.archives]
+		limit = 5
+		### Archives page relative URL
+		path = "archives"
+	[params.widgets.tagCloud]
+		limit = 10
+[params.opengraph]
+	[params.opengraph.twitter]
+		site = ""
+		card = "summary_large_image"
+[params.defaultImage]
+	[params.defaultImage.article]
+		enabled = false
+		local = false
+		src = ""
+	[params.defaultImage.articleList]
+		enabled = false
+		local = true
+		src = ""
+	[params.defaultImage.opengraph]
+		enabled = false
+		local = false
+		src = ""
 
-[params.author]
-name = "Ress"
-github = "ress997"
-thumbnail = "https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good,c_scale,h_192,w_192/blog/logo"
+[menu]
+	[[menu.main]]
+		identifier = "home"
+		name = "Home"
+		url = "/"
+		weight = -100
+		pre = "home"
+	[[menu.main]]
+		identifier = "about-cn"
+		name = "About"
+		url = "about"
+		weight = -90
+		pre = "user"
+	[[menu.main]]
+		identifier = "archives"
+		name = "Archives"
+		url = "archives"
+		weight = -70
+		pre = "archives"
 
-[params.utterances]
-repo = "ress997/blog-comment"
+[related]
+	includeNewer = true
+	threshold = 60
+	toLower = false
 
-[[Menus.main]]
-name = "About"
-url = "/about/"
-weight = 1
-[[Menus.main]]
-name = "Portfolio"
-url = "https://portfolio.ress.39.gy"
-weight = 2
-[[Menus.main]]
-name = "Profile"
-url = "https://ress.39.gy"
-weight = 3
+	[[related.indices]]
+		name = "tags"
+		weight = 100
 
-[taxonomies]
-tag = "tags"
-
-[outputs]
-page = ["HTML", "AMP"]
+	[[related.indices]]
+		name = "categories"
+		weight = 200
