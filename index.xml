@@ -1,6 +1,1597 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>完成形で未完成</title><link>https://blog.ress.39.gy/</link><description>Recent content on 完成形で未完成</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://blog.ress.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://blog.ress.39.gy/tech/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://blog.ress.39.gy/tech/ci-chenge/</guid><description>GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。 設定 とりあえず設定を晒しておきます name: Build and Deploy on: [push, pull_request, repository_dispatch] jobs: main: name: Build and deploy runs-on:</description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://blog.ress.39.gy/note/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://blog.ress.39.gy/note/oppo-reno-a-128gb/</guid><description>メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。 今回この端末を買った決め手は おサイフケータイ と DSDV に対応し、3万円以下</description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://blog.ress.39.gy/note/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://blog.ress.39.gy/note/hp-chromebook-x360-14/</guid><description>今回 HP から発売されている HP Chromebook x360 14 のエグゼクティブモデル (i5 モデル) を購入しました。 今回スーペリアモデル (i3 モデル) ではなくエグゼクティブモデル (i5</description></item><item><title>Docker をセキュアに使うために</title><link>https://blog.ress.39.gy/tech/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://blog.ress.39.gy/tech/docker-secure/</guid><description>&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
-&lt;p>そこで Docker をセキュアに使うためにも自分ようのメモも兼ねて書いておきます。&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://blog.ress.39.gy/tech/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://blog.ress.39.gy/tech/paclist-v1/</guid><description>&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p></description></item><item><title>Speed Wi-Fi NEXT W06 を USBで接続する</title><link>https://blog.ress.39.gy/tech/w06-usb/</link><pubDate>Tue, 11 Jun 2019 16:32:30 +0900</pubDate><guid>https://blog.ress.39.gy/tech/w06-usb/</guid><description>&lt;p>外出時にパソコンを使う機会が多くモバイルルーターを契約しました。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>完成形で未完成</title><link>https://blog.ress.39.gy/</link><description>Recent content on 完成形で未完成</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://blog.ress.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://blog.ress.39.gy/post/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://blog.ress.39.gy/post/ci-chenge/</guid><description>&lt;p>GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。&lt;/p>
+&lt;h2 id="設定">設定&lt;/h2>
+&lt;p>とりあえず設定を晒しておきます&lt;/p>
+&lt;pre>&lt;code>name: Build and Deploy
+on: [push, pull_request, repository_dispatch]
+jobs:
+main:
+name: Build and deploy
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v1
+with:
+fetch-depth: 1
+- name: Download theme
+run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
+- name: Download hugo
+run: |
+VERSION=$(curl --silent &amp;quot;https://api.github.com/repos/gohugoio/hugo/releases/latest&amp;quot; | grep '&amp;quot;tag_name&amp;quot;:' | sed -E 's/.*&amp;quot;v([^&amp;quot;]+)&amp;quot;.*/\1/')
+wget &amp;quot;https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_Linux-64bit.tar.gz&amp;quot; -O hugo.tar.gz
+tar xzf hugo.tar.gz hugo
+rm -rf hugo.tar.gz
+- name: Build
+run: ./hugo --minify
+- name: Cache node_modules
+uses: actions/cache@preview
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+with:
+path: ~/.cache/yarn
+key: ${{ runner.os }}-projectname-${{ github.sha }}
+restore-keys: ${{ runner.os }}-projectname-
+- name: Install firebase-tools
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+run: yarn add firebase-tools
+- name: Push file to Firebase Hosting
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+env:
+FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+run: yarn run deploy
+&lt;/code>&lt;/pre>&lt;p>私の環境ではデプロイ先として Firebase Hosting を使用しているのでそれぞれ自分が使用しているデプロイ先へ変更してください&lt;/p>
+&lt;h2 id="詳細">詳細&lt;/h2>
+&lt;p>それぞれの設定項目日ついて説明していこうと思います&lt;/p>
+&lt;h3 id="on">&lt;code>on&lt;/code>&lt;/h3>
+&lt;p>CI を使用するものを制限しますが &lt;code>push&lt;/code> と &lt;code>pull_request&lt;/code> を指定しています。&lt;/p>
+&lt;p>&lt;code>repository_dispatch&lt;/code> では api を使用してCIを動かすことができるので追加しています。&lt;/p>
+&lt;h3 id="バージョン指定">バージョン指定&lt;/h3>
+&lt;p>&lt;code>VERSION&lt;/code> の部分で GitHub API を使用して Hugo の最新バージョンを取得しています。&lt;/p>
+&lt;h3 id="cache">cache&lt;/h3>
+&lt;p>firebase を使用している関係で npm を取得するのを高速化するために Actions のキャッシュ機能を使用しています。&lt;/p>
+&lt;h3 id="if">&lt;code>if&lt;/code>&lt;/h3>
+&lt;p>&lt;code>github.event_name&lt;/code> で使用するものを制限します。&lt;/p>
+&lt;p>&lt;code>github.ref&lt;/code> では使用するブランチを制限しています。&lt;/p>
+&lt;p>今回 &lt;code>if&lt;/code> で制限している内容としては &lt;code>repository_dispatch&lt;/code> のときと &lt;code>master&lt;/code> ブランチが更新されたときに動作するようにしています。&lt;/p>
+&lt;h3 id="secrets">&lt;code>secrets&lt;/code>&lt;/h3>
+&lt;p>設定画面に入力したものを使用する場合呼び出す必要があります。&lt;/p>
+&lt;p>CircleCI では環境変数を使用していたため、環境変数として展開しています。&lt;/p>
+&lt;h2 id="repository_dispatch">&lt;code>repository_dispatch&lt;/code>&lt;/h2>
+&lt;p>上記にも述べた通りこれを設定しておくことで GitHub API を使って webhook として使用できます。&lt;/p>
+&lt;pre>&lt;code>curl -XPOST -u &amp;quot;ress997:${TOKEN}&amp;quot; -H &amp;quot;Accept: application/vnd.github.everest-preview+json&amp;quot; -H &amp;quot;Content-Type: application/json&amp;quot; https://api.github.com/repos/ress997/blog/dispatches --data '{&amp;quot;event_type&amp;quot;: &amp;quot;html.preview&amp;quot;}'
+&lt;/code>&lt;/pre>&lt;p>上記のようなすることによってイベントを発火することができます。&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>CircleCI から GitHub Actions に変更してみましたが思っていたよりかんたんにできました。&lt;/p>
+&lt;p>ただこれを書いていて &lt;code>if&lt;/code> がどんどん長くなっていくことが大変でまとめて設定できるようになったらもっと便利になると思います。&lt;/p></description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://blog.ress.39.gy/post/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/oppo-reno-a-128gb/</guid><description>&lt;p>メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。&lt;/p>
+&lt;p>今回この端末を買った決め手は &lt;strong>おサイフケータイ&lt;/strong> と &lt;strong>DSDV&lt;/strong> に対応し、3万円以下と安く買えたからです。&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/omzi8y" alt="" />&lt;/p>
+&lt;h2 id="スペック">スペック&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">項目&lt;/th>
+&lt;th>内容&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">本体サイズ&lt;/td>
+&lt;td>約158.4 x 約75.4 x 約7.8 (mm)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">画面サイズ&lt;/td>
+&lt;td>約6.4インチ&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">質量&lt;/td>
+&lt;td>約169.5g&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">CPU&lt;/td>
+&lt;td>Qualcomm® Snapdragon™ 710/オクタコア 2.2GHz + 1.7G&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">OS&lt;/td>
+&lt;td>Color OS 6 (Android™ 9 Pie ベース)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">RAM&lt;/td>
+&lt;td>6GB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">ROM&lt;/td>
+&lt;td>128GB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">バッテリー容量&lt;/td>
+&lt;td>約3,600mAh&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;a class="link" href="https://mobile.rakuten.co.jp/product/reno-a/" target="_blank" rel="noopener"
+>公式より引用&lt;/a>&lt;/p>
+&lt;h2 id="比較">比較&lt;/h2>
+&lt;p>大きさが近い iPhone 11 Pro Max と比較してみたいと思います。&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/vsluz8" alt="" />&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/buyhwz" alt="" />&lt;/p>
+&lt;p>サイズはほぼ同じとなっておりだいぶ大きいです&lt;/p>
+&lt;p>しかし iPhone 11 Pro Max より OPPO Reno A のほうが軽く手で持ち上げていてもそこまで負担になりませんでした&lt;/p></description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://blog.ress.39.gy/post/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/hp-chromebook-x360-14/</guid><description>&lt;p>今回 HP から発売されている &lt;a class="link" href="https://jp.ext.hp.com/notebooks/personal/chromebook_x360_14/" target="_blank" rel="noopener"
+>HP Chromebook x360 14&lt;/a> のエグゼクティブモデル (i5 モデル) を購入しました。&lt;/p>
+&lt;p>今回スーペリアモデル (i3 モデル) ではなくエグゼクティブモデル (i5 モデル) を買ったのかなど書いていこうと思います。&lt;/p>
+&lt;p>今回購入にあたって国内限定など指定が私にはあったのであくまでも参考程度にお願いします。&lt;/p>
+&lt;h2 id="購入までの経緯">購入までの経緯&lt;/h2>
+&lt;p>Chrome OS では Android アプリが使用できまだベータ版ですが Linux が使用できるので、普段やっていることが Chrome OS でも可能だと思い Chromebook を選ぶことにしました。&lt;/p>
+&lt;p>そこで最初に目をつけたのが ASUS Chromebook Flip C434TA でした。&lt;/p>
+&lt;p>しかし &lt;a class="link" href="https://www.asus.com/jp/2-in-1-PCs/ASUS-Chromebook-Flip-C434TA/Tech-Specs/" target="_blank" rel="noopener"
+>C434TA のスペック&lt;/a> を見てみると性能が飛躍的にアップした第8世代ですが m シリーズを使用しメモリが LPDDR3 だったりと古めの構成となっていました。&lt;/p>
+&lt;p>そこで他の機種などを調べていく有為に出会ったのが HP Chromebook x360 14 でした。&lt;/p>
+&lt;p>&lt;a class="link" href="https://jp.ext.hp.com/campaign/personal/others/80th_anniversary/" target="_blank" rel="noopener"
+>80周年記念セール&lt;/a> で安くなっており C434TA とほぼ同じ値段で性能が良くなるのであればと思い今回選びました。&lt;/p>
+&lt;p>普段からパソコンでは調べるときなど数十単位でタブを使用していることも多く開発関係も行う予定だったため上位のエグゼクティブモデルを購入しました。&lt;/p>
+&lt;h2 id="レビュー">レビュー&lt;/h2>
+&lt;p>HP Chromebook 13 G1 を1週間ほどですが使用していました。&lt;/p>
+&lt;p>HP Chromebook 13 G1 と比べて最初に感じるのはやはり HP Chromebook x360 14 のほうが重たく感じます。&lt;/p>
+&lt;p>しかし機能性を見てみると左右に充電可能な Type-C ソケットが存在しバックスペースの上に存在した電源ボタンがロックボタンに変更されました。&lt;/p>
+&lt;p>今まで iPhone iPad PC など複数持ち運び目的によって使い分けていました。そんな環境のなか HP Chromebook 13 G1 を使用していると、タッチディスプレイや360度回転もしなかったためタブレットとパソコンの中間的な扱いでした、&lt;/p>
+&lt;p>しかし今回のレビュー記事を書くにあたって軽く触ってみた結果メインパソコンとして使用してもいいぐらい快適に使用できています。&lt;/p>
+&lt;h2 id="比較">比較&lt;/h2>
+&lt;p>今まで現役で使用していた Macbook Pro 13 と比較したいと思います&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/tqeiqx" alt="" />&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/env0oa" alt="" />&lt;/p>
+&lt;p>Macbook より大きいですが軽く持ち運びに苦にならなかったです&lt;/p>
+&lt;h2 id="結論">結論&lt;/h2>
+&lt;p>ASUS の C434TA よりも高性能でハイスペックな Chromebook をメインのノートパソコンとして選ぶのであればおすすめだと思います！&lt;/p></description></item><item><title>Docker をセキュアに使うために</title><link>https://blog.ress.39.gy/post/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://blog.ress.39.gy/post/docker-secure/</guid><description>&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
+&lt;p>そこで Docker をセキュアに使うためにも自分ようのメモも兼ねて書いておきます。&lt;/p>
+&lt;p>まず root 権限で docker グループにパスワードを設定します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">sudo gpasswd docker
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>一時的に &lt;code>docker&lt;/code> を使いたいユーザーを Docker グループに参加します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">newgrp docker
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで &lt;code>sudo&lt;/code> を使わず Docker を使えます!&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://blog.ress.39.gy/post/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://blog.ress.39.gy/post/paclist-v1/</guid><description>&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p>
+&lt;h2 id="system">System&lt;/h2>
+&lt;p>今回パッケージを選ぶときに &lt;code>python2&lt;/code>, &lt;code>qt4&lt;/code>, &lt;code>qt5&lt;/code>, &lt;code>gtk2&lt;/code> を使用しないようにしました。&lt;/p>
+&lt;h3 id="core">Core&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>intel-ucode&lt;/code>&lt;/li>
+&lt;li>&lt;code>linux-zen&lt;/code>&lt;/li>
+&lt;li>&lt;code>yay-bin&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>今回は &lt;a class="link" href="https://github.com/zen-kernel/zen-kernel" target="_blank" rel="noopener"
+>ZEN Kernel&lt;/a> を使用しインテルのマイクロコードなどを追加しました&lt;/p>
+&lt;h3 id="lib">Lib&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>btrfs-progs&lt;/code>&lt;/li>
+&lt;li>&lt;code>exfat-utils&lt;/code>&lt;/li>
+&lt;li>&lt;code>libsecret&lt;/code>&lt;/li>
+&lt;li>&lt;code>libu2f-host&lt;/code>&lt;/li>
+&lt;li>&lt;code>libxss&lt;/code>&lt;/li>
+&lt;li>&lt;code>aic94xx-firmware&lt;/code>&lt;/li>
+&lt;li>&lt;code>wd719x-firmware&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Yubikey や Btrfs などのドライバを追加しました。&lt;/p>
+&lt;h3 id="base">Base&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>wayland&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>xorg-server-xwayland&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>いままで wayland を試したことがなかったので導入します。
+動かないアプリが発生しないように xwayland も導入しておきます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>rescached-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>DNS のクリエを標準のままではキャッシュしてくれないので導入しました。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>xdg-user-dirs&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>XDG ユーザーディレクトリに従ってディレクトリ構造を共通化したいため導入します&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>usb_modeswitch&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>前回記事にも書きましたがモバイルルーターを接続するために入れます。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>intel-media-driver&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ttf-noto-fonts-simple&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ttf-twemoji-color&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>mailcap-mime-types&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>xdg-utils&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>pulseaudio&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>pulseaudio-alsa&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="gui">GUI&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>adwaita-icon-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>arc-gtk-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>arc-icon-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gsettings-desktop-schemas-git&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gtk3-mushrooms&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>numix-cursor-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>sway&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>swaylock&lt;/code>&lt;/li>
+&lt;li>&lt;code>waybar&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="tools">Tools&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>fcitx5-anthy-git&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>enchant-pure&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>IME&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>light&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ディスプレイの明るさ&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mako&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>通知&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>wl-clipboard&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>クリップボード&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>rofi&lt;/code>&lt;/li>
+&lt;li>&lt;code>rofi-dmenu&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ランチャー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>grim&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>slurp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>スクショ&lt;/p>
+&lt;h4 id="app">App&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>opera&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>profile-sync-daemon&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>ブラウザ! &lt;code>profile-sync-daemon&lt;/code> を使って高速化&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>pavucontrol&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>音量ミキサー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>pcmanfm-gtk3&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>gvfs&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>ファイラー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>vimiv&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>libgexiv2&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>画像ビューア&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>xarchiver&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>p7zip&lt;/code>&lt;/li>
+&lt;li>&lt;code>unrar&lt;/code>&lt;/li>
+&lt;li>&lt;code>unzip&lt;/code>&lt;/li>
+&lt;li>&lt;code>zip&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>展開!&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>deadbeef&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>音楽プレイヤー&lt;/p>
+&lt;h2 id="net">Net&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>connman-git&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>iwd-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>connman-gtk&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>netctl&lt;/code> でもいいのですが &lt;code>iwd&lt;/code> を使用したかったので&lt;/p>
+&lt;h2 id="dev">Dev&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>zsh&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>zsh&lt;/code> 派なので&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>go&lt;/code>&lt;/li>
+&lt;li>&lt;code>nodejs-lts-dubnium&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>yarn&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>開発に使用する言語もインストール&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>bat&lt;/code>&lt;/li>
+&lt;li>&lt;code>exa&lt;/code>&lt;/li>
+&lt;li>&lt;code>fd&lt;/code>&lt;/li>
+&lt;li>&lt;code>fzy&lt;/code>&lt;/li>
+&lt;li>&lt;code>ghq-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>ripgrep&lt;/code>&lt;/li>
+&lt;li>&lt;code>tig&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>便利な cli で動くツールたち&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>docker-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>docker-compose-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>kind-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>kubectl-bin&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>仮想化関係も入れておきます&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>alacritty&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ターミナル&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>google-chrome-dev&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>最新の変更を調査するためと開発ツールが便利なので&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>neovim&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>python-neovim&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>エディタ!
+昔は Vim でした&amp;hellip;&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>openssh&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>ssh&lt;/code> しようと思ったら&lt;strong>存在しない&lt;/strong>と起こられたことがあるので明示してインストールしてます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>yaskkserv&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>eskk.vim&lt;/code> で仕様してます。&lt;/p>
+&lt;h2 id="etc">etc.&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>keybase&lt;/code>&lt;/li>
+&lt;li>&lt;code>seahorse-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>たまーに使うツール&lt;/p></description></item><item><title>Speed Wi-Fi NEXT W06 を USBで接続する</title><link>https://blog.ress.39.gy/post/w06-usb/</link><pubDate>Tue, 11 Jun 2019 16:32:30 +0900</pubDate><guid>https://blog.ress.39.gy/post/w06-usb/</guid><description>&lt;p>外出時にパソコンを使う機会が多くモバイルルーターを契約しました。&lt;/p>
 &lt;p>そこで Speed Wi-Fi NEXT W05 にクレードルを接続して有線接続をしてました。&lt;/p>
 &lt;p>しかし Speed Wi-Fi NEXT W06 に機種変したことによって有線接続ができなくなりました。&lt;/p>
-&lt;p>そこで usb 接続でできないか調べたところ日本語情報がなかったのでここに掲載します！&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://blog.ress.39.gy/tech/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://blog.ress.39.gy/tech/defx/</guid><description>&lt;p>今まで vim でファイラーを使うとなったときに &lt;a href="https://github.com/scrooloose/nerdtree">NERDtree&lt;/a> しか使ってませんでしたが &lt;a href="https://github.com/Shougo">@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p></description></item><item><title>hugo で sass を css に変換し style タグ内に挿入する方法</title><link>https://blog.ress.39.gy/tech/hugo-sass/</link><pubDate>Wed, 22 May 2019 15:41:36 +0900</pubDate><guid>https://blog.ress.39.gy/tech/hugo-sass/</guid><description>&lt;p>以前 &lt;a href="https://blog.ress.39.gy/tech/jekyll-sass/">Jekyll で行う方法&lt;/a> を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。&lt;/p>
-&lt;p>AMP HTML のページを用意しようと思ったときに css を scss で書いてた場合に外部ツールを使って挿入するしてもいいですが静的サイトジェネレータ側で行えるのであれば完結するため紹介します！&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://blog.ress.39.gy/tech/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/pleroma/</guid><description>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能</description></item><item><title>Google Cloud Platform Tips</title><link>https://blog.ress.39.gy/tech/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/gcp/</guid><description>Google Cloud Platform を使用していく上でハマった点などを書いていきます。 今後もハマった点があれば追加していく予定です。 有料アカウントへアップグレード 1週間前</description></item><item><title>forestry.io Tips</title><link>https://blog.ress.39.gy/tech/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/forestry/</guid><description>forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます! 今後も更新し追加していく予定です。 タイムゾーン タイムゾ</description></item><item><title>cloudinary が便利!</title><link>https://blog.ress.39.gy/tech/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/cloudinary/</guid><description>最近ホスティングを変更した関係で 1GB 以上になると料金が発生します。 そこで無料で使用できる画像管理サービスを探しました。 Gyazo や imgix など様々なサービス</description></item><item><title>パスワード管理について考え直してみた</title><link>https://blog.ress.39.gy/note/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://blog.ress.39.gy/note/password-management/</guid><description>パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。 しかし、サブスクリプションに移行したことによ</description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://blog.ress.39.gy/tech/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://blog.ress.39.gy/tech/amazon-lightsail-cheaper/</guid><description>Developers.IO でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。 Amazon Lightsail とは Amazon Lightsail とは AWS の EC2 をより簡単に使</description></item><item><title>Hugo で minify をサポート</title><link>https://blog.ress.39.gy/tech/hugo-minify/</link><pubDate>Fri, 17 Aug 2018 20:54:38 +0900</pubDate><guid>https://blog.ress.39.gy/tech/hugo-minify/</guid><description>最近嬉しい更新が多い Hugo に minify オプションが追加されました！ 詳しくは 公式ブログ を見てください。 minify 今まではテンプレートファイルの改行をなるべく減らし</description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://blog.ress.39.gy/note/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://blog.ress.39.gy/note/instapaper-premium/</guid><description>公式ブログ によるとプレミアムをリニューアルし、今まで使えてた一部機能がプレミアム機能となり有料化することが決まりました。 今まで 今までは Pinterest に回</description></item><item><title>ブログ環境を整えた</title><link>https://blog.ress.39.gy/tech/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/renewal/</guid><description>いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。 TL;DR サイトジェネレーター: Hugo バージョン管理: GitHub ビルド/公</description></item><item><title>このサイトについて</title><link>https://blog.ress.39.gy/about1/</link><pubDate>Tue, 10 Jul 2018 09:40:00 +0900</pubDate><guid>https://blog.ress.39.gy/about1/</guid><description>@ress が日記や技術的なことメモ感覚で書いていきます。 もともと、文章が書くのが苦手ですがもっと向上したいので更新は不定期ですが、がんばります！ アク</description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://blog.ress.39.gy/note/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://blog.ress.39.gy/note/information-gathering/</guid><description>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。 皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita Web</description></item><item><title>キーボード配列を Eucalyn 配列に変更してみた</title><link>https://blog.ress.39.gy/tech/keyboard-eucalyn/</link><pubDate>Thu, 17 May 2018 13:40:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/keyboard-eucalyn/</guid><description>最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに 自作キーボード Advent Calendar という存在を知りました。 ぼくのかんがえるさい</description></item><item><title>zplug のマイベストプラクティス</title><link>https://blog.ress.39.gy/tech/zplug/</link><pubDate>Tue, 20 Mar 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/zplug/</guid><description>普段ターミナルで使っている zsh をもっと便利したいので私は高速な zplugin などがありますが zplug を使ってます。 注意: 私の使い方は zplug 開発側の想定外の使用方法で</description></item><item><title>zplug の自動インストールを高速化してみた</title><link>https://blog.ress.39.gy/tech/zplug-install/</link><pubDate>Thu, 01 Mar 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/zplug-install/</guid><description>いつも使ってる zplug が遅いと感じ始めたのでちょっと工夫してみました! $ZPLUG_LOADFILE を設定して、キャッシュを使用してることが前提条件です. tl;dr source $ZPLUG_HOME/init.zsh +if [[ $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface || !</description></item><item><title>Mastodon をカスタマイズする</title><link>https://blog.ress.39.gy/tech/mastodon-customize/</link><pubDate>Mon, 04 Dec 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/mastodon-customize/</guid><description>この記事は Mastodon Advent Calendar 2017 - Qiita と Mastodon 2 Advent Calendar 2017 - Adventar の5日目の記事です。 昨日は @xserver さんによる インスタンス運用アンチパターン と @Denmaaaa さんによる 具体的分析結果から考</description></item><item><title>Mastodon を触ったときのメモ</title><link>https://blog.ress.39.gy/tech/mastodon/</link><pubDate>Wed, 24 May 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/mastodon/</guid><description>私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。 ちなみに構築した環境</description></item><item><title>ConoHa で Mastodon を立ててみた (テンプレート使用)</title><link>https://blog.ress.39.gy/tech/mastodon-conoha/</link><pubDate>Thu, 27 Apr 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/mastodon-conoha/</guid><description>追記: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました MastodonアプリケーションイメージｘConoHaメールサーバ</description></item><item><title>Jekyll で sass を css に変換し style タグ内に挿入する方法</title><link>https://blog.ress.39.gy/tech/jekyll-sass/</link><pubDate>Tue, 16 Aug 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/jekyll-sass/</guid><description>jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので AMP HTML ページを用意する場合などに使えます。 追記: hugo で行う方法も追記</description></item><item><title>AMP で Google Analytics を利用する</title><link>https://blog.ress.39.gy/tech/amp-analytics/</link><pubDate>Tue, 17 May 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/amp-analytics/</guid><description>やり方 次のスクリプト分を &amp;lt;head&amp;gt; 内かつ AMP JS library1 よりも前に以下の内容を記述 &amp;lt;script async custom-element=&amp;#34;amp-analytics&amp;#34; src=&amp;#34;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; Body 先頭に以下の内容を記述 &amp;lt;amp-analytics type=&amp;#34;googleanalytics&amp;#34; id=&amp;#34;analytics1&amp;#34;&amp;gt; &amp;lt;script type=&amp;#34;application/json&amp;#34;&amp;gt; { &amp;#34;vars&amp;#34;: { // 通常ページのトラッキング用</description></item><item><title>NeoVim と dein.vim を使ってみる!</title><link>https://blog.ress.39.gy/tech/dein/</link><pubDate>Sun, 06 Mar 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/tech/dein/</guid><description>最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います. ついでに Vim も NeoVim へシフトしてみたいと</description></item><item><title>このサイトについて</title><link>https://blog.ress.39.gy/about2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.ress.39.gy/about2/</guid><description>スマホや Sim やパソコン、音楽プレイヤーなど Ress が好きなガジェット系を中心に紹介していきます。 また、知り合いの寄稿先として使用します。</description></item><item><title>プライバシーポリシー</title><link>https://blog.ress.39.gy/privacy-policy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.ress.39.gy/privacy-policy/</guid><description>個人情報の利用目的 当サイトでは、メールでのお問い合わせなどの際に、名前（ハンドルネーム）、メールアドレス等の個人情報をご登録いただく場合がご</description></item></channel></rss>
+&lt;p>そこで usb 接続でできないか調べたところ日本語情報がなかったのでここに掲載します！&lt;/p>
+&lt;h2 id="環境">環境&lt;/h2>
+&lt;p>モバイルルーターとパソコンとは Type-C の&lt;strong>通信可能&lt;/strong>なケーブルで接続します&lt;/p>
+&lt;ul>
+&lt;li>Arch Linux&lt;/li>
+&lt;li>Huawei 製モバイルルーター
+&lt;ul>
+&lt;li>Speed Wi-Fi NEXT W06&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>今回 &lt;strong>Arch Linux&lt;/strong> を使用してますが Ubuntu / Debian など他ディストリビューションの場合は読み替えて設定を行ってください。&lt;/p>
+&lt;h2 id="やり方">やり方&lt;/h2>
+&lt;p>まず &lt;code>lsusb&lt;/code> で下記のようにルーターを認識してるか確認します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Bus &lt;span style="color:#ae81ff">002&lt;/span> Device 003: ID 12d1:1f01 Huawei Technologies Co., Ltd. E353/E3131 &lt;span style="color:#f92672">(&lt;/span>Mass storage mode&lt;span style="color:#f92672">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>今回 &lt;code>usb_modeswitch&lt;/code> を使用するためインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo pacman -S usb_modeswitch
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ネットワークデバイスとして使用できるように書き換えます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo usb_modeswitch -v 12d1 -p 1f01 -V 12d1 -P 14DC -J
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>lsusb&lt;/code> で成功したか確認します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Bus &lt;span style="color:#ae81ff">002&lt;/span> Device 003: ID 12d1:14db Huawei Technologies Co., Ltd. E353/E3131
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>上記のように &lt;code>(Mass storage mode)&lt;/code> が消え &lt;code>ID&lt;/code> が &lt;code>12d1:1f01&lt;/code> から &lt;code>12d1:14db&lt;/code> に変わってたら成功です。&lt;/p>
+&lt;p>あとはそれぞれの環境にインストールされてる &lt;code>NetworkManager&lt;/code> などを使用し接続してください&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://blog.ress.39.gy/post/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://blog.ress.39.gy/post/defx/</guid><description>&lt;p>今まで vim でファイラーを使うとなったときに &lt;a href="https://github.com/scrooloose/nerdtree">NERDtree&lt;/a> しか使ってませんでしたが &lt;a href="https://github.com/Shougo">@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p>
+&lt;p>vim ではなく &lt;a href="https://neovim.io/">neovim&lt;/a> を使っています。またプラグイン管理には &lt;a href="https://github.com/Shougo/dein.vim">dein.vim&lt;/a> を使用してます。各自自分が使用してる環境に読み替えて使用してください。&lt;/p>
+&lt;h2 id="設定">設定&lt;/h2>
+&lt;p>私は toml ファイルで管理しています。下記のように書くことでプラグインを追加できます&lt;/p>
+&lt;pre>&lt;code>[[plugins]]
+repo ='Shougo/defx.nvim'
+on_cmd = 'Defx'
+hook_add = '''
+nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx -listed -resume -buffer-name=tab`tabpagenr()`&amp;lt;CR&amp;gt;
+'''
+&lt;/code>&lt;/pre>&lt;p>私は &lt;code>&amp;lt;Space&amp;gt;f&lt;/code> で開けるようにしてるので人によっては書き換えてください。&lt;/p>
+&lt;h3 id="カスタマイズ">カスタマイズ&lt;/h3>
+&lt;p>vscode みたいにファイルアイコンを表示したり &lt;a href="https://github.com/scrooloose/nerdtree">NERDtree&lt;/a> でもやってましたが Git の変更などを表示したかったためプラグインを追加して使ってます。&lt;/p>
+&lt;p>ファイルアイコン表示するために &lt;a href="https://github.com/kristijanhusak/defx-icons">defx-icons&lt;/a>&lt;/p>
+&lt;p>Git の変更を表示するために &lt;a href="https://github.com/kristijanhusak/defx-git">defx-git&lt;/a>&lt;/p>
+&lt;p>を使ってます。標準でアイコンを表示したいので下記のように設定します。
+(また隠しファイルも標準で表示してほしいのでその設定も追記してます)&lt;/p>
+&lt;pre>&lt;code>call defx#custom#option('_', {
+\ 'columns': 'indent:git:icons:filename',
+\ 'show_ignored_files': 1,
+\ })
+&lt;/code>&lt;/pre>&lt;p>カスタマイズを更に行いうとこんな感じにできます！&lt;/p>
+&lt;figure>
+&lt;amp-img src="https://i.gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6.png" alt="Gyazo" width="948" height="516" layout="responsive">&lt;/amp-img>
+&lt;figcaption>
+&lt;a href="https://gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6" target="_blank">Gyazo&lt;/a>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="設定例">設定例&lt;/h3>
+&lt;p>私の設定は &lt;a href="https://github.com/ress997/dotfiles-neovim">GitHub にアップ&lt;/a> してるので最新はそちらを確認してください&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> =&lt;span style="color:#e6db74">&amp;#39;kristijanhusak/defx-icons&amp;#39;&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> =&lt;span style="color:#e6db74">&amp;#39;kristijanhusak/defx-git&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">hook_add&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> let g:defx_git#indicators = {
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Modified&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Staged&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">●&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Untracked&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">?&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Renamed&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">➜&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Unmerged&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">═&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Deleted&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">x&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Unknown&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">?&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> \ }
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> =&lt;span style="color:#e6db74">&amp;#39;Shougo/defx.nvim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">on_cmd&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;Defx&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">depends&lt;/span> = [&lt;span style="color:#e6db74">&amp;#39;defx-icons&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;defx-git&amp;#39;&lt;/span>]
+&lt;span style="color:#a6e22e">hook_add&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx -listed -resume -buffer-name=tab`tabpagenr()`&amp;lt;CR&amp;gt;
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">hook_source&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> function! Root(path) abort
+&lt;/span>&lt;span style="color:#e6db74"> return fnamemodify(a:path, &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>&lt;span style="color:#a6e22e">t&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> endfunction
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> call defx#custom#source(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">file&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, {
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">root&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Root&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \})
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> call defx#custom#column(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, {
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">directory_icon&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">opened_icon&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ })
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> call defx#custom#column(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">mark&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, {
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">readonly_icon&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">✗&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">selected_icon&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">✓&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ })
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> call defx#custom#option(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">_&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, {
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">columns&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">indent&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>&lt;span style="color:#a6e22e">git&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>&lt;span style="color:#a6e22e">icons&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&lt;/span>&lt;span style="color:#a6e22e">filename&lt;/span>&lt;span style="color:#e6db74">&amp;#39;,
+&lt;/span>&lt;span style="color:#e6db74"> \ &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">show_ignored_files&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: 1,
+&lt;/span>&lt;span style="color:#e6db74"> \ })
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+[&lt;span style="color:#a6e22e">plugins&lt;/span>.&lt;span style="color:#a6e22e">ftplugin&lt;/span>]
+&lt;span style="color:#a6e22e">defx&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; ~ defx#async_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">cd&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; h defx#async_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">cd&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, [&amp;#39;&lt;/span>..&lt;span style="color:#e6db74">&amp;#39;])
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; j line(&amp;#39;&lt;/span>.&lt;span style="color:#e6db74">&amp;#39;) == line(&amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>&lt;span style="color:#e6db74">&amp;#39;) ? &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">gg&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">j&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; k line(&amp;#39;&lt;/span>.&lt;span style="color:#e6db74">&amp;#39;) == 1 ? &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">G&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">k&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; l defx#async_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; . defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">toggle_ignored_files&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;Tab&amp;gt; winnr(&amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>&lt;span style="color:#e6db74">&amp;#39;) != 1 ? &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">C&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">-&lt;/span>&lt;span style="color:#a6e22e">u&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;gt;&lt;/span>&lt;span style="color:#a6e22e">wincmd&lt;/span> &lt;span style="color:#a6e22e">w&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">CR&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39; : &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">:&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">C&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">-&lt;/span>&lt;span style="color:#a6e22e">u&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;gt;&lt;/span>&lt;span style="color:#a6e22e">Defx&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">-&lt;/span>&lt;span style="color:#a6e22e">buffer&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">-&lt;/span>&lt;span style="color:#a6e22e">name&lt;/span>=&lt;span style="color:#a6e22e">temp&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">-&lt;/span>&lt;span style="color:#a6e22e">split&lt;/span>=&lt;span style="color:#a6e22e">vertical&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">CR&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&amp;gt;&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;Space&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">toggle_select&lt;/span>&lt;span style="color:#e6db74">&amp;#39;) . &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">j&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;CR&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; q defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">quit&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; o defx#async_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open_or_close_tree&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; O defx#async_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open_tree_recursive&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; ! defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">execute_command&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; * defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">toggle_select_all&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;C-g&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">print&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;C-l&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">redraw&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; E defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">vsplit&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; K defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">new_directory&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; M defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">new_multiple_files&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; N defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">new_file&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; P defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">open&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">pedit&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; S defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">toggle_sort&lt;/span>&lt;span style="color:#e6db74">&amp;#39;, &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">Time&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; c defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">copy&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; d defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">remove_trash&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; m defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">move&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; p defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">paste&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; r defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">rename&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; se defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">save_session&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; sl defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">load_session&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; x defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">execute_system&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; yy defx#do_action(&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">yank_path&lt;/span>&lt;span style="color:#e6db74">&amp;#39;)
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>dein.vim&lt;/code> の機能ですが &lt;code>autocmd FileType defx call s:defx_my_settings()&lt;/code> みたいな記述は &lt;code>[plugins.ftplugin]&lt;/code> を使うとわかりやすく書けるのでぜひ使ってください。&lt;/p>
+&lt;h2 id="あとがき">あとがき&lt;/h2>
+&lt;p>&lt;code>defx.nvim&lt;/code> についてしらべると &lt;a href="https://takkii.hatenablog.com/about">@takkii&lt;/a> さんの記事しかありませんでした。&lt;/p>
+&lt;p>そこでカスタマイズ性の高い &lt;code>defx.nvim&lt;/code> を使ってほしいです！&lt;/p></description></item><item><title>hugo で sass を css に変換し style タグ内に挿入する方法</title><link>https://blog.ress.39.gy/post/hugo-sass/</link><pubDate>Wed, 22 May 2019 15:41:36 +0900</pubDate><guid>https://blog.ress.39.gy/post/hugo-sass/</guid><description>&lt;p>以前 &lt;a class="link" href="https://blog.ress.39.gy/post/jekyll-sass/" >Jekyll で行う方法&lt;/a> を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。&lt;/p>
+&lt;p>AMP HTML のページを用意しようと思ったときに css を scss で書いてた場合に外部ツールを使って挿入するしてもいいですが静的サイトジェネレータ側で行えるのであれば完結するため紹介します！&lt;/p>
+&lt;p>&lt;strong>追記&lt;/strong>: &lt;code>@charset &amp;quot;UTF-8&amp;quot;;&lt;/code> が挿入されるようになったため変更 (2020/03/16)&lt;/p>
+&lt;h2 id="やり方">やり方&lt;/h2>
+&lt;p>テンプレートから &lt;code>assets&lt;/code> にアクセスする方法は簡単で例のように書くと変換後の css を挿入できます。&lt;/p>
+&lt;h3 id="例">例&lt;/h3>
+&lt;p>ここでは &lt;code>/assets/main.scss&lt;/code> を変換し挿入します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">{{ with resources.Get &amp;#34;main.scss&amp;#34; | toCSS | minify }}
+&amp;lt;&lt;span style="color:#f92672">style&lt;/span>&amp;gt;{&lt;span style="color:#960050;background-color:#1e0010">{&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">replace&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">.Content&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">`@charset&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;UTF-8&amp;#34;&lt;/span>;&lt;span style="color:#960050;background-color:#1e0010">`&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">&amp;#34;&amp;#34;&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">|&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">safeCSS&lt;/span> }&lt;span style="color:#960050;background-color:#1e0010">}&lt;/span>&amp;lt;/&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
+{{ end }}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="あとがき">あとがき&lt;/h2>
+&lt;p>&lt;code>with&lt;/code> でアクセスできるとは思ってなくて驚きました。&lt;/p>
+&lt;p>しかしこのおかげで hugo でも AMP HTML を使用するときに簡単に挿入できるようになりました！&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://blog.ress.39.gy/post/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/pleroma/</guid><description>&lt;p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。&lt;/p>
+&lt;p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>Amazon Lightsail
+&lt;ul>
+&lt;li>OS: Ubuntu LTS 16.04.5&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Amazon S3
+&lt;ul>
+&lt;li>Static website hosting 有効化すること&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="setup">Setup&lt;/h2>
+&lt;p>事前に必要なものをインストールしていきます。
+ついでにタイムゾーンと言語設定を日本に変更します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">apt update
+apt -y dist-upgrade
+apt -y autoremove
+apt -y install language-pack-ja
+update-locale LANG&lt;span style="color:#f92672">=&lt;/span>ja_JP.UTF-8
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+apt -y install git build-essential openssl ssh sudo
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="caddy">Caddy&lt;/h2>
+&lt;p>今回リバースプロキシには &lt;a class="link" href="https://caddyserver.com/" target="_blank" rel="noopener"
+>Caddy&lt;/a> を使用します。
+Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">curl https://getcaddy.com | bash -s personal
+chown root:root /usr/local/bin/caddy
+chmod &lt;span style="color:#ae81ff">755&lt;/span> /usr/local/bin/caddy
+setcap &lt;span style="color:#e6db74">&amp;#39;cap_net_bind_service=+ep&amp;#39;&lt;/span> /usr/local/bin/caddy
+&lt;span style="color:#75715e"># グループ・ユーザーが存在しない場合のみ実行してください。&lt;/span>
+&lt;span style="color:#75715e"># グループ一覧: /etc/group&lt;/span>
+&lt;span style="color:#75715e"># ユーザー一覧: /etc/passwd&lt;/span>
+groupadd --system -g &lt;span style="color:#ae81ff">33&lt;/span> www-data
+useradd &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> -g www-data --no-user-group &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> --home-dir /var/www --no-create-home &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> --shell /usr/sbin/nologin &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> --system --uid &lt;span style="color:#ae81ff">33&lt;/span> www-data
+&lt;span style="color:#75715e"># 使用するフォルダを用意します&lt;/span>
+mkdir -p /etc/caddy
+chown -R root:root /etc/caddy
+mkdir -p /etc/ssl/caddy
+chown -R root:www-data /etc/ssl/caddy
+chmod &lt;span style="color:#ae81ff">770&lt;/span> /etc/ssl/caddy
+&lt;span style="color:#75715e"># 設定ファイルを作成します&lt;/span>
+&lt;span style="color:#75715e"># domain.tld など実際に使用する環境に合わせて変更してください&lt;/span>
+cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOL &amp;gt; /etc/caddy/Caddyfile
+&lt;/span>&lt;span style="color:#e6db74">http:// {
+&lt;/span>&lt;span style="color:#e6db74"> gzip
+&lt;/span>&lt;span style="color:#e6db74"> root /var/www/html
+&lt;/span>&lt;span style="color:#e6db74">}
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74">social.domain.tld {
+&lt;/span>&lt;span style="color:#e6db74"> gzip
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> tls social@domain.tld
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> proxy / localhost:4000 {
+&lt;/span>&lt;span style="color:#e6db74"> websocket
+&lt;/span>&lt;span style="color:#e6db74"> transparent
+&lt;/span>&lt;span style="color:#e6db74"> }
+&lt;/span>&lt;span style="color:#e6db74">}
+&lt;/span>&lt;span style="color:#e6db74">EOL&lt;/span>
+&lt;span style="color:#75715e"># 公開用フォルダを作成します&lt;/span>
+mkdir -p /var/www/html
+cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOL &amp;gt; /var/www/html/index.html
+&lt;/span>&lt;span style="color:#e6db74">&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;
+&lt;/span>&lt;span style="color:#e6db74">EOL&lt;/span>
+chown -R www-data:www-data /var/www
+chmod &lt;span style="color:#ae81ff">555&lt;/span> /var/www
+&lt;span style="color:#75715e"># systemd を設定します&lt;/span>
+curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+chown root:root /etc/systemd/system/caddy.service
+chmod &lt;span style="color:#ae81ff">644&lt;/span> /etc/systemd/system/caddy.service
+systemctl daemon-reload
+systemctl start caddy.service
+systemctl enable caddy.service
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>サーバーはこれで用意できるのであとポート設定などは各自調べてください&lt;/p>
+&lt;h2 id="postgresql">postgresql&lt;/h2>
+&lt;p>データベースをインストールします。
+今回は PostgreSQL 10 を使います。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOL &amp;gt; /etc/apt/sources.list.d/pgdg.list
+&lt;/span>&lt;span style="color:#e6db74">deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+&lt;/span>&lt;span style="color:#e6db74">EOL&lt;/span>
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt update
+apt install postgresql-10 postgresql-contrib-10
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="elixirerlang">Elixir/Erlang&lt;/h2>
+&lt;p>Pleroma を実行する Elixir/Erlang をインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
+apt update
+apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="pleroma">pleroma&lt;/h2>
+&lt;p>ユーザーを追加しソースコードを git でダウンロードします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">adduser pleroma
+usermod -aG sudo pleroma
+su pleroma
+cd ~
+git clone https://git.pleroma.social/pleroma/pleroma
+cd pleroma/
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>依存関係をダウンロードします&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">mix deps.get
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定ファイルを作成します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#75715e"># まずは自動生成&lt;/span>
+mix generate_config
+cp config/generated_config.exs config/prod.secret.exs
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>config/prod.secret.exs&lt;/code> を次項のサンプルを例に編集します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">vi config/prod.secret.exs
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースの設定をします&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">sudo su postgres -c &lt;span style="color:#e6db74">&amp;#39;psql -f config/setup_db.psql&amp;#39;&lt;/span>
+MIX_ENV&lt;span style="color:#f92672">=&lt;/span>prod mix ecto.migrate
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sample-config">sample config&lt;/h3>
+&lt;p>見やすいように私は設定の順序を変更してます&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-elixir" data-lang="elixir">use &lt;span style="color:#a6e22e">Mix.Config&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#a6e22e">Pleroma.Web.Endpoint&lt;/span>,
+&lt;span style="color:#e6db74">url&lt;/span>: [&lt;span style="color:#e6db74">host&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;インスタンスURL&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">scheme&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;https&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">port&lt;/span>: &lt;span style="color:#ae81ff">443&lt;/span>],
+&lt;span style="color:#e6db74">secret_key_base&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;なんとか&amp;#34;&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#a6e22e">Pleroma.Repo&lt;/span>,
+&lt;span style="color:#e6db74">adapter&lt;/span>: &lt;span style="color:#a6e22e">Ecto.Adapters.Postgres&lt;/span>,
+&lt;span style="color:#e6db74">username&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;pleroma&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">password&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;なんとか&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">database&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;pleroma_dev&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">hostname&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;localhost&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">pool_size&lt;/span>: &lt;span style="color:#ae81ff">10&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:instance&lt;/span>,
+&lt;span style="color:#e6db74">name&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;インスタンス名&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">email&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;メールアドレス&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">dedupe_media&lt;/span>: false,
+&lt;span style="color:#e6db74">limit&lt;/span>: &lt;span style="color:#ae81ff">5000&lt;/span>,
+&lt;span style="color:#e6db74">registrations_open&lt;/span>: true
+&lt;span style="color:#75715e"># limit は文字数制限です&lt;/span>
+&lt;span style="color:#75715e"># registrations_open は新規登録するかの設定です&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:media_proxy&lt;/span>,
+&lt;span style="color:#e6db74">enabled&lt;/span>: false,
+&lt;span style="color:#e6db74">redirect_on_failure&lt;/span>: true
+&lt;span style="color:#75715e"># 今回東京リージョンのS3を使います&lt;/span>
+config &lt;span style="color:#e6db74">:ex_aws&lt;/span>, &lt;span style="color:#e6db74">:s3&lt;/span>,
+&lt;span style="color:#e6db74">access_key_id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;XXXXXXXXXXXX&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">secret_access_key&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;YYYYYYYYYYYYYYYYYYYYY&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">region&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;ap-northeast-1&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">scheme&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;https://&amp;#34;&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#a6e22e">Pleroma.Uploaders.S3&lt;/span>,
+&lt;span style="color:#e6db74">bucket&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;bucket名&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">public_endpoint&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;s3.dualstack.ap-northeast-1.amazonaws.com&amp;#34;&lt;/span>
+&lt;span style="color:#75715e"># この部分でアップロード先をS3に変更します&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#a6e22e">Pleroma.Upload&lt;/span>,
+&lt;span style="color:#e6db74">uploader&lt;/span>: &lt;span style="color:#a6e22e">Pleroma.Uploaders.S3&lt;/span>
+&lt;span style="color:#75715e"># 各機能の有効化します&lt;/span>
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:fe&lt;/span>,
+&lt;span style="color:#e6db74">show_instance_panel&lt;/span>: true,
+&lt;span style="color:#e6db74">scope_options_enabled&lt;/span>: true,
+&lt;span style="color:#e6db74">collapse_message_with_subject&lt;/span>: true
+config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:suggestions&lt;/span>,
+&lt;span style="color:#e6db74">enabled&lt;/span>: true
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定についてはまた今度まとめたいと思います&lt;/p>
+&lt;h3 id="systemd">systemd&lt;/h3>
+&lt;p>&lt;code>systemd&lt;/code> を設定します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>/etc/systemd/system/pleroma.service&lt;/code> の &lt;code>Environment&lt;/code> と書いてる下に &lt;code>Environment=&amp;quot;MIX_ENV=prod&amp;quot;&lt;/code> を追記します&lt;/p>
+&lt;p>run &lt;code>systemctl enable --now pleroma.service&lt;/code>&lt;/p>
+&lt;h2 id="補足説明">補足説明&lt;/h2>
+&lt;p>今回コピペするとすべて用意できるように &lt;code>cat&lt;/code> コマンドを使ってファイルを作成してます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOL &amp;gt; 書き込む対象のファイル
+&lt;/span>&lt;span style="color:#e6db74">ファイルの内容
+&lt;/span>&lt;span style="color:#e6db74">EOL&lt;/span> &lt;span style="color:#75715e"># 書き込み終了&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Google Cloud Platform Tips</title><link>https://blog.ress.39.gy/post/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/gcp/</guid><description>&lt;p>Google Cloud Platform を使用していく上でハマった点などを書いていきます。&lt;/p>
+&lt;p>今後もハマった点があれば追加していく予定です。&lt;/p>
+&lt;h2 id="有料アカウントへアップグレード">有料アカウントへアップグレード&lt;/h2>
+&lt;p>1週間前メールによる通知がありましたが後回しした結果忘れてました。&lt;/p>
+&lt;p>結果無料期間終了後使用してるサービスがすべて強制終了されました。&lt;/p>
+&lt;h2 id="使用していない静的ipアドレスが課金される">使用していない静的IPアドレスが課金される&lt;/h2>
+&lt;p>ここは AWS と同じで使用してない静的IPアドレスを確保してる場合は課金されます。&lt;/p>
+&lt;p>インスタンスは削除しても残ってる場合があるので注意が必要です。&lt;/p>
+&lt;h2 id="中国とオーストラリアからのアクセスは別料金が発生する">中国とオーストラリアからのアクセスは別料金が発生する&lt;/h2>
+&lt;p>無料枠以内に抑えるためには中国とオーストラリアからのアクセスは注意が必要です。&lt;/p>
+&lt;p>主に中国からの DDoS によって数ヶ月間 &lt;code>900円/月&lt;/code> 発生してました。 (許すまじ)&lt;/p>
+&lt;p>調べれば中国のIPアドレス範囲がわかるのでファイヤーウォールでアクセス拒否設定をするといいと思います。&lt;/p></description></item><item><title>forestry.io Tips</title><link>https://blog.ress.39.gy/post/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/forestry/</guid><description>&lt;p>forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!&lt;/p>
+&lt;p>今後も更新し追加していく予定です。&lt;/p>
+&lt;h2 id="タイムゾーン">タイムゾーン&lt;/h2>
+&lt;p>タイムゾーンを日本に変更します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>settings&lt;/code> を開く&lt;/li>
+&lt;li>&lt;code>TIMEZONE&lt;/code> を &lt;code>(GTM+09:00) Osaka&lt;/code> に変更する&lt;/li>
+&lt;/ol>
+&lt;p>(バグなのか &lt;code>(GTM+09:00) Tokyo&lt;/code> は選べませんでした)&lt;/p>
+&lt;h2 id="ファイル名">ファイル名&lt;/h2>
+&lt;p>forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。&lt;/p>
+&lt;figure>
+&lt;amp-img src="https://i.gyazo.com/1ea8ec3fb841a73f518b776271fd6513.png" alt="Gyazo" width="705" height="373" layout="responsive">&lt;/amp-img>
+&lt;figcaption>
+&lt;a href="https://gyazo.com/1ea8ec3fb841a73f518b776271fd6513" target="_blank">Gyazo&lt;/a>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>&lt;code>Add New&lt;/code> ボタンを押し &lt;code>Create Pages&lt;/code> で設定する &lt;code>TITLE&lt;/code> はファイル名に使用されます。&lt;/p>
+&lt;p>そこで slug は英語、タイトルは日本語と分けたい場合は注意が必要です。
+上記のタイトルを英語 slug、Front Matter で日本語のタイトルとすることによって分けることができます&lt;/p></description></item><item><title>cloudinary が便利!</title><link>https://blog.ress.39.gy/post/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/cloudinary/</guid><description>&lt;p>最近&lt;a class="link" href="https://blog.ress.39.gy/post/renewal/" >ホスティングを変更した&lt;/a>関係で 1GB 以上になると料金が発生します。
+そこで無料で使用できる画像管理サービスを探しました。&lt;/p>
+&lt;p>Gyazo や imgix など様々なサービスと比較していった中で cloudinary を使うことにしました。&lt;/p>
+&lt;h2 id="特徴">特徴&lt;/h2>
+&lt;ul>
+&lt;li>最適な画像形式に自動変換ができる&lt;/li>
+&lt;li>様々な画像加工ができる&lt;/li>
+&lt;li>画像の CDN 配信&lt;/li>
+&lt;/ul>
+&lt;p>などがあり無料で 30万枚/10GB まで保存することができます。&lt;/p>
+&lt;h3 id="最適な画像形式に変換">最適な画像形式に変換&lt;/h3>
+&lt;p>cloudinary に保存した写真は以下のような形式で配信されます&lt;/p>
+&lt;p>&lt;code>https://res.cloudinary.com/&amp;lt;cloud name&amp;gt;/image/upload/&amp;lt;option: 省略可能&amp;gt;/&amp;lt;path&amp;gt;&lt;/code>&lt;/p>
+&lt;p>このオプションの部分に &lt;code>f_auto&lt;/code> を追加することによって WebP など最適な形式に変換し画像を配信することができます。&lt;/p>
+&lt;p>また、&lt;code>q_auto&lt;/code> を追加することによって画像のサイズを最適化することができます。
+(ちなみに複数のオプションを書く場合はコンマ区切りで書きます)&lt;/p>
+&lt;h3 id="様々な画像加工ができる">様々な画像加工ができる&lt;/h3>
+&lt;p>これも先程のオプション部分に対して書くと可能です。&lt;/p>
+&lt;p>&lt;a class="link" href="https://qiita.com/kanaxx/items/7d88948c9f8f43cdf760" target="_blank" rel="noopener"
+>Cloudinaryを使って画像の変換をやってみる&lt;/a>に日本語で詳しく書いてあります。&lt;/p>
+&lt;h3 id="画像の-cdn-配信">画像の CDN 配信&lt;/h3>
+&lt;blockquote>
+&lt;p>FAST DELIVERY Get your images and videos delivered lightning-fast, responsively and highly optimized for any device in any location. Assets are served via Akamai, Fastly and CloudFront CDN.&lt;/p>
+&lt;/blockquote>
+&lt;p>と書いてあるように Akamai と Fastly と CloudFront を使って画像の CDN 配信を行ってくれます。&lt;/p>
+&lt;h2 id="cms-と連携">CMS と連携&lt;/h2>
+&lt;p>みんな大好き WordPress や私の使ってる forestry.io に対応してます!&lt;/p>
+&lt;p>WordPress の場合はアドオンとして対応してます。
+アドオンをインストール後 &lt;a class="link" href="https://cloudinary.com/console" target="_blank" rel="noopener"
+>cloudinary にログイン&lt;/a>すると表示される Account Details の Environment variable を設定することで使えるようになります。&lt;/p>
+&lt;p>forestry.io の場合 Media 設定から指定することができます。
+(詳しくは &lt;a class="link" href="https://forestry.io/docs/media/cloudinary/" target="_blank" rel="noopener"
+>公式ドキュメント&lt;/a>に書いてあります)&lt;/p>
+&lt;h2 id="さいごに">さいごに&lt;/h2>
+&lt;p>cloudinary によって画像管理を簡単に行うことがます。
+ほかにも簡単に画像加工を行ったり、高速に配信されるためおすすめです!&lt;/p></description></item><item><title>パスワード管理について考え直してみた</title><link>https://blog.ress.39.gy/post/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/password-management/</guid><description>&lt;p>パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。&lt;/p>
+&lt;p>しかし、サブスクリプションに移行したことによるコスト発生や、パスワード管理を一任してたことで発生してるセキュリティリスクなどを考えた結果管理体制を変えました。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>1Password が OTP に対応してクラウド同期、全デバイスで使用可能、チームや家族間で共有が楽など便利な機能がたくさんあります。&lt;/p>
+&lt;p>しかしよく考えてみるとセキュリティリスクをすべて 1Password に預けています。 また 2FA も同時に管理しているため段階を分けることによるセキュリティの向上も得られません。&lt;/p>
+&lt;p>また今までアプリの買い切りで使用できていた 1Password ですがサブスクリプションに移行したことによってコストが発生するようになったため人によっては負担になります。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>そこで他パスワード管理ソフト・サービスを比較しました。 その中でも一番気に入ったのはオープンソースである KeePass でした。 しかし全デバイスに同期させる手間や鍵の管理など管理して行く上でデメリットが多かったので諦めました。&lt;/p>
+&lt;p>そんな中 bitwarden に出会いました。 bitwarden のソースはすべて &lt;!-- raw HTML omitted -->GitHub&lt;!-- raw HTML omitted --> にあり、セルフホスティングすることもできるなど魅力的な点が多かったです。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>1要素によって行う2要素認証は1要素認証と変わらないので 1Password で OTP を管理するのを辞めました。&lt;/p>
+&lt;p>そのかわり Authy による2要素認証や Yubikey も設定し多要素で認証できるようにしました。 (その結果スマホにパスワードが集中するので取り扱いには気をつけないといけませんが…)&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>bitwarden は Web 版と OS インストールソフトとブラウザプラグインがありコマンドラインツールまで要ししてます。&lt;/p>
+&lt;p>また Docker によるセルフホスティング対応など開発者にとって使いやすさが求められた結果が見受けられます。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>料金体制は至ってシンプルで個人で使用するなら Free プランと Premium プランが用意してあります。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;!-- raw HTML omitted -->$10/year&lt;!-- raw HTML omitted --> で使用することができ主に次のような機能が追加されます。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;!-- raw HTML omitted -->$10/year&lt;!-- raw HTML omitted --> と安く、bitwarden へアクセスする際 2FA を設定できるのですぐに Premium プランにしましたw&lt;/p>
+&lt;p>また今回体制を見直すにあたって様々なサービスに登録して 120 個ほどあるアカウントを整理できてよかったと思います!&lt;/p></description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://blog.ress.39.gy/post/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://blog.ress.39.gy/post/amazon-lightsail-cheaper/</guid><description>&lt;p>&lt;a class="link" href="https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/" target="_blank" rel="noopener"
+>Developers.IO&lt;/a> でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。&lt;/p>
+&lt;h2 id="amazon-lightsail-とは">Amazon Lightsail とは&lt;/h2>
+&lt;p>Amazon Lightsail とは AWS の EC2 をより簡単に使えるようにした VPS です。&lt;/p>
+&lt;p>EC2 に比べるとファイヤーウォールが貧弱だったりしますが問題なく使えると思います。&lt;/p>
+&lt;h3 id="ファイヤーウォール">ファイヤーウォール&lt;/h3>
+&lt;p>EC2 では AWS 側で特定の IP アドレスのみ特定のポート(例: 22番ポート)をアクセス許可するなど柔軟な設定をすることが可能です。
+しかし Lightsail では &lt;code>0.0.0.0&lt;/code> に対して外部からのアクセスに関して特定のポートをを許可するようになってます。&lt;/p>
+&lt;p>ですが、ConoHa などの他 VPS サービスでも同じように外部からの接続に対して特定のポートを通すようなファイヤーウォールなので問題ないと思います。&lt;/p>
+&lt;h3 id="ブラウザコンソール">ブラウザコンソール&lt;/h3>
+&lt;p>Lightsail でも他 VPS のようにブラウザからコンソールを開くことができます。&lt;/p>
+&lt;p>しかし他 VPS ではいわいる “サーバーコンソール” ですが Lightsail では SSH コンソールとなってるためなにか問題あったときに “強制的になにかやる” と言ったことができないので注意が必要です。&lt;/p>
+&lt;h3 id="料金について">料金について&lt;/h3>
+&lt;p>Lightsail では他 VPS と同じように停止中でも課金されます。&lt;/p>
+&lt;p>また &lt;a class="link" href="https://aws.amazon.com/jp/lightsail/" target="_blank" rel="noopener"
+>公式サイト&lt;/a> が執筆時点では古い料金での表示となってるので気をつけてください。
+(ちなみに、ログイン後の新規作成画面では新料金になってます)&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>国内最安となった Lightsail は初心者には難しい部分がありますが、コストパフォーマンス的に優れているのでこれから活用していきたいと思います。&lt;/p></description></item><item><title>Hugo で minify をサポート</title><link>https://blog.ress.39.gy/post/hugo-minify/</link><pubDate>Fri, 17 Aug 2018 20:54:38 +0900</pubDate><guid>https://blog.ress.39.gy/post/hugo-minify/</guid><description>&lt;p>最近嬉しい更新が多い Hugo に &lt;code>minify&lt;/code> オプションが追加されました！&lt;/p>
+&lt;p>詳しくは &lt;a class="link" href="https://gohugo.io/news/0.47-relnotes/" target="_blank" rel="noopener"
+>公式ブログ&lt;/a> を見てください。&lt;/p>
+&lt;h2 id="minify">minify&lt;/h2>
+&lt;p>今まではテンプレートファイルの改行をなるべく減らしたり、&lt;code>{{-&lt;/code> や &lt;code>-}}&lt;/code> で不要な改行を削除してました。
+また、人によってはタスクランナーを使用してたと思われます。&lt;/p>
+&lt;p>これからは &lt;code>hugo --minify&lt;/code> とオプションを追加するだけで縮小されたコードを吐き出してくれます！&lt;/p>
+&lt;p>(早速のこのブログも &lt;code>minify&lt;/code> オプションを有効化しています)&lt;/p></description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://blog.ress.39.gy/post/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/instapaper-premium/</guid><description>&lt;p>&lt;a class="link" href="http://blog.instapaper.com/post/176732408411" target="_blank" rel="noopener"
+>公式ブログ&lt;/a> によるとプレミアムをリニューアルし、今まで使えてた一部機能がプレミアム機能となり有料化することが決まりました。&lt;/p>
+&lt;h2 id="今まで">今まで&lt;/h2>
+&lt;p>今までは Pinterest に回収されたあとプレミアム機能を無料で提供してきました。&lt;/p>
+&lt;p>しかし、 &lt;a class="link" href="https://japanese.engadget.com/2018/07/17/instapaper-pinterest-2-instant-paper/" target="_blank" rel="noopener"
+>Engadget によると Instapaper が Pinterest から独立&lt;/a>、今後有料化されると予想されてました。&lt;/p>
+&lt;h2 id="今後は">今後は&lt;/h2>
+&lt;p>下記の機能が &lt;strong>$2.99/月&lt;/strong> か &lt;strong>$29.99/年&lt;/strong> で利用できます。&lt;/p>
+&lt;ul>
+&lt;li>Full-text search for all articles in your account (全文検索)&lt;/li>
+&lt;li>Unlimited Notes (無制限のメモ)&lt;/li>
+&lt;li>Text-to-Speech playlists on mobile (テキスト読み上げ)&lt;/li>
+&lt;li>Speed reading to get through all of your articles up to 3x faster (速読)&lt;/li>
+&lt;li>An ad-free Instapaper website (ウェブサイトで広告を表示しない)&lt;/li>
+&lt;li>“Send to Kindle” using a bookmarklet or our mobile apps (ブックマークレットやモバイルアプリ経由の｢Kindleへの送信｣)&lt;/li>
+&lt;/ul>
+&lt;p>カッコの中は私が簡単に訳したものなので間違えがあれば教えてください&lt;/p></description></item><item><title>ブログ環境を整えた</title><link>https://blog.ress.39.gy/post/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/renewal/</guid><description>&lt;p>いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>サイトジェネレーター: Hugo&lt;/li>
+&lt;li>バージョン管理: GitHub&lt;/li>
+&lt;li>ビルド/公開: Netlify&lt;/li>
+&lt;li>CMS: forestry.io&lt;/li>
+&lt;/ul>
+&lt;p>無料で構築する事ができますが私は GitHub の Private や独自ドメインなどを使用してるので多少費用がかかってます。
+(と言ってもレンタルサーバーを借りるより格安です。)&lt;/p>
+&lt;h2 id="いままでは">いままでは&lt;/h2>
+&lt;p>経緯をだらだらと書いてるだけなので飛ばしていただいて構いませんw&lt;/p>
+&lt;p>(途中ではてなブログなどに浮気したり WordPress に戻ったりしましたがそこは飛ばします)&lt;/p>
+&lt;h3 id="wordpress-を使い始めた">WordPress を使い始めた&lt;/h3>
+&lt;p>プラグインによる拡張が簡単で事前知識が(ほぼ)なくても使い始めることができるということで WordPress にしました。&lt;/p>
+&lt;p>しかしプラグインの入れすぎなどで表示速度が遅くなりストレスがたまるようになりました。&lt;/p>
+&lt;h3 id="自作テーマに変更">自作テーマに変更&lt;/h3>
+&lt;p>そこで私は Web 系の勉強にと思い、テーマを自作してみることにしました！&lt;/p>
+&lt;p>プラグインの行ってることで、テーマに実装できることは積極的に取り込みました。&lt;/p>
+&lt;p>しかし趣味で公開してるサイトなのにサーバー費などのコスト面が負担でした。&lt;/p>
+&lt;h3 id="静的サイトジェネレーターに出会う">静的サイトジェネレーターに出会う&lt;/h3>
+&lt;p>そんななか “無料でサイトを公開できないか” といろいろ調べて GitHub Pages に出会いました。&lt;/p>
+&lt;p>当時、良く触っていた Ruby を使えるということだったので使い始めました。&lt;/p>
+&lt;p>しかし GitHub Pages では、プラグインを使用できませんでした。そこで CI を組み合わせてビルドした成果物を AWS S3 に配置し、公開するようにしました。&lt;/p>
+&lt;p>ですが AWS を使用したのでわずかながらもコストが掛かり悩みました。&lt;/p>
+&lt;h3 id="netlify-へ変更">Netlify へ変更&lt;/h3>
+&lt;p>そんななかビルドと公開まで行ってくれる Netlify を知りました。&lt;/p>
+&lt;p>Netlify を使用することで、公開するサーバー側のコストが無くなりました。&lt;/p>
+&lt;p>次に Jekyll の生成速度が遅くなり始めました。どうやら記事数やプラグインによって生成速度が遅くなることを知りました。&lt;/p>
+&lt;h3 id="hugo-へ変更">Hugo へ変更&lt;/h3>
+&lt;p>趣味のブログなので Jekyll にこだわる必要は無いと今まで作っていたものをすべて捨て Hugo に移りました。&lt;/p>
+&lt;p>サイトの表示速度をなるべく高速にしなおかつ Hugo で実装できる AMP HTML なども取り込もうと思い様々なテーマを検討しました。&lt;/p>
+&lt;p>(あくまで個人的な意見ですが)全体的にビミョーなテーマが多かったです。その中で一番気に入った Robust をフォークした ReRobust をベースに作成した Wolke を使用してます。&lt;/p>
+&lt;p>&lt;strong>宣伝: みんなもぜひ&lt;/strong>&lt;a class="link" href="https://github.com/ress997/hugo-wolke" target="_blank" rel="noopener"
+>&lt;strong>Wolke&lt;/strong>&lt;/a>&lt;strong>使ってね!!&lt;/strong>&lt;/p>
+&lt;h3 id="cms-について">CMS について&lt;/h3>
+&lt;p>スマホでサイトを眺めてたときに誤字を見つけてしまいサクッと修正しようと思いましたが、わざわざ GitHub にアクセスして対象のファイルを開き… と行うのがめんd… 大変だったので編集機能を実装できないか調べました。&lt;/p>
+&lt;h4 id="netlify-cms">Netlify CMS&lt;/h4>
+&lt;p>Netlify を紹介してる記事にたまに紹介されて、とりあえず使ってみました。&lt;/p>
+&lt;p>しかし本来想定してたスマホでの使用が使い辛く変わりのものを探しました。&lt;/p>
+&lt;h4 id="forestryio">forestry.io&lt;/h4>
+&lt;p>日本語記事がなく初回の設定が大変ですがストレスなく使用で便利です。&lt;/p>
+&lt;p>(運用するにあたって注意点などがあるので後日書きます！)&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>多いときは ¥1000/月 ほどかかってたブログ環境ですが、PV もなくダラダラと趣味の話を書いているブログには今の環境で十分だと思います。&lt;/p>
+&lt;p>“毎月コストが発生してるから書かないとと” いう焦燥感もなく、気が向いたときに書けばいいという感覚で、これからも更新していきます！&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>追記&lt;/strong>: ブログのリニューアルしたことを書きましたが今回 Netlify から Firebase Hosting にお引越ししました&lt;/p>
+&lt;h2 id="tldr-1">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>Netlify がたまに落ちている&lt;/li>
+&lt;li>CDN を使用してるらいしけど遅い&lt;/li>
+&lt;li>もっと柔軟に設定したい&lt;/li>
+&lt;/ul>
+&lt;h2 id="netlify">Netlify&lt;/h2>
+&lt;p>Netlify は簡単にデプロイでき、小規模なページなどであれば問題がありません。&lt;/p>
+&lt;p>しかし、配信の最適化するために HTTP ヘッダなどをいじるとき少々手間がかかり大変でした。&lt;/p>
+&lt;p>そして、接続障害が発生したり、SSL エラーが発生したのでちょっとインフラに不安を感じ始めました。&lt;/p>
+&lt;h2 id="firebase">Firebase&lt;/h2>
+&lt;p>そこで、Firebase Hosting を使い始めました。&lt;/p>
+&lt;p>Firebase は Fastly を採用してるので世界各地にある CDN から配信されレスポンスが高速になりました。&lt;/p>
+&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://blog.ress.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/information-gathering/</guid><description>&lt;p>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。&lt;/p>
+&lt;ul>
+&lt;li>&lt;!-- raw HTML omitted -->皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita&lt;!-- raw HTML omitted -->&lt;/li>
+&lt;li>&lt;!-- raw HTML omitted -->Webデザイナーの私はこんな風に情報収集しています | Webクリエイターボックス&lt;!-- raw HTML omitted -->&lt;/li>
+&lt;/ul>
+&lt;p>私も気になりなる ＆ 私のやり方をも発信したいと思ったので書きます!&lt;/p>
+&lt;p>注意: 結構ポエム気味です&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;p>よく見るサイトの RSS/Atom Feed を取得してフィードリーダーで見ています。&lt;/p>
+&lt;p>RSS Feed が配信していなサイトは &lt;!-- raw HTML omitted -->Feed43&lt;!-- raw HTML omitted --> を使って情報を収取し、Twitter の発信は &lt;!-- raw HTML omitted -->Twitter Great RSS&lt;!-- raw HTML omitted --> を使って RSS を生成してます!&lt;/p>
+&lt;p>気になった記事や保存したい記事は &lt;!-- raw HTML omitted -->Instapaper&lt;!-- raw HTML omitted --> に保存して後から読むようにしてます。&lt;/p>
+&lt;h2 id="過去の私は">過去の私は&lt;/h2>
+&lt;p>最初は Twitter を &lt;!-- raw HTML omitted -->Tweetbot&lt;!-- raw HTML omitted --> や &lt;!-- raw HTML omitted -->TweetDeck&lt;!-- raw HTML omitted --> を使ってジャンルごとにタイムラインを並べて情報を収集してました。&lt;/p>
+&lt;p>そんな私に slack を試すきっかけが訪れました。&lt;/p>
+&lt;p>一通り使えるようになって &lt;!-- raw HTML omitted -->便利! もっと活用しよう&lt;!-- raw HTML omitted --> と思い情報収集を slack に集結するようになりました。&lt;/p>
+&lt;h2 id="情報収集に疲れた私は">情報収集に疲れた私は&lt;/h2>
+&lt;p>周りの環境が変化し1年半ほど使ってた slack を使わなくなりました。&lt;/p>
+&lt;p>ですが情報収集用に一人 slack を運用してましたが、slack を開くと読み込み時間が長く過去のデータを調べようと思うとログの制限があり不便でした。&lt;/p>
+&lt;p>そこで情報収集を1回やめることにしました。&lt;/p>
+&lt;h2 id="情報収集に関して考え直してみた">情報収集に関して考え直してみた&lt;/h2>
+&lt;p>一度情報収集やめて情報収集に関して考え直しました。&lt;/p>
+&lt;p>そんなときに次の記事を見つけました。&lt;/p>
+&lt;p>&lt;a href="https://qiita.com/naga3/items/18079cd07c230e448cee">https://qiita.com/naga3/items/18079cd07c230e448cee&lt;/a>&lt;/p>
+&lt;p>そこで情報収集は &lt;strong>かならなずやらないといけない&lt;/strong> や &lt;strong>何か崇高な行為&lt;/strong> ではなく &lt;strong>ただの娯楽&lt;/strong> だと割り切れるようになりました。&lt;/p>
+&lt;h2 id="これから私は">これから私は&lt;/h2>
+&lt;p>情報収集を考え直した結果これからは趣味としてやっていこうと思います。&lt;/p>
+&lt;h2 id="おまけ">おまけ&lt;/h2>
+&lt;p>ちなみにフィードリーダーは &lt;!-- raw HTML omitted -->Feedly&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->inoreader&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->Miniflux&lt;!-- raw HTML omitted --> と変わっていきまた&lt;/p>
+&lt;p>Miniflux は少し前まで PHP で実装されていました。 ですが最近 Go 言語で作り直されて使いやすくなりましたので、ぜひ皆さんも使ってください!&lt;/p></description></item><item><title>キーボード配列を Eucalyn 配列に変更してみた</title><link>https://blog.ress.39.gy/post/keyboard-eucalyn/</link><pubDate>Thu, 17 May 2018 13:40:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/keyboard-eucalyn/</guid><description>&lt;p>最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに &lt;a class="link" href="https://adventar.org/calendars/2114" target="_blank" rel="noopener"
+>自作キーボード Advent Calendar&lt;/a> という存在を知りました。&lt;/p>
+&lt;p>&lt;a class="link" href="http://eucalyn.hatenadiary.jp/entry/saikyo-interface" target="_blank" rel="noopener"
+>ぼくのかんがえるさいきょうのインターフェイス - ゆかりメモ&lt;/a>&lt;/p>
+&lt;p>上記の記事を読み Eucalyn配列(仮) をmacOSで試してみようと思いました。&lt;/p>
+&lt;p>&lt;strong>追記&lt;/strong>: 新たに &lt;a class="link" href="https://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout" target="_blank" rel="noopener"
+>Eucalyn配列について&lt;/a> という記事が投稿されました!!&lt;/p>
+&lt;p>配列を一部変更されているので気をつけてください。&lt;/p>
+&lt;h2 id="eucalyn-配列-仮">Eucalyn 配列 (仮)&lt;/h2>
+&lt;p>この配列のいいところは左右交互に打てますが普段Vimを使ってる私からすると右手のホームポジションが少しずれてしまいます…
+ですが慣れてくると結構入力していても疲れなくなってきました!&lt;/p>
+&lt;p>なれるまでゆかりメモにアップされていた写真をトリミングして表示してました。&lt;/p>
+&lt;h3 id="設定方法">設定方法&lt;/h3>
+&lt;p>macOS 10.13.4 で &lt;a class="link" href="https://pqrs.org/osx/karabiner/" target="_blank" rel="noopener"
+>Karabiner-Elements&lt;/a> を使いました。&lt;/p>
+&lt;p>注意点としては Karabiner-Elements はログイン後に起動するのでログインパスワード入力時は元の配置となります。
+(画面ロックは起動後なのでEucalyn配列となります。)&lt;/p></description></item><item><title>zplug のマイベストプラクティス</title><link>https://blog.ress.39.gy/post/zplug/</link><pubDate>Tue, 20 Mar 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/zplug/</guid><description>&lt;p>普段ターミナルで使っている zsh をもっと便利したいので私は高速な &lt;a class="link" href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener"
+>zplugin&lt;/a> などがありますが &lt;a class="link" href="https://github.com/zplug/zplug" target="_blank" rel="noopener"
+>zplug&lt;/a> を使ってます。&lt;/p>
+&lt;p>&lt;strong>注意:&lt;/strong> 私の使い方は zplug 開発側の想定外の使用方法です。あくまでも自己責任で使ってください!&lt;/p>
+&lt;h2 id="tldr">tl;dr&lt;/h2>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-zsh" data-lang="zsh">export ZPLUG_REPOS&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$HOME&lt;span style="color:#e6db74">/.zplug/src&amp;#34;&lt;/span>
+export ZPLUG_HOME&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$ZPLUG_REPOS&lt;span style="color:#e6db74">/zplug/zplug&amp;#34;&lt;/span>
+export ZPLUG_BIN&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$HOME&lt;span style="color:#e6db74">/.zplug/bin&amp;#34;&lt;/span>
+export PATH&lt;span style="color:#f92672">=&lt;/span>$ZPLUG_BIN:$PATH
+export ZPLUG_CACHE_DIR&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$HOME&lt;span style="color:#e6db74">/.zplug/cache&amp;#34;&lt;/span>
+export ZPLUG_LOADFILE&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;~/.config/zsh/packages.zsh&amp;#34;&lt;/span>
+source $ZPLUG_HOME/init.zsh
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">[[&lt;/span> $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface &lt;span style="color:#f92672">||&lt;/span> ! -f $ZPLUG_CACHE_DIR/interface &lt;span style="color:#f92672">]]&lt;/span>; &lt;span style="color:#66d9ef">then&lt;/span>
+zplug check &lt;span style="color:#f92672">||&lt;/span> zplug install
+&lt;span style="color:#66d9ef">fi&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> __zplug::core::cache::diff; &lt;span style="color:#66d9ef">then&lt;/span>
+__zplug::core::load::from_cache
+&lt;span style="color:#66d9ef">else&lt;/span>
+zplug load
+&lt;span style="color:#66d9ef">fi&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>以前記事にした &lt;a class="link" href="https://qiita.com/Ress/items/775f755df655ca4511ee" target="_blank" rel="noopener"
+>自動ダウンロードの高速化&lt;/a> やキャッシュの読み込みを速く行われるように &lt;a class="link" href="https://github.com/zplug/zplug/blob/20ca2c82063f15a2c107069b9af5cd32256e6019/autoload/commands/__load__#L38-L42" target="_blank" rel="noopener"
+>内部で使われている関数&lt;/a> を使用してます。&lt;/p>
+&lt;h2 id="プラグインをどんどん設定していこう">プラグインをどんどん設定していこう!&lt;/h2>
+&lt;p>&lt;code>$ZPLUG_LOADFILE&lt;/code> で指定したファイルにどんどんプラグインを追加していくだけです!&lt;/p>
+&lt;pre>&lt;code class="language-zsh:設定例" data-lang="zsh:設定例">zplug &amp;quot;zplug/zplug&amp;quot;
+zplug &amp;quot;zsh-users/zsh-completions&amp;quot;
+zplug &amp;quot;zdharma/fast-syntax-highlighting&amp;quot;
+&lt;/code>&lt;/pre>&lt;h2 id="どうして開発側の想定外の使い方をしてるのか">どうして開発側の想定外の使い方をしてるのか&lt;/h2>
+&lt;p>読み飛ばしていただいてもOKです&lt;/p>
+&lt;p>zplug 開発側が想定してる使用方法の場合 zplug の自動更新を設定するために &lt;code>zplug --self-manage&lt;/code> コマンドを実行すると思います。&lt;/p>
+&lt;p>ですがこの方法では &lt;code>$ZPLUG_ROOT&lt;/code> と &lt;code>$ZPLUG_HOME&lt;/code> という 2種類の zplug を &lt;code>zplug --self-manage&lt;/code> コマンドでシンボリックリンクを作成するというものでした。&lt;/p>
+&lt;p>この構造ではわかりにくいと感じ issue を立てたり P-R を作成し次のようなディレクトリ構造が成り立つようにしました&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">~/.zplug
+├── bin $ZPLUG_BIN
+├── cache $ZPLUG_CACHE_DIR
+└── src $ZPLUG_REPOS
+└── zplug
+└── zplug $ZPLUG_HOME
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これにより zplug をインストールした際に管理がしやすくなりました!&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>あくまでも私が管理がやりやすいようにやってますので公式が行ってるようにやってもらったほうがいいと思います。&lt;/p>
+&lt;p>&lt;strong>宣伝&lt;/strong>: &lt;a class="link" href="https://github.com/ress997/zplug" target="_blank" rel="noopener"
+>ress997/zplug&lt;/a> では高速化を行ったりPATHが追加されない問題を修正など自分なりに解決してるので是非試してみてください&lt;/p></description></item><item><title>zplug の自動インストールを高速化してみた</title><link>https://blog.ress.39.gy/post/zplug-install/</link><pubDate>Thu, 01 Mar 2018 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/zplug-install/</guid><description>&lt;p>いつも使ってる &lt;a href="https://github.com/zplug/zplug">zplug&lt;/a> が遅いと感じ始めたのでちょっと工夫してみました!&lt;/p>
+&lt;p>&lt;strong>&lt;code>$ZPLUG_LOADFILE&lt;/code> を設定して、キャッシュを使用してることが前提条件です.&lt;/strong>&lt;/p>
+&lt;h2 id="tldr">tl;dr&lt;/h2>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:.zshrc" data-lang="diff:.zshrc"> source $ZPLUG_HOME/init.zsh
++if &lt;span style="color:#f92672">[[&lt;/span> $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface &lt;span style="color:#f92672">||&lt;/span> ! -f $ZPLUG_CACHE_DIR/interface &lt;span style="color:#f92672">]]&lt;/span>; &lt;span style="color:#66d9ef">then&lt;/span>
+zplug check &lt;span style="color:#f92672">||&lt;/span> zplug install
++fi
+zplug load
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>条件を追加するだけです!&lt;/p>
+&lt;h2 id="詳しく">詳しく&lt;/h2>
+&lt;p>&lt;code>[[ $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface ]]&lt;/code> は キャッシュ(&lt;code>$ZPLUG_CACHE_DIR/interface&lt;/code>) と 設定ファイル(&lt;code>$ZPLUG_LOADFILE&lt;/code>) の更新日時を比較します.&lt;/p>
+&lt;p>また, &lt;code>[[ -f $ZPLUG_CACHE_DIR/interface ]]&lt;/code> はキャッシュが生成されてない場合は新しく zplug 自体をイントールなどを行ってる可能性があるので確認してます.&lt;/p>
+&lt;p>zplug はインストール済みで更新があったときのみ確認したいので &lt;code>[[ $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface ]]&lt;/code> を先に書いてます&lt;/p>
+&lt;p>補足: &lt;code>$ZPLUG_CACHE_DIR&lt;/code> は zplug を読み込むと設定されるので設定しなくても使えます.&lt;/p>
+&lt;h2 id="ちなみに">ちなみに&lt;/h2>
+&lt;figure>
+&lt;amp-img src="https://i.gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc.png" alt="Gyazo" width="1120" height="456" layout="responsive">&lt;/amp-img>
+&lt;figcaption>
+&lt;a href="https://gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc" target="_blank">Gyazo&lt;/a>
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>&lt;code>zplug check&lt;/code> を計測してみましたが結構時間がかかってる処理だったので起動が早くなると思います!&lt;/p></description></item><item><title>Mastodon をカスタマイズする</title><link>https://blog.ress.39.gy/post/mastodon-customize/</link><pubDate>Mon, 04 Dec 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/mastodon-customize/</guid><description>&lt;p>この記事は &lt;a class="link" href="https://qiita.com/advent-calendar/2017/mastodon" target="_blank" rel="noopener"
+>Mastodon Advent Calendar 2017 - Qiita&lt;/a> と &lt;a class="link" href="https://adventar.org/calendars/2265" target="_blank" rel="noopener"
+>Mastodon 2 Advent Calendar 2017 - Adventar&lt;/a> の5日目の記事です。&lt;/p>
+&lt;p>昨日は &lt;a class="link" href="https://qiita.com/xserver" target="_blank" rel="noopener"
+>@xserver&lt;/a> さんによる &lt;a class="link" href="https://qiita.com/xserver/items/d6b616dca1f346a2313c" target="_blank" rel="noopener"
+>インスタンス運用アンチパターン&lt;/a> と &lt;a class="link" href="https://adventar.org/users/17459" target="_blank" rel="noopener"
+>@Denmaaaa&lt;/a> さんによる &lt;a class="link" href="http://denmaaa.hatenablog.com/entry/2017/12/04/000000" target="_blank" rel="noopener"
+>具体的分析結果から考える神崎の倒し方&lt;/a> でした。&lt;/p>
+&lt;h2 id="はじめに">はじめに&lt;/h2>
+&lt;p>Mastodon 使いやすくするために制限を緩和しようとしましたが、ドキュメントがなく Rails 初心者の私が行った簡単なカスタマイズを書きたいと思います。&lt;/p>
+&lt;p>使用してるバージョンは &lt;strong>v2.0.0&lt;/strong> です。&lt;/p>
+&lt;h2 id="文字数制限の緩和">文字数制限の緩和&lt;/h2>
+&lt;p>&lt;strong>注意:&lt;/strong> 長文を投稿することができるようになり TL(タイムライン) が荒れる可能性があります。
+また、自分のインスタンスのみだけではなく他のインスタンスにも迷惑がかかるのでしっかりとルールを設定し行うことをすすめます。&lt;/p>
+&lt;ul>
+&lt;li>本体側の制限を緩和&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:app/validators/status_length_validator.rb" data-lang="diff:app/validators/status_length_validator.rb"> &lt;span style="color:#75715e"># frozen_string_literal: true&lt;/span>
+&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">StatusLengthValidator&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">ActiveModel&lt;/span>&lt;span style="color:#f92672">::&lt;/span>&lt;span style="color:#66d9ef">Validator&lt;/span>
+&lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#66d9ef">MAX_CHARS&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span>
+&lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#66d9ef">MAX_CHARS&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">4096&lt;/span>
+&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">validate&lt;/span>(status)
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">unless&lt;/span> status&lt;span style="color:#f92672">.&lt;/span>local? &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#f92672">!&lt;/span>status&lt;span style="color:#f92672">.&lt;/span>reblog?
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>Web UI 側の制限を緩和&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:app/javascript/mastodon/features/compose/components/compose_form.js" data-lang="diff:app/javascript/mastodon/features/compose/components/compose_form.js"> &lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">div&lt;/span> &lt;span style="color:#a6e22e">className&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;compose-form__publish&amp;#39;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">div&lt;/span> &lt;span style="color:#a6e22e">className&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;character-counter__wrapper&amp;#39;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">CharacterCounter&lt;/span> &lt;span style="color:#a6e22e">max&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#ae81ff">500&lt;/span>} &lt;span style="color:#a6e22e">text&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">text&lt;/span>} &lt;span style="color:#f92672">/&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">div&lt;/span> &lt;span style="color:#a6e22e">className&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;compose-form__publish-button-wrapper&amp;#39;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">Button&lt;/span> &lt;span style="color:#a6e22e">text&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">publishText&lt;/span>} &lt;span style="color:#a6e22e">onClick&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">handleSubmit&lt;/span>} &lt;span style="color:#a6e22e">disabled&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">disabled&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">is_uploading&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#a6e22e">length&lt;/span>(&lt;span style="color:#a6e22e">text&lt;/span>) &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">500&lt;/span> &lt;span style="color:#f92672">||&lt;/span> (&lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">trim&lt;/span>().&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)} &lt;span style="color:#a6e22e">block&lt;/span> &lt;span style="color:#f92672">/&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">div&lt;/span> &lt;span style="color:#a6e22e">className&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;character-counter__wrapper&amp;#39;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">CharacterCounter&lt;/span> &lt;span style="color:#a6e22e">max&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#ae81ff">4096&lt;/span>} &lt;span style="color:#a6e22e">text&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">text&lt;/span>} &lt;span style="color:#f92672">/&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">div&lt;/span> &lt;span style="color:#a6e22e">className&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#39;compose-form__publish-button-wrapper&amp;#39;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">Button&lt;/span> &lt;span style="color:#a6e22e">text&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">publishText&lt;/span>} &lt;span style="color:#a6e22e">onClick&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">handleSubmit&lt;/span>} &lt;span style="color:#a6e22e">disabled&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">disabled&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">is_uploading&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#a6e22e">length&lt;/span>(&lt;span style="color:#a6e22e">text&lt;/span>) &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">4096&lt;/span> &lt;span style="color:#f92672">||&lt;/span> (&lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">text&lt;/span>.&lt;span style="color:#a6e22e">trim&lt;/span>().&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)} &lt;span style="color:#a6e22e">block&lt;/span> &lt;span style="color:#f92672">/&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/div&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="投稿画像の画質制限の緩和">投稿画像の画質制限の緩和&lt;/h2>
+&lt;p>&lt;strong>注意:&lt;/strong> この機能を使用する際は AWS S3 などのストレージサービスを使用してない場合、容量をガンガン削られるので使用することをオススメします。&lt;/p>
+&lt;p>変更箇所は2点です。&lt;/p>
+&lt;ul>
+&lt;li>画像の解像度を変更&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:app/models/media_attachment.rb" data-lang="diff:app/models/media_attachment.rb"> &lt;span style="color:#66d9ef">IMAGE_MIME_TYPES&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;image/jpeg&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;image/png&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;image/gif&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>freeze
+&lt;span style="color:#66d9ef">VIDEO_MIME_TYPES&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#39;video/webm&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;video/mp4&amp;#39;&lt;/span>&lt;span style="color:#f92672">].&lt;/span>freeze
+&lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#66d9ef">IMAGE_STYLES&lt;/span> &lt;span style="color:#f92672">=&lt;/span> { &lt;span style="color:#e6db74">original&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;1280x1280&amp;gt;&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">small&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;400x400&amp;gt;&amp;#39;&lt;/span> }&lt;span style="color:#f92672">.&lt;/span>freeze
+&lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#66d9ef">IMAGE_STYLES&lt;/span> &lt;span style="color:#f92672">=&lt;/span> { &lt;span style="color:#e6db74">original&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;3840x2160&amp;gt;&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">small&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;400x400&amp;gt;&amp;#39;&lt;/span> }&lt;span style="color:#f92672">.&lt;/span>freeze
+&lt;span style="color:#66d9ef">VIDEO_STYLES&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;span style="color:#e6db74">small&lt;/span>: {
+&lt;span style="color:#e6db74">convert_options&lt;/span>: {
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>投稿画像のファイル容量制限を変更&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:app/models/media_attachment.rb" data-lang="diff:app/models/media_attachment.rb"> &lt;span style="color:#66d9ef">include&lt;/span> &lt;span style="color:#66d9ef">Remotable&lt;/span>
+validates_attachment_content_type &lt;span style="color:#e6db74">:file&lt;/span>, &lt;span style="color:#e6db74">content_type&lt;/span>: &lt;span style="color:#66d9ef">IMAGE_MIME_TYPES&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#66d9ef">VIDEO_MIME_TYPES&lt;/span>
+&lt;span style="color:#f92672">-&lt;/span> validates_attachment_size &lt;span style="color:#e6db74">:file&lt;/span>, &lt;span style="color:#e6db74">less_than&lt;/span>: &lt;span style="color:#ae81ff">8&lt;/span>&lt;span style="color:#f92672">.&lt;/span>megabytes
+&lt;span style="color:#f92672">+&lt;/span> validates_attachment_size &lt;span style="color:#e6db74">:file&lt;/span>, &lt;span style="color:#e6db74">less_than&lt;/span>: &lt;span style="color:#ae81ff">20&lt;/span>&lt;span style="color:#f92672">.&lt;/span>megabytes
+validates &lt;span style="color:#e6db74">:account&lt;/span>, &lt;span style="color:#e6db74">presence&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+validates &lt;span style="color:#e6db74">:description&lt;/span>, &lt;span style="color:#e6db74">length&lt;/span>: { &lt;span style="color:#e6db74">maximum&lt;/span>: &lt;span style="color:#ae81ff">420&lt;/span> }, &lt;span style="color:#66d9ef">if&lt;/span>: &lt;span style="color:#e6db74">:local?&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これにより画像の制限をオリジナル画像では 1280x1280 から 3840x2160 へ緩和しファイルの容量制限を 8MB から 20MB へと変更されます。&lt;/p>
+&lt;h2 id="テーマ機能">テーマ機能&lt;/h2>
+&lt;p>テーマ機能については &lt;a class="link" href="https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Customizing.md#customizing-style" target="_blank" rel="noopener"
+>公式ドキュメント&lt;/a> がありますが日本語の記事がなかったので書こうと思いました。&lt;/p>
+&lt;p>内容を変更したファイルを追加します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-scss:app/javascript/styles/custom.scss" data-lang="scss:app/javascript/styles/custom.scss">&lt;span style="color:#75715e">// カスタム内容の例
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>$ui-highlight-color&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">#d3d900&lt;/span>;
+&lt;span style="color:#66d9ef">@import&lt;/span> &lt;span style="color:#e6db74">&amp;#39;application&amp;#39;&lt;/span>;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>コンフィグにテーマファイルを追記します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:config/themes.yml" data-lang="diff:config/themes.yml"> &lt;span style="color:#f92672">default&lt;/span>: &lt;span style="color:#ae81ff">styles/application.scss&lt;/span>
+&lt;span style="color:#f92672">+custom&lt;/span>: &lt;span style="color:#ae81ff">styles/custom.scss&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>表示名を追加します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:config/locales/en.yml" data-lang="diff:config/locales/en.yml"> &lt;span style="color:#f92672">title&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%{instance} Terms of Service and Privacy Policy&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">themes&lt;/span>:
+&lt;span style="color:#f92672">default&lt;/span>: &lt;span style="color:#ae81ff">Mastodon&lt;/span>
+&lt;span style="color:#f92672">+ custom&lt;/span>: &lt;span style="color:#ae81ff">Custom&lt;/span>
+&lt;span style="color:#f92672">time&lt;/span>:
+&lt;span style="color:#f92672">formats&lt;/span>:
+&lt;span style="color:#f92672">default&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;%b %d, %Y, %H:%M&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="おまけ-管理者権限の剥奪">おまけ: 管理者権限の剥奪&lt;/h2>
+&lt;p>先日間違って一般ユーザーに Admin権限 を付与してしまったので権限を一般ユーザーに戻したときのメモです。&lt;/p>
+&lt;p>まず Rails のコンソールを開きます&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="color:#75715e"># 直接インストールしてる場合&lt;/span>
+RAILS_ENV&lt;span style="color:#f92672">=&lt;/span>production bundle exec rails console
+&lt;span style="color:#75715e"># docker-compose を利用してる場合&lt;/span>
+docker-compose rails console
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ユーザーネームを指定し権限を更新します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">user &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">User&lt;/span>&lt;span style="color:#f92672">.&lt;/span>joins(&lt;span style="color:#e6db74">:account&lt;/span>)&lt;span style="color:#f92672">.&lt;/span>where(&lt;span style="color:#e6db74">accounts&lt;/span>:{&lt;span style="color:#e6db74">username&lt;/span>:&lt;span style="color:#e6db74">&amp;#39;ユーザーネーム&amp;#39;&lt;/span>})
+user&lt;span style="color:#f92672">.&lt;/span>update(&lt;span style="color:#e6db74">admin&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちなみに &lt;a class="link" href="https://git.io/vbIQC" target="_blank" rel="noopener"
+>ソースコード&lt;/a> を見ながら行いました。&lt;/p>
+&lt;h2 id="さいごに">さいごに&lt;/h2>
+&lt;p>&amp;ldquo;ここはもっとこうするといいよ!&amp;rdquo; みたいなものがありましたら教えてください！&lt;/p></description></item><item><title>Mastodon を触ったときのメモ</title><link>https://blog.ress.39.gy/post/mastodon/</link><pubDate>Wed, 24 May 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/mastodon/</guid><description>&lt;p>私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。&lt;/p>
+&lt;p>ちなみに構築した環境は CentOS 7.2 + Nginx + Docker です。&lt;/p>
+&lt;h2 id="preparation">Preparation&lt;/h2>
+&lt;p>事前に必要そうな設定を行っていきます。&lt;/p>
+&lt;h3 id="firewall">Firewall&lt;/h3>
+&lt;p>ファイヤーウォールの設定をしていきます。&lt;/p>
+&lt;p>現在の設定を確認します。&lt;/p>
+&lt;pre>&lt;code>firewall-cmd --list-all
+&lt;/code>&lt;/pre>&lt;p>dmzゾーン を default設定 に変更します。&lt;/p>
+&lt;pre>&lt;code>firewall-cmd --set-default-zone=dmz
+&lt;/code>&lt;/pre>&lt;p>次にNICへ割り当てられているゾーンの変更します。
+&lt;code>/etc/sysconfig/network-scripts/ifcfg-eth0&lt;/code> の最終行に &lt;code>ZONE=dmz&lt;/code> を追加しただけです。&lt;/p>
+&lt;pre>&lt;code class="language-diff:/etc/sysconfig/network-scripts/ifcfg-eth0" data-lang="diff:/etc/sysconfig/network-scripts/ifcfg-eth0">+ ZONE=dmz
+&lt;/code>&lt;/pre>&lt;p>http と https 用のポートを開け設定を読み込ませます。
+&lt;code>--permanent&lt;/code> をつけることによって永続化させることができます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">firewall-cmd --permanent --add-service&lt;span style="color:#f92672">=&lt;/span>http
+firewall-cmd --permanent --add-service&lt;span style="color:#f92672">=&lt;/span>https
+firewall-cmd --reload
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="swap-領域">Swap 領域&lt;/h3>
+&lt;p>私が借りたサーバーはメモリが 1GB と貧弱なので Swap 領域を 4G 設定しました。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">dd &lt;span style="color:#66d9ef">if&lt;/span>&lt;span style="color:#f92672">=&lt;/span>/dev/zero of&lt;span style="color:#f92672">=&lt;/span>/swapfile bs&lt;span style="color:#f92672">=&lt;/span>1M count&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">4096&lt;/span>
+chmod &lt;span style="color:#ae81ff">600&lt;/span> /swapfile
+mkswap /swapfile
+swapon /swapfile
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="install--setting">Install ･ Setting&lt;/h2>
+&lt;p>必要なものをどんどんインストールしていきます。&lt;/p>
+&lt;h3 id="certbot">Certbot&lt;/h3>
+&lt;p>SSL証明書(Let’s Encrypt ) を利用するためクライアントソフトをインストールします
+&lt;a class="link" href="https://certbot.eff.org/#centosrhel7-nginx" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">yum -y install yum-utils
+yum-config-manager --enable rhui-REGION-rhel-server-&lt;span style="color:#f92672">{&lt;/span>extras,optional&lt;span style="color:#f92672">}&lt;/span>
+yum -y install certbot
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>インストールが終わったら SSL証明書を発行します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">certbot certonly --standalone -d example.com --rsa-key-size &lt;span style="color:#ae81ff">4096&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="nginx">Nginx&lt;/h3>
+&lt;p>公開するために Web サーバーをインストールします。
+&lt;a class="link" href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-red-hat-centos-packages" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました。&lt;/p>
+&lt;p>まず最新版をインストールするために設定ファイルを作成します。&lt;/p>
+&lt;pre>&lt;code class="language-:/etc/yum.repos.d/nginx.repo" data-lang=":/etc/yum.repos.d/nginx.repo">[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+&lt;/code>&lt;/pre>&lt;p>そして次のコマンドを入力しインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">yum -y --enablerepo&lt;span style="color:#f92672">=&lt;/span>nginx install nginx
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>最後に、 Nginx の起動とサーバの再起動が行われた場合でも自動で起動されるように設定します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">systemctl enable nginx
+systemctl start nginx
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="docker">Docker&lt;/h3>
+&lt;p>Mastodon を簡単に動かすために仮想化ソフトをインストールします。
+&lt;a class="link" href="https://docs.docker.com/engine/installation/linux/centos/#docker-ce" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum -y install docker-ce
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Docker の起動とサーバの再起動が行われた場合でも自動で起動されるように設定します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">systemctl enable docker
+systemctl start docker
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="docker-compose">Docker Compose&lt;/h4>
+&lt;p>複数のコンテナからなるサービス (ここでは Mastodon のことです) を簡単に操作できるように Docker Compose をインストールします。
+&lt;a class="link" href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-&lt;span style="color:#66d9ef">$(&lt;/span>uname -s&lt;span style="color:#66d9ef">)&lt;/span>-&lt;span style="color:#66d9ef">$(&lt;/span>uname -m&lt;span style="color:#66d9ef">)&lt;/span> &amp;gt; /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Docker Compose が動くか確認します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker-compose --version
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="mastodon">Mastodon&lt;/h3>
+&lt;p>&lt;a class="link" href="https://github.com/tootsuite/documentation/blob/master/Running-Mastodon/Docker-Guide.md" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました。
+今回インストールするディレクトリは &lt;code>/var/www/mstdn&lt;/code> とします。&lt;/p>
+&lt;p>まず、操作するためのユーザーを作成します&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">useradd --system --user-group --shell /bin/false --create-home --home /home/mastodon mastodon
+passwd mastodon
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Mastodonをインストールする場所を用意し所有者を変更します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">mkdir -p /var/www/mstdn
+chown -R mastodon /var/www/mstdn
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ここからユーザーを変えてMastodonをインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">su - mastodon
+cd /var/www
+git clone https://github.com/tootsuite/mastodon.git mstdn
+cd /var/www/mstdn
+sudo docker-compose build
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定ファイルをコピーして書き換えていきます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">cp .env.production.sample .env.production
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>3回シークレットキーを生成しメモを取ります。
+生成したのはシークレットキーは &lt;code>PAPERCLIP_SECRET&lt;/code> と &lt;code>SECRET_KEY_BASE&lt;/code> と &lt;code>OTP_SECRET&lt;/code> の部分を書き直します。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo docker-compose run --rm web rake secret
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>あとは必要に応じて &lt;code>LOCAL_DOMAIN&lt;/code> や &lt;code>SMTP_*&lt;/code> の部分を書き直します。&lt;/p>
+&lt;p>Mastodonを使用して感じたのは、自インスタンスにいるユーザーがリモートフォローしてる人が投稿した画像も自分のインスタンスに保存されるので絵師などをフォローしてるとすぐに容量がなくなります。なのでS3の項目も設定した方がおすすめです。&lt;/p>
+&lt;pre>&lt;code class="language-zsh:.env.production(設定例)" data-lang="zsh:.env.production(設定例)"># S3 (optional)
+S3_ENABLED=true
+S3_BUCKET=&amp;lt;バケット名&amp;gt;
+AWS_ACCESS_KEY_ID=&amp;lt;AWSのアクセスキー&amp;gt;
+AWS_SECRET_ACCESS_KEY=&amp;lt;AWSのシークレットキー&amp;gt;
+S3_REGION=ap-northeast-1
+S3_PROTOCOL=https
+S3_HOSTNAME=https://ap-northeast-1.amazonaws.com
+# Optional alias for S3 if you want to use Cloudfront or Cloudflare in front
+S3_CLOUDFRONT_HOST=&amp;lt;S3のバケットドメインかCDNのドメイン&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>このままDockerを起動するとデータが消えるので &lt;code>docker-compose.yml&lt;/code> を編集します。
+&lt;code>Uncomment to enable ...&lt;/code>と書いてある下の&lt;code>volumes&lt;/code>の部分をコメントアウトします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:docker-compose.yml" data-lang="diff:docker-compose.yml"> &lt;span style="color:#75715e">### Uncomment to enable DB persistance&lt;/span>
+&lt;span style="color:#f92672">-# volumes&lt;/span>:
+-&lt;span style="color:#75715e"># - ./postgres:/var/lib/postgresql/data&lt;/span>
+&lt;span style="color:#f92672">+ volumes&lt;/span>:
+&lt;span style="color:#ae81ff">+ - ./postgres:/var/lib/postgresql/data&lt;/span>
+&lt;span style="color:#f92672">redis&lt;/span>:
+&lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">always&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">redis:alpine&lt;/span>
+&lt;span style="color:#75715e">### Uncomment to enable REDIS persistance&lt;/span>
+&lt;span style="color:#f92672">-# volumes&lt;/span>:
+-&lt;span style="color:#75715e"># - ./redis:/data&lt;/span>
+&lt;span style="color:#f92672">+ volumes&lt;/span>:
+&lt;span style="color:#ae81ff">+ - ./redis:/data&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="postgresql-のバージョンを固定化">PostgreSQL のバージョンを固定化&lt;/h4>
+&lt;p>このままでは PostgreSQL のメインバージョンがアップデートされるとアップグレード作業をする必要が発生するのでバージョンを固定します。
+(&lt;a class="link" href="http://cryks.hateblo.jp/entry/2017/04/16/145547" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考にしました)&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:docker-compose.yml" data-lang="diff:docker-compose.yml">- &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">postgres:alpine&lt;/span>
+&lt;span style="color:#f92672">+ image&lt;/span>: &lt;span style="color:#ae81ff">postgres:9.6-alpin&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="sidekiq-を冗長化する-オプション">Sidekiq を冗長化する (オプション)&lt;/h4>
+&lt;p>Pawoo.net を運用してる pixiv で &lt;a class="link" href="https://inside.pixiv.blog/harukasan/1284" target="_blank" rel="noopener"
+>実際に運用してみてわかった、大規模Mastodonインスタンスを運用するコツ&lt;/a> という記事を見つけ読みました。&lt;/p>
+&lt;blockquote>
+&lt;p>このうちpush、pullのキューは他のMastodonインスタンスのAPIをリクエストする必要があるため、ほかのMastodonインスタンスが応答できない状態に陥っているとかなりのキューが詰まれてしまい、defaultキューの処理も遅延させてしまいます。&lt;/p>
+&lt;/blockquote>
+&lt;p>とあり具体的な解決策として &lt;strong>Sidekiqのプロセス数を増やす&lt;/strong> と書いてあったのでDockerを複数立てて対応して見ました。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml:docker-compose.yml" data-lang="yaml:docker-compose.yml"> &lt;span style="color:#f92672">sidekiq-default&lt;/span>:
+&lt;span style="color:#f92672">build&lt;/span>: &lt;span style="color:#ae81ff">.&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">gargron/mastodon&lt;/span>
+&lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">always&lt;/span>
+&lt;span style="color:#f92672">env_file&lt;/span>: &lt;span style="color:#ae81ff">.env.production&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>: &lt;span style="color:#ae81ff">bundle exec sidekiq -c 20 -q default&lt;/span>
+&lt;span style="color:#f92672">depends_on&lt;/span>:
+- &lt;span style="color:#ae81ff">db&lt;/span>
+- &lt;span style="color:#ae81ff">redis&lt;/span>
+&lt;span style="color:#f92672">volumes&lt;/span>:
+- &lt;span style="color:#ae81ff">./public/system:/mastodon/public/system&lt;/span>
+&lt;span style="color:#f92672">sidekiq-maile&lt;/span>:
+&lt;span style="color:#f92672">build&lt;/span>: &lt;span style="color:#ae81ff">.&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">gargron/mastodon&lt;/span>
+&lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">always&lt;/span>
+&lt;span style="color:#f92672">env_file&lt;/span>: &lt;span style="color:#ae81ff">.env.production&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>: &lt;span style="color:#ae81ff">bundle exec sidekiq -c 5 -q mailers&lt;/span>
+&lt;span style="color:#f92672">depends_on&lt;/span>:
+- &lt;span style="color:#ae81ff">db&lt;/span>
+- &lt;span style="color:#ae81ff">redis&lt;/span>
+&lt;span style="color:#f92672">volumes&lt;/span>:
+- &lt;span style="color:#ae81ff">./public/system:/mastodon/public/system&lt;/span>
+&lt;span style="color:#f92672">sidekiq-pull&lt;/span>:
+&lt;span style="color:#f92672">build&lt;/span>: &lt;span style="color:#ae81ff">.&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">gargron/mastodon&lt;/span>
+&lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">always&lt;/span>
+&lt;span style="color:#f92672">env_file&lt;/span>: &lt;span style="color:#ae81ff">.env.production&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>: &lt;span style="color:#ae81ff">bundle exec sidekiq -c 10 -q pull&lt;/span>
+&lt;span style="color:#f92672">depends_on&lt;/span>:
+- &lt;span style="color:#ae81ff">db&lt;/span>
+- &lt;span style="color:#ae81ff">redis&lt;/span>
+&lt;span style="color:#f92672">volumes&lt;/span>:
+- &lt;span style="color:#ae81ff">./public/system:/mastodon/public/system&lt;/span>
+&lt;span style="color:#f92672">sidekiq-push&lt;/span>:
+&lt;span style="color:#f92672">build&lt;/span>: &lt;span style="color:#ae81ff">.&lt;/span>
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">gargron/mastodon&lt;/span>
+&lt;span style="color:#f92672">restart&lt;/span>: &lt;span style="color:#ae81ff">always&lt;/span>
+&lt;span style="color:#f92672">env_file&lt;/span>: &lt;span style="color:#ae81ff">.env.production&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>: &lt;span style="color:#ae81ff">bundle exec sidekiq -c 15 -q push&lt;/span>
+&lt;span style="color:#f92672">depends_on&lt;/span>:
+- &lt;span style="color:#ae81ff">db&lt;/span>
+- &lt;span style="color:#ae81ff">redis&lt;/span>
+&lt;span style="color:#f92672">volumes&lt;/span>:
+- &lt;span style="color:#ae81ff">./public/system:/mastodon/public/system&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="セットアップ">セットアップ&lt;/h3>
+&lt;p>下記のコマンドでデータベースや必要なファイルのセットアップを行います。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo docker-compose run --rm web rails db:setup
+sudo docker-compose run --rm web rails assets:precompile
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>最後にMastodonを起動させます&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo docker-compose up -d
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これでローカルに Mastodon を建てることができました。&lt;/p>
+&lt;h4 id="nginx-の設定">Nginx の設定&lt;/h4>
+&lt;p>Mastodonを外部に公開するためにWebサーバーの設定をします。
+&lt;a class="link" href="https://git.io/v9AaO" target="_blank" rel="noopener"
+>ここ&lt;/a> を参考に &lt;code>/etc/nginx/conf.d/mastodon.conf&lt;/code> を作成しました。&lt;/p>
+&lt;p>HSTS の設定を追記します。&lt;/p>
+&lt;pre>&lt;code class="language-diff:/etc/nginx/conf.d/mastodon.conf" data-lang="diff:/etc/nginx/conf.d/mastodon.conf">- add_header Strict-Transport-Security &amp;quot;max-age=31536000&amp;quot;;
++ add_header Strict-Transport-Security &amp;quot;max-age=31536000; includeSubDomains; preload&amp;quot;;
+&lt;/code>&lt;/pre>&lt;p>このまま起動しようとすると &lt;code>ssl_dhparam&lt;/code> で指定してるファイルがないと怒られるので作成します。
+環境によってはすごい時間がかかるので注意してください。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem &lt;span style="color:#ae81ff">4096&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Nginxと念の為にMastodonを再起動させたら完了です&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo docker-compose restart
+sudo systemctl restart nginx
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>お疲れ様です。これでサーバーを立てることができたと思います。&lt;/p>
+&lt;h2 id="update">Update&lt;/h2>
+&lt;ol>
+&lt;li>リモートリポジトリの最新の履歴の取得します。
+&lt;ul>
+&lt;li>&lt;code>git fetch --tags&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>最新のTagに変更する (例: v1.6.1 にする場合)
+&lt;ul>
+&lt;li>&lt;code>git checkout v1.6.1&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>確認
+&lt;ul>
+&lt;li>&lt;code>git status&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ビルド
+&lt;ul>
+&lt;li>&lt;code>docker-compose build&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>DB (Option)
+&lt;ul>
+&lt;li>&lt;code>docker-compose run --rm web rake db:migrate&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>(Option)
+&lt;ul>
+&lt;li>&lt;code>docker-compose run --rm web rake assets:precompile&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>再起動
+&lt;ul>
+&lt;li>&lt;code>docker-compose up -d&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>これで再起動ができてると思われます。&lt;/p>
+&lt;h2 id="さいごに">さいごに&lt;/h2>
+&lt;p>色々と書きましたが今は違う構成をしてたりしてるのであくまでも参考程度にお願いします。&lt;/p></description></item><item><title>ConoHa で Mastodon を立ててみた (テンプレート使用)</title><link>https://blog.ress.39.gy/post/mastodon-conoha/</link><pubDate>Thu, 27 Apr 2017 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/mastodon-conoha/</guid><description>&lt;p>&lt;strong>追記&lt;/strong>: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.conoha.jp/guide/mastodonconoha.php">MastodonアプリケーションイメージｘConoHaメールサーバーでMastodonのインスタンスを作る&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>いつも使っている
+&lt;a href="https://www.conoha.jp/referral/?token=RcE0b87cFOCWZzC_.Gqmqqr6Cv7KEQuyK20I.Pk7zcnHZ6aqM78-6GL">ConoHa&lt;/a>
+にMastodonのテンプレートが公開されたので早速使用してみました！&lt;/p>
+&lt;p>参考元: &lt;a href="https://www.conoha.jp/guide/mastodon.php">Mastodonアプリケーションイメージの使い方&lt;/a>&lt;/p>
+&lt;h2 id="サーバーを建ててみる">サーバーを建ててみる&lt;/h2>
+&lt;p>せっかくなのでConoHaを使うのでアプリケーションサーバのメールサーバーも立ててみました。&lt;/p>
+&lt;figure>
+&lt;amp-img src="https://i.gyazo.com/eb4730f27ecba8e8e5db494e47c3b192.png" alt="Gyazo" width="818" height="805" layout="responsive">&lt;/amp-img>
+&lt;figcaption>
+&lt;a href="https://gyazo.com/eb4730f27ecba8e8e5db494e47c3b192" target="_blank">Gyazo&lt;/a>
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="envproduction-を編集する">&lt;code>.env.production&lt;/code> を編集する&lt;/h3>
+&lt;p>ConoHa のテンプレートを使用するとデータベースの部分は自動的に書き換わってると思うのでメールの部分を編集します&lt;/p>
+&lt;pre>&lt;code class="language-diff:.env.production" data-lang="diff:.env.production"># E-mail configuration
+# Note: Mailgun and SparkPost (https://sparkpo.st/smtp) each have good free tiers
+-SMTP_SERVER=smtp.mailgun.org
++SMTP_SERVER=smtp.mastodon.conoha.io
+SMTP_PORT=587
+-SMTP_LOGIN=
+-SMTP_PASSWORD=
+-SMTP_FROM_ADDRESS=notifications@example.com
++SMTP_LOGIN=notifications@mastodon.conoha.io
++SMTP_PASSWORD=HogeHoge
++SMTP_FROM_ADDRESS=notifications@mastodon.conoha.io
+&lt;/code>&lt;/pre>&lt;h3 id="データベースを作成とrailsのアセットをコンパイルをする">データベースを作成とRailsのアセットをコンパイルをする&lt;/h3>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo -u mastodon RAILS_ENV&lt;span style="color:#f92672">=&lt;/span>production /home/mastodon/.rbenv/versions/2.4.1/bin/bundle exec rails db:setup
+sudo -u mastodon RAILS_ENV&lt;span style="color:#f92672">=&lt;/span>production /home/mastodon/.rbenv/versions/2.4.1/bin/bundle exec rails assets:precompile
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>上記のコマンドを実行するだけなので簡単ですね&lt;/p>
+&lt;h2 id="mastodon-を起動する">Mastodon を起動する&lt;/h2>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">systemctl enable --now mastodon-*
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>上記のコマンドを実行することによってMastodonが立ち上がると思います
+そうしたら &lt;code>http://&amp;lt;サイトのアドレス&amp;gt;:3000&lt;/code> からアクセスできるようになってると思います。&lt;/p>
+&lt;h3 id="管理者権限を付与する">管理者権限を付与する&lt;/h3>
+&lt;p>下記のコマンドを実行することによって指定したユーザーに管理者権限を付与することができます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo -u mastodon RAILS_ENV&lt;span style="color:#f92672">=&lt;/span>production /home/mastodon/.rbenv/versions/2.4.1/bin/bundle exec rails mastodon:make_admin USERNAME&lt;span style="color:#f92672">=(&lt;/span>登録時のユーザー名&lt;span style="color:#f92672">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>もし、メールアドレスが届かない場合は下記のコマンドを実行することによってメールを認証することもできます。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo -u mastodon RAILS_ENV&lt;span style="color:#f92672">=&lt;/span>production /home/mastodon/.rbenv/versions/2.4.1/bin/bundle exec rails mastodon:confirm_email USER_EMAIL&lt;span style="color:#f92672">=(&lt;/span>登録時のメアド&lt;span style="color:#f92672">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本格的な運用に向けて">本格的な運用に向けて&lt;/h2>
+&lt;p>これまで書いてきた部分は参考元のドキュメントを見ればわかることですがこれから先のことは自分で試行錯誤しながらやったことなので自己責任でお願いします。
+またこうした方がいいよって事がありましたらぜひ教えてください。&lt;/p>
+&lt;h3 id="nginx-や-lets-encrypt--を設定する">Nginx や Let&amp;rsquo;s Encrypt を設定する&lt;/h3>
+&lt;p>まず必要なものをインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>インストールを終えたら証明書を発行します&lt;/p>
+&lt;pre>&lt;code>sudo certbot certonly --standalone -d example.com
+&lt;/code>&lt;/pre>&lt;p>次に Mastodon 用の Nginx 設定ファイルを用意します&lt;/p>
+&lt;p>&lt;a href="https://git.io/v9sSK">公式ドキュメント&lt;/a> から &lt;code>/etc/nginx/conf.d/mastodon.conf&lt;/code> へコピーしドメインの部分をを適切なものに変更します。&lt;/p>
+&lt;p>設定が終わったら Nginx にファイルを読み込ませます&lt;/p>
+&lt;p>&lt;code>sudo nginx -s reload&lt;/code>&lt;/p>
+&lt;p>これで &lt;code>https://&amp;lt;サイトのアドレス&amp;gt;&lt;/code> からアクセスできるようになったと思います。&lt;/p>
+&lt;h4 id="nginx-reload-ができない場合">&lt;code>nginx reload&lt;/code> ができない場合&lt;/h4>
+&lt;p>調べるまで分かりませんでしたが、どうやら &lt;code>/etc/ssl/certs/dhparam.pem&lt;/code> というファイルがなくて怒ってました。
+これは下記のコマンドで生成することができます(生成するのに結構時間がかかります)&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem &lt;span style="color:#ae81ff">2048&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="使用しないポートを閉じる">使用しないポートを閉じる&lt;/h3>
+&lt;p>Ubuntuを全然触ったことがないのでやり方が分からなかったです。&lt;/p>
+&lt;p>とりあえず応急雨処置としてConoHaのコントロールパネルからMastodonを運用してるVPSを開き&lt;code>ネットワーク情報&lt;/code> -&amp;gt; &lt;code>接続許可ポート&lt;/code> -&amp;gt; &lt;code>すべて許可&lt;/code>のチェックを外し必要なものだけチェックを入れ対応しました。&lt;/p>
+&lt;h2 id="感想">感想&lt;/h2>
+&lt;p>今日の昼過ぎにテンプレートが公開され帰宅後試してみた程度なので足りない点があると思いますが今のところとりあえず使えるようにはなったので記事にしました。&lt;/p></description></item><item><title>Jekyll で sass を css に変換し style タグ内に挿入する方法</title><link>https://blog.ress.39.gy/post/jekyll-sass/</link><pubDate>Tue, 16 Aug 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/jekyll-sass/</guid><description>&lt;p>jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので&lt;/p>
+&lt;p>AMP HTML ページを用意する場合などに使えます。&lt;/p>
+&lt;p>&lt;strong>追記&lt;/strong>: &lt;a class="link" href="https://blog.ress.39.gy/post/hugo-sass/" >hugo で行う方法も追記しました&lt;/a>&lt;/p>
+&lt;h2 id="やり方">やり方&lt;/h2>
+&lt;p>いままで下記のようにアクセスしてた &lt;code>css&lt;/code> ファイルを&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html:_layouts/default.html" data-lang="html:_layouts/default.html"> &amp;lt;&lt;span style="color:#f92672">link&lt;/span> &lt;span style="color:#a6e22e">rel&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;stylesheet&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">href&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;{{ site.baseurl }}/css/style.css&amp;#34;&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>を次のように変更する&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html:_layouts/default.html" data-lang="html:_layouts/default.html">&amp;lt;&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
+{&lt;span style="color:#960050;background-color:#1e0010">%&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">capture&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">styles&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>}
+{&lt;span style="color:#960050;background-color:#1e0010">%&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">include&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">css/style.scss&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>}
+{&lt;span style="color:#960050;background-color:#1e0010">%&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">endcapture&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">%&lt;/span>}
+{&lt;span style="color:#960050;background-color:#1e0010">{&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">styles&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">|&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">scssify&lt;/span> }&lt;span style="color:#960050;background-color:#1e0010">}&lt;/span>
+&amp;lt;/&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>簡単に解決することができました。&lt;/p>
+&lt;h2 id="sass-の場合">Sass の場合&lt;/h2>
+&lt;p>&lt;code>scssify&lt;/code> の部分を &lt;code>sassify&lt;/code> に変えると Sass から css に変換してくれます！&lt;/p></description></item><item><title>AMP で Google Analytics を利用する</title><link>https://blog.ress.39.gy/post/amp-analytics/</link><pubDate>Tue, 17 May 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/amp-analytics/</guid><description>&lt;h2 id="やり方">やり方&lt;/h2>
+&lt;p>次のスクリプト分を &lt;code>&amp;lt;head&amp;gt;&lt;/code> 内かつ AMP JS library&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> よりも前に以下の内容を記述&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">async&lt;/span> &lt;span style="color:#a6e22e">custom-element&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;amp-analytics&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Body 先頭に以下の内容を記述&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&amp;lt;&lt;span style="color:#f92672">amp-analytics&lt;/span> &lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;googleanalytics&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">id&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;analytics1&amp;#34;&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">type&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;application/json&amp;#34;&lt;/span>&amp;gt;
+{
+&lt;span style="color:#e6db74">&amp;#34;vars&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#75715e">// 通常ページのトラッキング用と、 AMP 用ではプロパティを分けて設定することが推奨
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#34;account&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;UA-XXXXXX-Y&amp;#34;&lt;/span>
+},
+&lt;span style="color:#e6db74">&amp;#34;triggers&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#e6db74">&amp;#34;trackPageview&amp;#34;&lt;/span> &lt;span style="color:#f92672">:&lt;/span> {
+&lt;span style="color:#e6db74">&amp;#34;on&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;visible&amp;#34;&lt;/span>,
+&lt;span style="color:#e6db74">&amp;#34;request&amp;#34;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#34;pageview&amp;#34;&lt;/span>
+}
+}
+}
+&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">amp-analytics&lt;/span>&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>ちなみに &lt;code>amp-analytics&lt;/code> に &lt;code>id&lt;/code> は必須ではないがデバッグのために追加しておくことが推奨&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>AMP JS library は &lt;code>&amp;lt;script async src=&amp;quot;https://cdn.ampproject.org/v0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code> です &lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item><item><title>NeoVim と dein.vim を使ってみる!</title><link>https://blog.ress.39.gy/post/dein/</link><pubDate>Sun, 06 Mar 2016 12:00:00 +0900</pubDate><guid>https://blog.ress.39.gy/post/dein/</guid><description>&lt;p>最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
+ついでに Vim も NeoVim へシフトしてみたいと思います.&lt;/p>
+&lt;h2 id="neovim">NeoVim&lt;/h2>
+&lt;p>&lt;a class="link" href="https://qiita.com/lighttiger2505/items/440c32e40082dc310c1e" target="_blank" rel="noopener"
+>こちら&lt;/a> の記事に日本語で詳しくまとめてあるので参考にしてください
+&lt;del>(まだまだ使いこなせてませんorz)&lt;/del>&lt;/p>
+&lt;h3 id="事前準備">事前準備&lt;/h3>
+&lt;p>NeoVim を使用する場合 &lt;code>.bash_profile&lt;/code> や &lt;code>.zshenv&lt;/code> に次の一文を入れないと動かない場合があります.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-zsh" data-lang="zsh">export XDG_CONFIG_HOME&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>$HOME&lt;span style="color:#e6db74">/.config&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="インストール">インストール&lt;/h3>
+&lt;p>macOS では Homebrew を使用するとても簡単です!&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-zsh" data-lang="zsh">$ brew install neovim
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a class="link" href="https://github.com/neovim/neovim/wiki/Installing-Neovim" target="_blank" rel="noopener"
+>他の環境の方は neovim の wiki に書いてあります&lt;/a>&lt;/p>
+&lt;h3 id="設定">設定&lt;/h3>
+&lt;p>NeoVim の設定ファイルである &lt;code>$XDG_CONFIG_HOME/nvim/init.vim&lt;/code> に書きます.
+標準では &lt;code>$XDG_CONFIG_HOME&lt;/code> は &lt;code>$HOME/.config&lt;/code> となってます.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vim:~/.config/nvim/init.vim" data-lang="vim:~/.config/nvim/init.vim">&lt;span style="color:#75715e">&amp;#34; reset augroup&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">augroup&lt;/span> &lt;span style="color:#a6e22e">MyAutoCmd&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">autocmd&lt;/span>!&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">augroup&lt;/span> &lt;span style="color:#a6e22e">END&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&amp;#34; ENV&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> $&lt;span style="color:#a6e22e">CACHE&lt;/span> = &lt;span style="color:#a6e22e">empty&lt;/span>($&lt;span style="color:#a6e22e">XDG_CACHE_HOME&lt;/span>) ? &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$HOME/.cache&amp;#39;&lt;/span>) : $&lt;span style="color:#a6e22e">XDG_CACHE_HOME&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> $&lt;span style="color:#a6e22e">CONFIG&lt;/span> = &lt;span style="color:#a6e22e">empty&lt;/span>($&lt;span style="color:#a6e22e">XDG_CONFIG_HOME&lt;/span>) ? &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$HOME/.config&amp;#39;&lt;/span>) : $&lt;span style="color:#a6e22e">XDG_CONFIG_HOME&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> $&lt;span style="color:#a6e22e">DATA&lt;/span> = &lt;span style="color:#a6e22e">empty&lt;/span>($&lt;span style="color:#a6e22e">XDG_DATA_HOME&lt;/span>) ? &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$HOME/.local/share&amp;#39;&lt;/span>) : $&lt;span style="color:#a6e22e">XDG_DATA_HOME&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e">&amp;#34; Load rc file&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span>! &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">load&lt;/span>(&lt;span style="color:#a6e22e">file&lt;/span>) &lt;span style="color:#a6e22e">abort&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">path&lt;/span> = &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$CONFIG/nvim/rc/&amp;#39;&lt;/span> . &lt;span style="color:#a6e22e">a&lt;/span>:&lt;span style="color:#a6e22e">file&lt;/span> . &lt;span style="color:#e6db74">&amp;#39;.vim&amp;#39;&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">filereadable&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">path&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">execute&lt;/span> &lt;span style="color:#e6db74">&amp;#39;source&amp;#39;&lt;/span> &lt;span style="color:#a6e22e">fnameescape&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">path&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">endfunction&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">load&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;plugins&amp;#39;&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="deinvim">dein.vim&lt;/h2>
+&lt;p>NeoBundle はオワコンだから dein 使おうと作者の Shougo 氏自身が reddit で発言したそうです.&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>
+使ってみた感想としては速度も早くTOMLファイルで管理ができてとても使いやすかったです！&lt;/p>
+&lt;h3 id="事前準備-1">事前準備&lt;/h3>
+&lt;p>python3 を使用してるプラグインを動かすため Homebrew を使用して事前にインストールします.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-zsh" data-lang="zsh">$ brew install python3
+$ pip3 install -U neovim
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="設定-1">設定&lt;/h3>
+&lt;p>プラグインに関する設定は &lt;code>~/.config/nvim/rc/plugins.vim&lt;/code> に分割してるので自分の環境に合わせて見てください.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-vim:~/.config/nvim/rc/plugins.vim" data-lang="vim:~/.config/nvim/rc/plugins.vim">&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_dir&lt;/span> = &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$DATA/dein&amp;#39;&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">if&lt;/span> &amp;amp;&lt;span style="color:#a6e22e">runtimepath&lt;/span> !~# &lt;span style="color:#e6db74">&amp;#39;/dein.vim&amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_repo_dir&lt;/span> = &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_dir&lt;/span> . &lt;span style="color:#e6db74">&amp;#39;/repos/github.com/Shougo/dein.vim&amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;span style="color:#75715e"> &amp;#34; Auto Download&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> !&lt;span style="color:#a6e22e">isdirectory&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_repo_dir&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">execute&lt;/span> &lt;span style="color:#e6db74">&amp;#39;!git clone https://github.com/Shougo/dein.vim &amp;#39;&lt;/span> . &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_repo_dir&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">execute&lt;/span> &lt;span style="color:#e6db74">&amp;#39;set runtimepath^=&amp;#39;&lt;/span> . &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_repo_dir&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">g&lt;/span>:&lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">install_max_processes&lt;/span> = &lt;span style="color:#ae81ff">16&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">g&lt;/span>:&lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">install_message_type&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;none&amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">if&lt;/span> !&lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">load_state&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_dir&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">finish&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">begin&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">dein_dir&lt;/span>, &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;&amp;lt;sfile&amp;gt;&amp;#39;&lt;/span>))&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">toml_dir&lt;/span> = &lt;span style="color:#a6e22e">expand&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;$CONFIG/nvim/dein&amp;#39;&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">load_toml&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">toml_dir&lt;/span> . &lt;span style="color:#e6db74">&amp;#39;/plugins.toml&amp;#39;&lt;/span>, {&lt;span style="color:#e6db74">&amp;#39;lazy&amp;#39;&lt;/span>: &lt;span style="color:#ae81ff">0&lt;/span>})&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">load_toml&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">toml_dir&lt;/span> . &lt;span style="color:#e6db74">&amp;#39;/lazy.toml&amp;#39;&lt;/span>, {&lt;span style="color:#e6db74">&amp;#39;lazy&amp;#39;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>})&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">has&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;python3&amp;#39;&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">load_toml&lt;/span>(&lt;span style="color:#a6e22e">s&lt;/span>:&lt;span style="color:#a6e22e">toml_dir&lt;/span> . &lt;span style="color:#e6db74">&amp;#39;/python.toml&amp;#39;&lt;/span>, {&lt;span style="color:#e6db74">&amp;#39;lazy&amp;#39;&lt;/span>: &lt;span style="color:#ae81ff">1&lt;/span>})&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">end&lt;/span>()&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">save_state&lt;/span>()&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">has&lt;/span>(&lt;span style="color:#e6db74">&amp;#39;vim_starting&amp;#39;&lt;/span>) &amp;amp;&amp;amp; &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">check_install&lt;/span>()&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span> &lt;span style="color:#a6e22e">call&lt;/span> &lt;span style="color:#a6e22e">dein&lt;/span>#&lt;span style="color:#a6e22e">install&lt;/span>()&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">endif&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#75715e">&amp;#34; }}}&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>dein#begin&lt;/code> 部分は &lt;code>rc&lt;/code> ディレクトリも含めるためこのように書いてます&lt;/p>
+&lt;p>&lt;code>dein#load_state&lt;/code> の箇所で &lt;code>finish&lt;/code> してる部分は そのまま &lt;code>init.vim&lt;/code> or &lt;code>vimrc&lt;/code> に書くと動作がおかしくなる可能性があるため適切に &lt;code>if&lt;/code> などを使用してください&lt;/p>
+&lt;h4 id="プラグイン">プラグイン&lt;/h4>
+&lt;p>インストールするプラグインをTOML形式で書きます&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml:~/.config/nvim/dein/plugins.toml" data-lang="toml:~/.config/nvim/dein/plugins.toml">[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;Shougo/dein.vim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;itchyny/lightline.vim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">hook_add&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> let g:lightline = {&amp;#39;&lt;/span>&lt;span style="color:#a6e22e">colorscheme&lt;/span>&lt;span style="color:#e6db74">&amp;#39;: &amp;#39;&lt;/span>&lt;span style="color:#a6e22e">wombat&lt;/span>&lt;span style="color:#e6db74">&amp;#39;}
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span style="color:#75715e"># Toml&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;cespare/vim-toml&amp;#39;&lt;/span>
+&lt;span style="color:#75715e"># Golang&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;fatih/vim-go&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>基本はこんな感じで遅延読み込みする方は次のように書きます&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml:~/.config/nvim/dein/lazy.toml" data-lang="toml:~/.config/nvim/dein/lazy.toml">&lt;span style="color:#75715e"># dein.vim command&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;haya14busa/dein-command.vim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">on_cmd&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;Dein&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>python 関係の設定&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml:~/.config/nvim/dein/python.toml" data-lang="toml:~/.config/nvim/dein/python.toml">&lt;span style="color:#75715e"># 補完&lt;/span>
+[[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
+&lt;span style="color:#a6e22e">repo&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;Shougo/deoplete.nvim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">depends&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;context_filetype.vim&amp;#39;&lt;/span>
+&lt;span style="color:#a6e22e">on_i&lt;/span> = &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;span style="color:#a6e22e">hook_source&lt;/span> = &lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> let g:deoplete#enable_at_startup = 1
+&lt;/span>&lt;span style="color:#e6db74"> let g:deoplete#enable_ignore_case = 1
+&lt;/span>&lt;span style="color:#e6db74"> let g:deoplete#enable_smart_case = 1
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> &amp;#34; &amp;lt;TAB&amp;gt;: completion.
+&lt;/span>&lt;span style="color:#e6db74"> imap &amp;lt;silent&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;TAB&amp;gt; pumvisible() ? &amp;#34;\&amp;lt;C-n&amp;gt;&amp;#34; : &amp;lt;SID&amp;gt;check_back_space() ? &amp;#34;\&amp;lt;TAB&amp;gt;&amp;#34; : deoplete#mappings#manual_complete()
+&lt;/span>&lt;span style="color:#e6db74"> function! s:check_back_space() abort
+&lt;/span>&lt;span style="color:#e6db74"> let col = col(&amp;#39;&lt;/span>.&lt;span style="color:#e6db74">&amp;#39;) - 1
+&lt;/span>&lt;span style="color:#e6db74"> return !col || getline(&amp;#39;&lt;/span>.&lt;span style="color:#e6db74">&amp;#39;)[col - 1] =~ &amp;#39;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#a6e22e">s&lt;/span>&lt;span style="color:#e6db74">&amp;#39;
+&lt;/span>&lt;span style="color:#e6db74"> endfunction
+&lt;/span>&lt;span style="color:#e6db74">
+&lt;/span>&lt;span style="color:#e6db74"> &amp;#34; &amp;lt;S-TAB&amp;gt;: completion back.
+&lt;/span>&lt;span style="color:#e6db74"> inoremap &amp;lt;expr&amp;gt;&amp;lt;S-TAB&amp;gt; pumvisible() ? &amp;#34;\&amp;lt;C-p&amp;gt;&amp;#34; : &amp;#34;\&amp;lt;C-h&amp;gt;&amp;#34;
+&lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Tomlファイルの位置や内容は自分の環境に合わせて使ってください！&lt;/p>
+&lt;h3 id="ちなみに">ちなみに&lt;/h3>
+&lt;p>dein.vim は neobundle みたいに各コマンドが用意してありませんが &lt;a class="link" href="https://github.com/haya14busa/dein-command.vim" target="_blank" rel="noopener"
+>haya14busa/dein-command.vim&lt;/a> を使うとコマンドを実行できるようになります!&lt;/p>
+&lt;h2 id="最後に">最後に&lt;/h2>
+&lt;p>いろいろ書かせてもらいましたがまだまだ vim も neovim も使い始めたばかりなので間違ってたところなどありましたらコメント等で教えて下さい&lt;/p>
+&lt;h3 id="参考人させていただいた記事">参考人させていただいた記事&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a class="link" href="http://qiita.com/yoza/items/2f8bd33a18225754f346" target="_blank" rel="noopener"
+>dein.vimを使ってみる&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://qiita.com/okamos/items/2259d5c770d51b88d75b" target="_blank" rel="noopener"
+>NeoVim、そしてdein.vimへ&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542" target="_blank" rel="noopener"
+>NeoBundle から dein.vim に乗り換えたら爆速だった話&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://qiita.com/delphinus35/items/cd221a450fd23506e81a" target="_blank" rel="noopener"
+>[dein.vim] hook の便利な使い方&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="http://qiita.com/kawaz/items/ee725f6214f91337b42b" target="_blank" rel="noopener"
+>dein.vimによるプラグイン管理のマイベストプラクティス&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>&lt;a class="link" href="http://qiita.com/delphinus35/items/00ff2c0ba972c6e41542" target="_blank" rel="noopener"
+>冒頭部分&lt;/a> &lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item></channel></rss>
