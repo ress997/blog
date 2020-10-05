@@ -7,8 +7,7 @@ on:
   schedule:
     - cron: '0 6 * * *'
 jobs:
-  build:
-    name: Build
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,31 +29,9 @@ jobs:
       - name: Build
         run: hugo --gc --minify
 
-      - name: Save /public
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: public
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Load /public
-        uses: actions/download-artifact@v2
-        with:
-          name: public
-          path: public
-
-      - name: Optimize AMP
-        uses: asurbernardo/amp-optimizer-action@1.0.2
-        with:
-          root: 'public/amp'
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          cname: blog.ress.39.gy
+          cname: www.39.gy
