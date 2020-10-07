@@ -660,7 +660,7 @@ cp config/generated_config.exs config/prod.secret.exs
 MIX_ENV&lt;span style="color:#f92672">=&lt;/span>prod mix ecto.migrate
 &lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sample-config">sample config&lt;/h3>
 &lt;p>見やすいように私は設定の順序を変更してます&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-elixir" data-lang="elixir">use &lt;span style="color:#a6e22e">Mix.Config&lt;/span>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-elixir" data-lang="elixir">&lt;span style="color:#f92672">use&lt;/span> &lt;span style="color:#a6e22e">Mix.Config&lt;/span>
 config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#a6e22e">Pleroma.Web.Endpoint&lt;/span>,
 &lt;span style="color:#e6db74">url&lt;/span>: [&lt;span style="color:#e6db74">host&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;インスタンスURL&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">scheme&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;https&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">port&lt;/span>: &lt;span style="color:#ae81ff">443&lt;/span>],
 &lt;span style="color:#e6db74">secret_key_base&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;なんとか&amp;#34;&lt;/span>
@@ -674,14 +674,14 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:instance&lt;/span>,
 &lt;span style="color:#e6db74">name&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;インスタンス名&amp;#34;&lt;/span>,
 &lt;span style="color:#e6db74">email&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;メールアドレス&amp;#34;&lt;/span>,
-&lt;span style="color:#e6db74">dedupe_media&lt;/span>: false,
+&lt;span style="color:#e6db74">dedupe_media&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>,
 &lt;span style="color:#e6db74">limit&lt;/span>: &lt;span style="color:#ae81ff">5000&lt;/span>,
-&lt;span style="color:#e6db74">registrations_open&lt;/span>: true
+&lt;span style="color:#e6db74">registrations_open&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 &lt;span style="color:#75715e"># limit は文字数制限です&lt;/span>
 &lt;span style="color:#75715e"># registrations_open は新規登録するかの設定です&lt;/span>
 config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:media_proxy&lt;/span>,
-&lt;span style="color:#e6db74">enabled&lt;/span>: false,
-&lt;span style="color:#e6db74">redirect_on_failure&lt;/span>: true
+&lt;span style="color:#e6db74">enabled&lt;/span>: &lt;span style="color:#66d9ef">false&lt;/span>,
+&lt;span style="color:#e6db74">redirect_on_failure&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 &lt;span style="color:#75715e"># 今回東京リージョンのS3を使います&lt;/span>
 config &lt;span style="color:#e6db74">:ex_aws&lt;/span>, &lt;span style="color:#e6db74">:s3&lt;/span>,
 &lt;span style="color:#e6db74">access_key_id&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;XXXXXXXXXXXX&amp;#34;&lt;/span>,
@@ -696,11 +696,11 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;span style="color:#e6db74">uploader&lt;/span>: &lt;span style="color:#a6e22e">Pleroma.Uploaders.S3&lt;/span>
 &lt;span style="color:#75715e"># 各機能の有効化します&lt;/span>
 config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:fe&lt;/span>,
-&lt;span style="color:#e6db74">show_instance_panel&lt;/span>: true,
-&lt;span style="color:#e6db74">scope_options_enabled&lt;/span>: true,
-&lt;span style="color:#e6db74">collapse_message_with_subject&lt;/span>: true
+&lt;span style="color:#e6db74">show_instance_panel&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;span style="color:#e6db74">scope_options_enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;span style="color:#e6db74">collapse_message_with_subject&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:#e6db74">:suggestions&lt;/span>,
-&lt;span style="color:#e6db74">enabled&lt;/span>: true
+&lt;span style="color:#e6db74">enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>設定についてはまた今度まとめたいと思います&lt;/p>
 &lt;h3 id="systemd">systemd&lt;/h3>
 &lt;p>&lt;code>systemd&lt;/code> を設定します&lt;/p>
