@@ -1,6 +1,8 @@
 +++
 title = "OPPO Reno A 128GB を購入しました"
 date = "2019-10-16T06:14:00+09:00"
+author = ["Ress"]
+image = "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/oppo-reno-a-128gb/thumbnail.png"
 tags = ['Android', 'OPPO']
 categories = ["note"]
 +++
@@ -8,7 +10,7 @@ categories = ["note"]
 
 今回この端末を買った決め手は **おサイフケータイ** と **DSDV** に対応し、3万円以下と安く買えたからです。
 
-![](https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/omzi8y)
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/1)
 
 ## スペック
 項目 | 内容
@@ -27,9 +29,7 @@ ROM | 128GB
 ## 比較
 大きさが近い iPhone 11 Pro Max と比較してみたいと思います。
 
-![](https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/vsluz8)
-
-![](https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/buyhwz)
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/2) ![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/3)
 
 サイズはほぼ同じとなっておりだいぶ大きいです
 

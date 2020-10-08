@@ -1,12 +1,12 @@
 ---
 title: "ブログのビルドをCircleCIからGitHub Actionsに変更した"
 date: 2019-12-03T12:38:16+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png"
 tags:
   - GitHub Actions
   - CircleCI
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。
 

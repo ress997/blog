@@ -1,12 +1,12 @@
 ---
 title: "zplug のマイベストプラクティス"
-date: 2018-03-20 12:00:00 +0900
+date: 2018-03-20T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/zplug/thumbnail.png"
 tags:
   - zsh
   - zplug
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 普段ターミナルで使っている zsh をもっと便利したいので私は高速な [zplugin](https://github.com/zdharma/zplugin) などがありますが [zplug](https://github.com/zplug/zplug) を使ってます。
 

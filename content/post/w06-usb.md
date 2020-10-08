@@ -1,13 +1,13 @@
 ---
 title: "Speed Wi-Fi NEXT W06 を USBで接続する"
 date: 2019-06-11T16:32:30+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/w06-usb/thumbnail.png"
 tags:
   - Arch Linux
   - Huawei
   - WiMAX
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 外出時にパソコンを使う機会が多くモバイルルーターを契約しました。
 

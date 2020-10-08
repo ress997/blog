@@ -1,6 +1,8 @@
 ---
 title: "ブログ環境を整えた"
-date: 2018-07-30 12:00:00 +0900
+date: 2018-07-30T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/renewal/thumbnail.png"
 tags:
   - forestry
   - Hugo
@@ -8,9 +10,7 @@ tags:
   - Netlify
   - Netlify CMS
   - WordPress
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。
 

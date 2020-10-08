@@ -1,12 +1,12 @@
 ---
 title: "Defx.nvim を使う!"
 date: 2019-05-23T21:26:25+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png"
 tags:
   - neovim
   - defx.nvim
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 今まで vim でファイラーを使うとなったときに [NERDtree][1] しか使ってませんでしたが [@Shougo][2] さんがまた使いやすファイラーを作ったいたので紹介したいと思います。
 
@@ -49,7 +49,7 @@ call defx#custom#option('_', {
 
 カスタマイズを更に行いうとこんな感じにできます！
 
-{{< gyazo id="8eb09ad73d009343f1667f1cc5ebfcb6" >}}
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/defx/1)
 
 ### 設定例
 

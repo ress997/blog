@@ -1,11 +1,11 @@
 ---
 title: "Arch Linux パッケージを選定した"
 date: 2019-07-10T14:29:50+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png"
 tags:
   - Arch Linux
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。
 <!--more-->

@@ -1,12 +1,12 @@
 ---
 title: "AMP で Google Analytics を利用する"
-date: 2016-05-17 12:00:00 +0900
+date: 2016-05-17T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amp-analytics/thumbnail.png"
 tags:
   - AMP
   - GoogleAnalytics
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 ## やり方
 

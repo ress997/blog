@@ -1,13 +1,13 @@
 ---
 title: "Mastodon を触ったときのメモ"
-date: 2017-05-24 12:00:00 +0900
+date: 2017-05-24T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon/thumbnail.png"
 tags:
   - Mastodon
   - CentOS
   - Docker
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。
 

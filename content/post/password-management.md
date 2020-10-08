@@ -1,6 +1,8 @@
 +++
 title = "パスワード管理について考え直してみた"
 date = "2018-09-13T22:34:00+09:00"
+author = ["Ress"]
+image = "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/password-management/thumbnail.png"
 tags = ["1Password", "Bitwarden", "Authy"]
 categories = ["note"]
 +++

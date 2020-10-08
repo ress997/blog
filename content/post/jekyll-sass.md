@@ -1,12 +1,12 @@
 ---
 title: "Jekyll で sass を css に変換し style タグ内に挿入する方法"
-date: 2016-08-16 12:00:00 +0900
+date: 2016-08-16T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/jekyll-sass/thumbnail.png"
 tags:
   - Jekyll
   - SCSS
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので
 

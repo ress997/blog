@@ -1,12 +1,11 @@
 ---
 title: "Hugo で minify をサポート"
-date: 2018-08-17 20:54:38 +0900
+date: 2018-08-17T20:54:38+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hugo-minify/thumbnail.png"
 tags:
   - Hugo
-toc: true
-image: "thumbnail.png"
-categories:
-  - tech
+categories: ["tech"]
 ---
 最近嬉しい更新が多い Hugo に `minify` オプションが追加されました！
 

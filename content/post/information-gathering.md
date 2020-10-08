@@ -1,6 +1,8 @@
 +++
 title = "私はこんなふうに情報収集しています!"
 date = "2018-05-24T16:28:00+09:00"
+author = ["Ress"]
+image = "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/information-gathering/thumbnail.png"
 tags = ["Feed"]
 categories = ["note"]
 +++

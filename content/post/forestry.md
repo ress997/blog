@@ -1,11 +1,11 @@
 ---
 title: "forestry.io Tips"
-date: 2018-09-21 12:00:00 +0900
+date: 2018-09-21T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/forestry/thumbnail.png"
 tags:
   - forestry
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!
 
@@ -24,7 +24,7 @@ forestry.io でサイトを更新するときにちょっと工夫しないと�
 
 forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。
 
-{{< gyazo id="1ea8ec3fb841a73f518b776271fd6513" >}}
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/forestry/1)
 
 `Add New` ボタンを押し `Create Pages` で設定する `TITLE` はファイル名に使用されます。
 

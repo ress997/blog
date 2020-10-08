@@ -1,6 +1,8 @@
 +++
 title = "HP Chromebook x360 14 を購入しました"
 date = "2019-09-10T09:27:00+09:00"
+author = ["Ress"]
+image = "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hp-chromebook-x360-14/thumbnail.png"
 tags = ["HP"]
 categories = ["note"]
 +++
@@ -37,9 +39,7 @@ HP Chromebook 13 G1 と比べて最初に感じるのはやはり HP Chromebook 
 ## 比較
 今まで現役で使用していた Macbook Pro 13 と比較したいと思います
 
-![](https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/tqeiqx)
-
-![](https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/env0oa)
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/1) ![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/2)
 
 Macbook より大きいですが軽く持ち運びに苦にならなかったです
 

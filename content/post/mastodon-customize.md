@@ -1,12 +1,12 @@
 ---
 title: "Mastodon をカスタマイズする"
-date: 2017-12-04 12:00:00 +0900
+date: 2017-12-04T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon-customize/thumbnail.png"
 tags:
   - Mastodon
   - Rails
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 この記事は [Mastodon Advent Calendar 2017 - Qiita](https://qiita.com/advent-calendar/2017/mastodon) と [Mastodon 2 Advent Calendar 2017 - Adventar](https://adventar.org/calendars/2265) の5日目の記事です。
 

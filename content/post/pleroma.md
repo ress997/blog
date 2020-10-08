@@ -1,14 +1,14 @@
 ---
 title: "Amazon Lightsail に Pleroma をインストールしてみた"
-date: 2018-10-08 20:45:00 +0900
+date: 2018-10-08T20:45:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png"
 tags:
   - AWS
   - Amazon S3
   - Amazon Lightsail
   - Pleroma
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 
 今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。

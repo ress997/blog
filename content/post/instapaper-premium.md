@@ -1,6 +1,8 @@
 +++
 title = "instapaper premium がリニューアル 一部機能が有料化"
 date = "2018-08-13T09:30:00+09:00"
+author = ["Ress"]
+image = "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/instapaper-premium/thumbnail.png"
 tags = ["Instapaper"]
 categories = ["note"]
 +++

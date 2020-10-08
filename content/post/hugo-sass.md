@@ -1,12 +1,12 @@
 ---
 title: "hugo で sass を css に変換し style タグ内に挿入する方法"
 date: 2019-05-22T15:41:36+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hugo-sass/thumbnail.png"
 tags:
   - scss
   - hugo
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 以前 [Jekyll で行う方法]({{< ref "/post/jekyll-sass.md" >}}) を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。
 

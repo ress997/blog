@@ -1,11 +1,11 @@
 ---
 title: "cloudinary が便利!"
-date: 2018-09-20 16:00:00 +0900
+date: 2018-09-20T16:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/cloudinary/thumbnail.png"
 tags:
   - cloudinary
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 最近[ホスティングを変更した]({{< ref "/post/renewal.md" >}})関係で 1GB 以上になると料金が発生します。
 そこで無料で使用できる画像管理サービスを探しました。

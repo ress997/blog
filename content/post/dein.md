@@ -1,12 +1,12 @@
 ---
 title: "NeoVim と dein.vim を使ってみる!"
-date: 2016-03-06 12:00:00 +0900
+date: 2016-03-06T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/dein/thumbnail.png"
 tags:
   - neovim
   - dein.vim
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
 ついでに Vim も NeoVim へシフトしてみたいと思います.

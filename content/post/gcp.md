@@ -1,11 +1,11 @@
 ---
 title: "Google Cloud Platform Tips"
-date: 2018-09-28 07:00:00 +0900
+date: 2018-09-28T07:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/gcp/thumbnail.png"
 tags:
   - GCP
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 Google Cloud Platform を使用していく上でハマった点などを書いていきます。
 

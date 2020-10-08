@@ -1,14 +1,14 @@
 ---
 title: "キーボード配列を Eucalyn 配列に変更してみた"
-date: 2018-05-17 13:40:00 +0900
+date: 2018-05-17T13:40:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/keyboard-eucalyn/thumbnail.png"
 tags:
   - Eucalyn
   - Keyboard
   - Karabiner
   - macOS
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに [自作キーボード Advent Calendar](https://adventar.org/calendars/2114) という存在を知りました。
 

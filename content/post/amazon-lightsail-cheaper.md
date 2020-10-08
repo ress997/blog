@@ -1,12 +1,12 @@
 ---
 title: "Amazon Lightsail が国内最安に"
-date: 2018-08-24 18:16:52 +0900
+date: 2018-08-24T18:16:52+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png"
 tags:
   - AWS
   - Amazon Lightsail
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 [Developers.IO](https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/) でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。
 

@@ -1,13 +1,13 @@
 ---
 title: "ConoHa で Mastodon を立ててみた (テンプレート使用)"
-date: 2017-04-27 12:00:00 +0900
+date: 2017-04-27T12:00:00+09:00
+author: ["Ress"]
+image: "https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon-conoha/thumbnail.png"
 tags:
   - Conoha
   - Mastodon
   - Ubuntu
-toc: true
-categories:
-  - tech
+categories: ["tech"]
 ---
 **追記**: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました
 
@@ -22,7 +22,7 @@ categories:
 
 せっかくなのでConoHaを使うのでアプリケーションサーバのメールサーバーも立ててみました。
 
-{{< gyazo id="eb4730f27ecba8e8e5db494e47c3b192" >}}
+![](https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/mastodon-conoha/1)
 
 ### `.env.production` を編集する
 

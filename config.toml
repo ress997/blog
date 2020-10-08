@@ -17,7 +17,7 @@ featuredImageField = "image"
 rssFullContent = true
 	[params.dateFormat]
 	published = "Jan 02, 2006"
-	lastUpdated = "Jan 02, 2006 15:04 JST"
+	lastUpdated = "Jan 02, 2006 15:04 MST"
 	[params.sidebar]
 	emoji = "🦋"
 	avatar = "img/avatar.png"
@@ -39,7 +39,7 @@ rssFullContent = true
 		[params.widgets.archives]
 		limit = 5
 		### Archives page relative URL
-		path = "archives"
+		path = "/archives/"
 		[params.widgets.tagCloud]
 		limit = 10
 	[params.opengraph]
@@ -52,25 +52,26 @@ rssFullContent = true
 		local = false
 		src = ""
 
-[menu]
-	[[menu.main]]
-	identifier = "home"
-	name = "Home"
-	url = "/"
-	weight = -100
-	pre = "home"
-	[[menu.main]]
-	identifier = "about-cn"
-	name = "About"
-	url = "about"
-	weight = -90
-	pre = "user"
-	[[menu.main]]
-	identifier = "archives"
-	name = "Archives"
-	url = "archives"
-	weight = -70
-	pre = "archives"
+[[menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = -100
+pre = "home"
+
+[[menu.main]]
+identifier = "about-cn"
+name = "About"
+url = "about"
+weight = -90
+pre = "user"
+
+[[menu.main]]
+identifier = "archives"
+name = "Archives"
+url = "archives"
+weight = -70
+pre = "archives"
 
 [related]
 includeNewer = true
@@ -84,3 +85,7 @@ toLower = false
 	[[related.indices]]
 	name = "categories"
 	weight = 200
+
+[taxonomies]
+category = "categories"
+tag = "tags"
