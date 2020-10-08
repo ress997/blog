@@ -435,7 +435,7 @@ nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx 
 \ })
 &lt;/code>&lt;/pre>&lt;p>カスタマイズを更に行いうとこんな感じにできます！&lt;/p>
 &lt;figure>
-&lt;amp-img src="https://i.gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6.png" alt="Gyazo" width="948" height="516" layout="responsive">&lt;/amp-img>
+&lt;img src="https://i.gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6.png" alt="Gyazo" width="948" height="516">
 &lt;figcaption>
 &lt;a href="https://gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6" target="_blank">Gyazo&lt;/a>
 &lt;/figcaption>
@@ -735,7 +735,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;h2 id="ファイル名">ファイル名&lt;/h2>
 &lt;p>forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。&lt;/p>
 &lt;figure>
-&lt;amp-img src="https://i.gyazo.com/1ea8ec3fb841a73f518b776271fd6513.png" alt="Gyazo" width="705" height="373" layout="responsive">&lt;/amp-img>
+&lt;img src="https://i.gyazo.com/1ea8ec3fb841a73f518b776271fd6513.png" alt="Gyazo" width="705" height="373">
 &lt;figcaption>
 &lt;a href="https://gyazo.com/1ea8ec3fb841a73f518b776271fd6513" target="_blank">Gyazo&lt;/a>
 &lt;/figcaption>
@@ -1006,7 +1006,7 @@ zplug load
 &lt;p>補足: &lt;code>$ZPLUG_CACHE_DIR&lt;/code> は zplug を読み込むと設定されるので設定しなくても使えます.&lt;/p>
 &lt;h2 id="ちなみに">ちなみに&lt;/h2>
 &lt;figure>
-&lt;amp-img src="https://i.gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc.png" alt="Gyazo" width="1120" height="456" layout="responsive">&lt;/amp-img>
+&lt;img src="https://i.gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc.png" alt="Gyazo" width="1120" height="456">
 &lt;figcaption>
 &lt;a href="https://gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc" target="_blank">Gyazo&lt;/a>
 &lt;/figcaption>
@@ -1345,7 +1345,7 @@ sudo systemctl restart nginx
 &lt;h2 id="サーバーを建ててみる">サーバーを建ててみる&lt;/h2>
 &lt;p>せっかくなのでConoHaを使うのでアプリケーションサーバのメールサーバーも立ててみました。&lt;/p>
 &lt;figure>
-&lt;amp-img src="https://i.gyazo.com/eb4730f27ecba8e8e5db494e47c3b192.png" alt="Gyazo" width="818" height="805" layout="responsive">&lt;/amp-img>
+&lt;img src="https://i.gyazo.com/eb4730f27ecba8e8e5db494e47c3b192.png" alt="Gyazo" width="818" height="805">
 &lt;figcaption>
 &lt;a href="https://gyazo.com/eb4730f27ecba8e8e5db494e47c3b192" target="_blank">Gyazo&lt;/a>
 &lt;/figcaption>
