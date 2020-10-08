@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>39.gy</title><link>https://www.39.gy/</link><description>Recent content on 39.gy</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://www.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://www.39.gy/post/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://www.39.gy/post/ci-chenge/</guid><description>&lt;p>GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>39.gy</title><link>https://www.39.gy/</link><description>Recent content on 39.gy</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://www.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://www.39.gy/post/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://www.39.gy/post/ci-chenge/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png" alt="Featured image of post ブログのビルドをCircleCIからGitHub Actionsに変更した" />&lt;p>GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。&lt;/p>
 &lt;h2 id="設定">設定&lt;/h2>
 &lt;p>とりあえず設定を晒しておきます&lt;/p>
 &lt;pre>&lt;code>name: Build and Deploy
@@ -59,9 +59,9 @@ run: yarn run deploy
 &lt;/code>&lt;/pre>&lt;p>上記のようなすることによってイベントを発火することができます。&lt;/p>
 &lt;h2 id="まとめ">まとめ&lt;/h2>
 &lt;p>CircleCI から GitHub Actions に変更してみましたが思っていたよりかんたんにできました。&lt;/p>
-&lt;p>ただこれを書いていて &lt;code>if&lt;/code> がどんどん長くなっていくことが大変でまとめて設定できるようになったらもっと便利になると思います。&lt;/p></description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://www.39.gy/post/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://www.39.gy/post/oppo-reno-a-128gb/</guid><description>&lt;p>メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。&lt;/p>
+&lt;p>ただこれを書いていて &lt;code>if&lt;/code> がどんどん長くなっていくことが大変でまとめて設定できるようになったらもっと便利になると思います。&lt;/p></description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://www.39.gy/post/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://www.39.gy/post/oppo-reno-a-128gb/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/oppo-reno-a-128gb/thumbnail.png" alt="Featured image of post OPPO Reno A 128GB を購入しました" />&lt;p>メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。&lt;/p>
 &lt;p>今回この端末を買った決め手は &lt;strong>おサイフケータイ&lt;/strong> と &lt;strong>DSDV&lt;/strong> に対応し、3万円以下と安く買えたからです。&lt;/p>
-&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/omzi8y" alt="" />&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/1" alt="" />&lt;/p>
 &lt;h2 id="スペック">スペック&lt;/h2>
 &lt;table>
 &lt;thead>
@@ -109,10 +109,9 @@ run: yarn run deploy
 >公式より引用&lt;/a>&lt;/p>
 &lt;h2 id="比較">比較&lt;/h2>
 &lt;p>大きさが近い iPhone 11 Pro Max と比較してみたいと思います。&lt;/p>
-&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/vsluz8" alt="" />&lt;/p>
-&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/buyhwz" alt="" />&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/2" alt="" /> &lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/3" alt="" />&lt;/p>
 &lt;p>サイズはほぼ同じとなっておりだいぶ大きいです&lt;/p>
-&lt;p>しかし iPhone 11 Pro Max より OPPO Reno A のほうが軽く手で持ち上げていてもそこまで負担になりませんでした&lt;/p></description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://www.39.gy/post/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://www.39.gy/post/hp-chromebook-x360-14/</guid><description>&lt;p>今回 HP から発売されている &lt;a class="link" href="https://jp.ext.hp.com/notebooks/personal/chromebook_x360_14/" target="_blank" rel="noopener"
+&lt;p>しかし iPhone 11 Pro Max より OPPO Reno A のほうが軽く手で持ち上げていてもそこまで負担になりませんでした&lt;/p></description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://www.39.gy/post/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://www.39.gy/post/hp-chromebook-x360-14/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hp-chromebook-x360-14/thumbnail.png" alt="Featured image of post HP Chromebook x360 14 を購入しました" />&lt;p>今回 HP から発売されている &lt;a class="link" href="https://jp.ext.hp.com/notebooks/personal/chromebook_x360_14/" target="_blank" rel="noopener"
 >HP Chromebook x360 14&lt;/a> のエグゼクティブモデル (i5 モデル) を購入しました。&lt;/p>
 &lt;p>今回スーペリアモデル (i3 モデル) ではなくエグゼクティブモデル (i5 モデル) を買ったのかなど書いていこうと思います。&lt;/p>
 &lt;p>今回購入にあたって国内限定など指定が私にはあったのであくまでも参考程度にお願いします。&lt;/p>
@@ -133,17 +132,16 @@ run: yarn run deploy
 &lt;p>しかし今回のレビュー記事を書くにあたって軽く触ってみた結果メインパソコンとして使用してもいいぐらい快適に使用できています。&lt;/p>
 &lt;h2 id="比較">比較&lt;/h2>
 &lt;p>今まで現役で使用していた Macbook Pro 13 と比較したいと思います&lt;/p>
-&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/tqeiqx" alt="" />&lt;/p>
-&lt;p>&lt;img src="https://res.cloudinary.com/du4zbeyi9/image/upload/f_auto,q_auto:good/env0oa" alt="" />&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/1" alt="" /> &lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/2" alt="" />&lt;/p>
 &lt;p>Macbook より大きいですが軽く持ち運びに苦にならなかったです&lt;/p>
 &lt;h2 id="結論">結論&lt;/h2>
-&lt;p>ASUS の C434TA よりも高性能でハイスペックな Chromebook をメインのノートパソコンとして選ぶのであればおすすめだと思います！&lt;/p></description></item><item><title>Docker をセキュアに使うために</title><link>https://www.39.gy/post/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://www.39.gy/post/docker-secure/</guid><description>&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
+&lt;p>ASUS の C434TA よりも高性能でハイスペックな Chromebook をメインのノートパソコンとして選ぶのであればおすすめだと思います！&lt;/p></description></item><item><title>Docker をセキュアに使うために</title><link>https://www.39.gy/post/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://www.39.gy/post/docker-secure/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png" alt="Featured image of post Docker をセキュアに使うために" />&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
 &lt;p>そこで Docker をセキュアに使うためにも自分ようのメモも兼ねて書いておきます。&lt;/p>
 &lt;p>まず root 権限で docker グループにパスワードを設定します。&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">sudo gpasswd docker
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>一時的に &lt;code>docker&lt;/code> を使いたいユーザーを Docker グループに参加します&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">newgrp docker
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで &lt;code>sudo&lt;/code> を使わず Docker を使えます!&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://www.39.gy/post/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://www.39.gy/post/paclist-v1/</guid><description>&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで &lt;code>sudo&lt;/code> を使わず Docker を使えます!&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://www.39.gy/post/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://www.39.gy/post/paclist-v1/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png" alt="Featured image of post Arch Linux パッケージを選定した" />&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p>
 &lt;h2 id="system">System&lt;/h2>
 &lt;p>今回パッケージを選ぶときに &lt;code>python2&lt;/code>, &lt;code>qt4&lt;/code>, &lt;code>qt5&lt;/code>, &lt;code>gtk2&lt;/code> を使用しないようにしました。&lt;/p>
 &lt;h3 id="core">Core&lt;/h3>
@@ -387,7 +385,7 @@ run: yarn run deploy
 &lt;li>&lt;code>keybase&lt;/code>&lt;/li>
 &lt;li>&lt;code>seahorse-git&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>たまーに使うツール&lt;/p></description></item><item><title>Speed Wi-Fi NEXT W06 を USBで接続する</title><link>https://www.39.gy/post/w06-usb/</link><pubDate>Tue, 11 Jun 2019 16:32:30 +0900</pubDate><guid>https://www.39.gy/post/w06-usb/</guid><description>&lt;p>外出時にパソコンを使う機会が多くモバイルルーターを契約しました。&lt;/p>
+&lt;p>たまーに使うツール&lt;/p></description></item><item><title>Speed Wi-Fi NEXT W06 を USBで接続する</title><link>https://www.39.gy/post/w06-usb/</link><pubDate>Tue, 11 Jun 2019 16:32:30 +0900</pubDate><guid>https://www.39.gy/post/w06-usb/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/w06-usb/thumbnail.png" alt="Featured image of post Speed Wi-Fi NEXT W06 を USBで接続する" />&lt;p>外出時にパソコンを使う機会が多くモバイルルーターを契約しました。&lt;/p>
 &lt;p>そこで Speed Wi-Fi NEXT W05 にクレードルを接続して有線接続をしてました。&lt;/p>
 &lt;p>しかし Speed Wi-Fi NEXT W06 に機種変したことによって有線接続ができなくなりました。&lt;/p>
 &lt;p>そこで usb 接続でできないか調べたところ日本語情報がなかったのでここに掲載します！&lt;/p>
@@ -412,8 +410,12 @@ run: yarn run deploy
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>lsusb&lt;/code> で成功したか確認します。&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Bus &lt;span style="color:#ae81ff">002&lt;/span> Device 003: ID 12d1:14db Huawei Technologies Co., Ltd. E353/E3131
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>上記のように &lt;code>(Mass storage mode)&lt;/code> が消え &lt;code>ID&lt;/code> が &lt;code>12d1:1f01&lt;/code> から &lt;code>12d1:14db&lt;/code> に変わってたら成功です。&lt;/p>
-&lt;p>あとはそれぞれの環境にインストールされてる &lt;code>NetworkManager&lt;/code> などを使用し接続してください&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://www.39.gy/post/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://www.39.gy/post/defx/</guid><description>&lt;p>今まで vim でファイラーを使うとなったときに &lt;a href="https://github.com/scrooloose/nerdtree">NERDtree&lt;/a> しか使ってませんでしたが &lt;a href="https://github.com/Shougo">@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p>
-&lt;p>vim ではなく &lt;a href="https://neovim.io/">neovim&lt;/a> を使っています。またプラグイン管理には &lt;a href="https://github.com/Shougo/dein.vim">dein.vim&lt;/a> を使用してます。各自自分が使用してる環境に読み替えて使用してください。&lt;/p>
+&lt;p>あとはそれぞれの環境にインストールされてる &lt;code>NetworkManager&lt;/code> などを使用し接続してください&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://www.39.gy/post/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://www.39.gy/post/defx/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png" alt="Featured image of post Defx.nvim を使う!" />&lt;p>今まで vim でファイラーを使うとなったときに &lt;a class="link" href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener"
+>NERDtree&lt;/a> しか使ってませんでしたが &lt;a class="link" href="https://github.com/Shougo" target="_blank" rel="noopener"
+>@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p>
+&lt;p>vim ではなく &lt;a class="link" href="https://neovim.io/" target="_blank" rel="noopener"
+>neovim&lt;/a> を使っています。またプラグイン管理には &lt;a class="link" href="https://github.com/Shougo/dein.vim" target="_blank" rel="noopener"
+>dein.vim&lt;/a> を使用してます。各自自分が使用してる環境に読み替えて使用してください。&lt;/p>
 &lt;h2 id="設定">設定&lt;/h2>
 &lt;p>私は toml ファイルで管理しています。下記のように書くことでプラグインを追加できます&lt;/p>
 &lt;pre>&lt;code>[[plugins]]
@@ -424,9 +426,12 @@ nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx 
 '''
 &lt;/code>&lt;/pre>&lt;p>私は &lt;code>&amp;lt;Space&amp;gt;f&lt;/code> で開けるようにしてるので人によっては書き換えてください。&lt;/p>
 &lt;h3 id="カスタマイズ">カスタマイズ&lt;/h3>
-&lt;p>vscode みたいにファイルアイコンを表示したり &lt;a href="https://github.com/scrooloose/nerdtree">NERDtree&lt;/a> でもやってましたが Git の変更などを表示したかったためプラグインを追加して使ってます。&lt;/p>
-&lt;p>ファイルアイコン表示するために &lt;a href="https://github.com/kristijanhusak/defx-icons">defx-icons&lt;/a>&lt;/p>
-&lt;p>Git の変更を表示するために &lt;a href="https://github.com/kristijanhusak/defx-git">defx-git&lt;/a>&lt;/p>
+&lt;p>vscode みたいにファイルアイコンを表示したり &lt;a class="link" href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener"
+>NERDtree&lt;/a> でもやってましたが Git の変更などを表示したかったためプラグインを追加して使ってます。&lt;/p>
+&lt;p>ファイルアイコン表示するために &lt;a class="link" href="https://github.com/kristijanhusak/defx-icons" target="_blank" rel="noopener"
+>defx-icons&lt;/a>&lt;/p>
+&lt;p>Git の変更を表示するために &lt;a class="link" href="https://github.com/kristijanhusak/defx-git" target="_blank" rel="noopener"
+>defx-git&lt;/a>&lt;/p>
 &lt;p>を使ってます。標準でアイコンを表示したいので下記のように設定します。
 (また隠しファイルも標準で表示してほしいのでその設定も追記してます)&lt;/p>
 &lt;pre>&lt;code>call defx#custom#option('_', {
@@ -434,14 +439,10 @@ nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx 
 \ 'show_ignored_files': 1,
 \ })
 &lt;/code>&lt;/pre>&lt;p>カスタマイズを更に行いうとこんな感じにできます！&lt;/p>
-&lt;figure>
-&lt;amp-img src="https://i.gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6.png" alt="Gyazo" width="948" height="516" layout="responsive">&lt;/amp-img>
-&lt;figcaption>
-&lt;a href="https://gyazo.com/8eb09ad73d009343f1667f1cc5ebfcb6" target="_blank">Gyazo&lt;/a>
-&lt;/figcaption>
-&lt;/figure>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/defx/1" alt="" />&lt;/p>
 &lt;h3 id="設定例">設定例&lt;/h3>
-&lt;p>私の設定は &lt;a href="https://github.com/ress997/dotfiles-neovim">GitHub にアップ&lt;/a> してるので最新はそちらを確認してください&lt;/p>
+&lt;p>私の設定は &lt;a class="link" href="https://github.com/ress997/dotfiles-neovim" target="_blank" rel="noopener"
+>GitHub にアップ&lt;/a> してるので最新はそちらを確認してください&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-toml" data-lang="toml">
 [[&lt;span style="color:#a6e22e">plugins&lt;/span>]]
 &lt;span style="color:#a6e22e">repo&lt;/span> =&lt;span style="color:#e6db74">&amp;#39;kristijanhusak/defx-icons&amp;#39;&lt;/span>
@@ -528,8 +529,9 @@ nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx 
 &lt;/span>&lt;span style="color:#e6db74">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>dein.vim&lt;/code> の機能ですが &lt;code>autocmd FileType defx call s:defx_my_settings()&lt;/code> みたいな記述は &lt;code>[plugins.ftplugin]&lt;/code> を使うとわかりやすく書けるのでぜひ使ってください。&lt;/p>
 &lt;h2 id="あとがき">あとがき&lt;/h2>
-&lt;p>&lt;code>defx.nvim&lt;/code> についてしらべると &lt;a href="https://takkii.hatenablog.com/about">@takkii&lt;/a> さんの記事しかありませんでした。&lt;/p>
-&lt;p>そこでカスタマイズ性の高い &lt;code>defx.nvim&lt;/code> を使ってほしいです！&lt;/p></description></item><item><title>hugo で sass を css に変換し style タグ内に挿入する方法</title><link>https://www.39.gy/post/hugo-sass/</link><pubDate>Wed, 22 May 2019 15:41:36 +0900</pubDate><guid>https://www.39.gy/post/hugo-sass/</guid><description>&lt;p>以前 &lt;a class="link" href="https://www.39.gy/post/jekyll-sass/" >Jekyll で行う方法&lt;/a> を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。&lt;/p>
+&lt;p>&lt;code>defx.nvim&lt;/code> についてしらべると &lt;a class="link" href="https://takkii.hatenablog.com/about" target="_blank" rel="noopener"
+>@takkii&lt;/a> さんの記事しかありませんでした。&lt;/p>
+&lt;p>そこでカスタマイズ性の高い &lt;code>defx.nvim&lt;/code> を使ってほしいです！&lt;/p></description></item><item><title>hugo で sass を css に変換し style タグ内に挿入する方法</title><link>https://www.39.gy/post/hugo-sass/</link><pubDate>Wed, 22 May 2019 15:41:36 +0900</pubDate><guid>https://www.39.gy/post/hugo-sass/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hugo-sass/thumbnail.png" alt="Featured image of post hugo で sass を css に変換し style タグ内に挿入する方法" />&lt;p>以前 &lt;a class="link" href="https://www.39.gy/post/jekyll-sass/" >Jekyll で行う方法&lt;/a> を書きましたが、今回は hugo で sass(scss) を css に変換し style タグ内に挿入できるようにしたいと思います。&lt;/p>
 &lt;p>AMP HTML のページを用意しようと思ったときに css を scss で書いてた場合に外部ツールを使って挿入するしてもいいですが静的サイトジェネレータ側で行えるのであれば完結するため紹介します！&lt;/p>
 &lt;p>&lt;strong>追記&lt;/strong>: &lt;code>@charset &amp;quot;UTF-8&amp;quot;;&lt;/code> が挿入されるようになったため変更 (2020/03/16)&lt;/p>
 &lt;h2 id="やり方">やり方&lt;/h2>
@@ -541,7 +543,7 @@ nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx 
 {{ end }}
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="あとがき">あとがき&lt;/h2>
 &lt;p>&lt;code>with&lt;/code> でアクセスできるとは思ってなくて驚きました。&lt;/p>
-&lt;p>しかしこのおかげで hugo でも AMP HTML を使用するときに簡単に挿入できるようになりました！&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://www.39.gy/post/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://www.39.gy/post/pleroma/</guid><description>&lt;p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+&lt;p>しかしこのおかげで hugo でも AMP HTML を使用するときに簡単に挿入できるようになりました！&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://www.39.gy/post/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://www.39.gy/post/pleroma/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png" alt="Featured image of post Amazon Lightsail に Pleroma をインストールしてみた" />&lt;p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。&lt;/p>
 &lt;p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください&lt;/p>
 &lt;h2 id="tldr">TL;DR&lt;/h2>
@@ -712,7 +714,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">cat &lt;span style="color:#e6db74">&amp;lt;&amp;lt;EOL &amp;gt; 書き込む対象のファイル
 &lt;/span>&lt;span style="color:#e6db74">ファイルの内容
 &lt;/span>&lt;span style="color:#e6db74">EOL&lt;/span> &lt;span style="color:#75715e"># 書き込み終了&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Google Cloud Platform Tips</title><link>https://www.39.gy/post/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://www.39.gy/post/gcp/</guid><description>&lt;p>Google Cloud Platform を使用していく上でハマった点などを書いていきます。&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Google Cloud Platform Tips</title><link>https://www.39.gy/post/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://www.39.gy/post/gcp/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/gcp/thumbnail.png" alt="Featured image of post Google Cloud Platform Tips" />&lt;p>Google Cloud Platform を使用していく上でハマった点などを書いていきます。&lt;/p>
 &lt;p>今後もハマった点があれば追加していく予定です。&lt;/p>
 &lt;h2 id="有料アカウントへアップグレード">有料アカウントへアップグレード&lt;/h2>
 &lt;p>1週間前メールによる通知がありましたが後回しした結果忘れてました。&lt;/p>
@@ -723,7 +725,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;h2 id="中国とオーストラリアからのアクセスは別料金が発生する">中国とオーストラリアからのアクセスは別料金が発生する&lt;/h2>
 &lt;p>無料枠以内に抑えるためには中国とオーストラリアからのアクセスは注意が必要です。&lt;/p>
 &lt;p>主に中国からの DDoS によって数ヶ月間 &lt;code>900円/月&lt;/code> 発生してました。 (許すまじ)&lt;/p>
-&lt;p>調べれば中国のIPアドレス範囲がわかるのでファイヤーウォールでアクセス拒否設定をするといいと思います。&lt;/p></description></item><item><title>forestry.io Tips</title><link>https://www.39.gy/post/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/forestry/</guid><description>&lt;p>forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!&lt;/p>
+&lt;p>調べれば中国のIPアドレス範囲がわかるのでファイヤーウォールでアクセス拒否設定をするといいと思います。&lt;/p></description></item><item><title>forestry.io Tips</title><link>https://www.39.gy/post/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/forestry/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/forestry/thumbnail.png" alt="Featured image of post forestry.io Tips" />&lt;p>forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!&lt;/p>
 &lt;p>今後も更新し追加していく予定です。&lt;/p>
 &lt;h2 id="タイムゾーン">タイムゾーン&lt;/h2>
 &lt;p>タイムゾーンを日本に変更します。&lt;/p>
@@ -734,15 +736,10 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;p>(バグなのか &lt;code>(GTM+09:00) Tokyo&lt;/code> は選べませんでした)&lt;/p>
 &lt;h2 id="ファイル名">ファイル名&lt;/h2>
 &lt;p>forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。&lt;/p>
-&lt;figure>
-&lt;amp-img src="https://i.gyazo.com/1ea8ec3fb841a73f518b776271fd6513.png" alt="Gyazo" width="705" height="373" layout="responsive">&lt;/amp-img>
-&lt;figcaption>
-&lt;a href="https://gyazo.com/1ea8ec3fb841a73f518b776271fd6513" target="_blank">Gyazo&lt;/a>
-&lt;/figcaption>
-&lt;/figure>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/forestry/1" alt="" />&lt;/p>
 &lt;p>&lt;code>Add New&lt;/code> ボタンを押し &lt;code>Create Pages&lt;/code> で設定する &lt;code>TITLE&lt;/code> はファイル名に使用されます。&lt;/p>
 &lt;p>そこで slug は英語、タイトルは日本語と分けたい場合は注意が必要です。
-上記のタイトルを英語 slug、Front Matter で日本語のタイトルとすることによって分けることができます&lt;/p></description></item><item><title>cloudinary が便利!</title><link>https://www.39.gy/post/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://www.39.gy/post/cloudinary/</guid><description>&lt;p>最近&lt;a class="link" href="https://www.39.gy/post/renewal/" >ホスティングを変更した&lt;/a>関係で 1GB 以上になると料金が発生します。
+上記のタイトルを英語 slug、Front Matter で日本語のタイトルとすることによって分けることができます&lt;/p></description></item><item><title>cloudinary が便利!</title><link>https://www.39.gy/post/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://www.39.gy/post/cloudinary/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/cloudinary/thumbnail.png" alt="Featured image of post cloudinary が便利!" />&lt;p>最近&lt;a class="link" href="https://www.39.gy/post/renewal/" >ホスティングを変更した&lt;/a>関係で 1GB 以上になると料金が発生します。
 そこで無料で使用できる画像管理サービスを探しました。&lt;/p>
 &lt;p>Gyazo や imgix など様々なサービスと比較していった中で cloudinary を使うことにしました。&lt;/p>
 &lt;h2 id="特徴">特徴&lt;/h2>
@@ -777,7 +774,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 >公式ドキュメント&lt;/a>に書いてあります)&lt;/p>
 &lt;h2 id="さいごに">さいごに&lt;/h2>
 &lt;p>cloudinary によって画像管理を簡単に行うことがます。
-ほかにも簡単に画像加工を行ったり、高速に配信されるためおすすめです!&lt;/p></description></item><item><title>パスワード管理について考え直してみた</title><link>https://www.39.gy/post/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://www.39.gy/post/password-management/</guid><description>&lt;p>パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。&lt;/p>
+ほかにも簡単に画像加工を行ったり、高速に配信されるためおすすめです!&lt;/p></description></item><item><title>パスワード管理について考え直してみた</title><link>https://www.39.gy/post/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://www.39.gy/post/password-management/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/password-management/thumbnail.png" alt="Featured image of post パスワード管理について考え直してみた" />&lt;p>パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。&lt;/p>
 &lt;p>しかし、サブスクリプションに移行したことによるコスト発生や、パスワード管理を一任してたことで発生してるセキュリティリスクなどを考えた結果管理体制を変えました。&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
@@ -801,7 +798,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
 &lt;p>&lt;!-- raw HTML omitted -->$10/year&lt;!-- raw HTML omitted --> と安く、bitwarden へアクセスする際 2FA を設定できるのですぐに Premium プランにしましたw&lt;/p>
-&lt;p>また今回体制を見直すにあたって様々なサービスに登録して 120 個ほどあるアカウントを整理できてよかったと思います!&lt;/p></description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://www.39.gy/post/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://www.39.gy/post/amazon-lightsail-cheaper/</guid><description>&lt;p>&lt;a class="link" href="https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/" target="_blank" rel="noopener"
+&lt;p>また今回体制を見直すにあたって様々なサービスに登録して 120 個ほどあるアカウントを整理できてよかったと思います!&lt;/p></description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://www.39.gy/post/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://www.39.gy/post/amazon-lightsail-cheaper/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png" alt="Featured image of post Amazon Lightsail が国内最安に" />&lt;p>&lt;a class="link" href="https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/" target="_blank" rel="noopener"
 >Developers.IO&lt;/a> でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。&lt;/p>
 &lt;h2 id="amazon-lightsail-とは">Amazon Lightsail とは&lt;/h2>
 &lt;p>Amazon Lightsail とは AWS の EC2 をより簡単に使えるようにした VPS です。&lt;/p>
@@ -819,14 +816,14 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 >公式サイト&lt;/a> が執筆時点では古い料金での表示となってるので気をつけてください。
 (ちなみに、ログイン後の新規作成画面では新料金になってます)&lt;/p>
 &lt;h2 id="まとめ">まとめ&lt;/h2>
-&lt;p>国内最安となった Lightsail は初心者には難しい部分がありますが、コストパフォーマンス的に優れているのでこれから活用していきたいと思います。&lt;/p></description></item><item><title>Hugo で minify をサポート</title><link>https://www.39.gy/post/hugo-minify/</link><pubDate>Fri, 17 Aug 2018 20:54:38 +0900</pubDate><guid>https://www.39.gy/post/hugo-minify/</guid><description>&lt;img src="https://www.39.gy/post/hugo-minify/thumbnail.png" alt="Featured image of post Hugo で minify をサポート" />&lt;p>最近嬉しい更新が多い Hugo に &lt;code>minify&lt;/code> オプションが追加されました！&lt;/p>
+&lt;p>国内最安となった Lightsail は初心者には難しい部分がありますが、コストパフォーマンス的に優れているのでこれから活用していきたいと思います。&lt;/p></description></item><item><title>Hugo で minify をサポート</title><link>https://www.39.gy/post/hugo-minify/</link><pubDate>Fri, 17 Aug 2018 20:54:38 +0900</pubDate><guid>https://www.39.gy/post/hugo-minify/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hugo-minify/thumbnail.png" alt="Featured image of post Hugo で minify をサポート" />&lt;p>最近嬉しい更新が多い Hugo に &lt;code>minify&lt;/code> オプションが追加されました！&lt;/p>
 &lt;p>詳しくは &lt;a class="link" href="https://gohugo.io/news/0.47-relnotes/" target="_blank" rel="noopener"
 >公式ブログ&lt;/a> を見てください。&lt;/p>
 &lt;h2 id="minify">minify&lt;/h2>
 &lt;p>今まではテンプレートファイルの改行をなるべく減らしたり、&lt;code>{{-&lt;/code> や &lt;code>-}}&lt;/code> で不要な改行を削除してました。
 また、人によってはタスクランナーを使用してたと思われます。&lt;/p>
 &lt;p>これからは &lt;code>hugo --minify&lt;/code> とオプションを追加するだけで縮小されたコードを吐き出してくれます！&lt;/p>
-&lt;p>(早速のこのブログも &lt;code>minify&lt;/code> オプションを有効化しています)&lt;/p></description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://www.39.gy/post/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://www.39.gy/post/instapaper-premium/</guid><description>&lt;p>&lt;a class="link" href="http://blog.instapaper.com/post/176732408411" target="_blank" rel="noopener"
+&lt;p>(早速のこのブログも &lt;code>minify&lt;/code> オプションを有効化しています)&lt;/p></description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://www.39.gy/post/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://www.39.gy/post/instapaper-premium/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/instapaper-premium/thumbnail.png" alt="Featured image of post instapaper premium がリニューアル 一部機能が有料化" />&lt;p>&lt;a class="link" href="http://blog.instapaper.com/post/176732408411" target="_blank" rel="noopener"
 >公式ブログ&lt;/a> によるとプレミアムをリニューアルし、今まで使えてた一部機能がプレミアム機能となり有料化することが決まりました。&lt;/p>
 &lt;h2 id="今まで">今まで&lt;/h2>
 &lt;p>今までは Pinterest に回収されたあとプレミアム機能を無料で提供してきました。&lt;/p>
@@ -842,7 +839,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;li>An ad-free Instapaper website (ウェブサイトで広告を表示しない)&lt;/li>
 &lt;li>“Send to Kindle” using a bookmarklet or our mobile apps (ブックマークレットやモバイルアプリ経由の｢Kindleへの送信｣)&lt;/li>
 &lt;/ul>
-&lt;p>カッコの中は私が簡単に訳したものなので間違えがあれば教えてください&lt;/p></description></item><item><title>ブログ環境を整えた</title><link>https://www.39.gy/post/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/renewal/</guid><description>&lt;p>いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。&lt;/p>
+&lt;p>カッコの中は私が簡単に訳したものなので間違えがあれば教えてください&lt;/p></description></item><item><title>ブログ環境を整えた</title><link>https://www.39.gy/post/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/renewal/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/renewal/thumbnail.png" alt="Featured image of post ブログ環境を整えた" />&lt;p>いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。&lt;/p>
 &lt;h2 id="tldr">TL;DR&lt;/h2>
 &lt;ul>
 &lt;li>サイトジェネレーター: Hugo&lt;/li>
@@ -903,7 +900,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;h2 id="firebase">Firebase&lt;/h2>
 &lt;p>そこで、Firebase Hosting を使い始めました。&lt;/p>
 &lt;p>Firebase は Fastly を採用してるので世界各地にある CDN から配信されレスポンスが高速になりました。&lt;/p>
-&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://www.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://www.39.gy/post/information-gathering/</guid><description>&lt;p>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。&lt;/p>
+&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://www.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://www.39.gy/post/information-gathering/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/information-gathering/thumbnail.png" alt="Featured image of post 私はこんなふうに情報収集しています!" />&lt;p>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。&lt;/p>
 &lt;ul>
 &lt;li>&lt;!-- raw HTML omitted -->皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita&lt;!-- raw HTML omitted -->&lt;/li>
 &lt;li>&lt;!-- raw HTML omitted -->Webデザイナーの私はこんな風に情報収集しています | Webクリエイターボックス&lt;!-- raw HTML omitted -->&lt;/li>
@@ -931,7 +928,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;p>情報収集を考え直した結果これからは趣味としてやっていこうと思います。&lt;/p>
 &lt;h2 id="おまけ">おまけ&lt;/h2>
 &lt;p>ちなみにフィードリーダーは &lt;!-- raw HTML omitted -->Feedly&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->inoreader&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->Miniflux&lt;!-- raw HTML omitted --> と変わっていきまた&lt;/p>
-&lt;p>Miniflux は少し前まで PHP で実装されていました。 ですが最近 Go 言語で作り直されて使いやすくなりましたので、ぜひ皆さんも使ってください!&lt;/p></description></item><item><title>キーボード配列を Eucalyn 配列に変更してみた</title><link>https://www.39.gy/post/keyboard-eucalyn/</link><pubDate>Thu, 17 May 2018 13:40:00 +0900</pubDate><guid>https://www.39.gy/post/keyboard-eucalyn/</guid><description>&lt;p>最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに &lt;a class="link" href="https://adventar.org/calendars/2114" target="_blank" rel="noopener"
+&lt;p>Miniflux は少し前まで PHP で実装されていました。 ですが最近 Go 言語で作り直されて使いやすくなりましたので、ぜひ皆さんも使ってください!&lt;/p></description></item><item><title>キーボード配列を Eucalyn 配列に変更してみた</title><link>https://www.39.gy/post/keyboard-eucalyn/</link><pubDate>Thu, 17 May 2018 13:40:00 +0900</pubDate><guid>https://www.39.gy/post/keyboard-eucalyn/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/keyboard-eucalyn/thumbnail.png" alt="Featured image of post キーボード配列を Eucalyn 配列に変更してみた" />&lt;p>最近キーボードを新しく買いたいなぁと思い始めていろいろと下調べをしていくうちに &lt;a class="link" href="https://adventar.org/calendars/2114" target="_blank" rel="noopener"
 >自作キーボード Advent Calendar&lt;/a> という存在を知りました。&lt;/p>
 &lt;p>&lt;a class="link" href="http://eucalyn.hatenadiary.jp/entry/saikyo-interface" target="_blank" rel="noopener"
 >ぼくのかんがえるさいきょうのインターフェイス - ゆかりメモ&lt;/a>&lt;/p>
@@ -947,7 +944,7 @@ config &lt;span style="color:#e6db74">:pleroma&lt;/span>, &lt;span style="color:
 &lt;p>macOS 10.13.4 で &lt;a class="link" href="https://pqrs.org/osx/karabiner/" target="_blank" rel="noopener"
 >Karabiner-Elements&lt;/a> を使いました。&lt;/p>
 &lt;p>注意点としては Karabiner-Elements はログイン後に起動するのでログインパスワード入力時は元の配置となります。
-(画面ロックは起動後なのでEucalyn配列となります。)&lt;/p></description></item><item><title>zplug のマイベストプラクティス</title><link>https://www.39.gy/post/zplug/</link><pubDate>Tue, 20 Mar 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/zplug/</guid><description>&lt;p>普段ターミナルで使っている zsh をもっと便利したいので私は高速な &lt;a class="link" href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener"
+(画面ロックは起動後なのでEucalyn配列となります。)&lt;/p></description></item><item><title>zplug のマイベストプラクティス</title><link>https://www.39.gy/post/zplug/</link><pubDate>Tue, 20 Mar 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/zplug/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/zplug/thumbnail.png" alt="Featured image of post zplug のマイベストプラクティス" />&lt;p>普段ターミナルで使っている zsh をもっと便利したいので私は高速な &lt;a class="link" href="https://github.com/zdharma/zplugin" target="_blank" rel="noopener"
 >zplugin&lt;/a> などがありますが &lt;a class="link" href="https://github.com/zplug/zplug" target="_blank" rel="noopener"
 >zplug&lt;/a> を使ってます。&lt;/p>
 &lt;p>&lt;strong>注意:&lt;/strong> 私の使い方は zplug 開発側の想定外の使用方法です。あくまでも自己責任で使ってください!&lt;/p>
@@ -990,7 +987,8 @@ zplug &amp;quot;zdharma/fast-syntax-highlighting&amp;quot;
 &lt;h2 id="まとめ">まとめ&lt;/h2>
 &lt;p>あくまでも私が管理がやりやすいようにやってますので公式が行ってるようにやってもらったほうがいいと思います。&lt;/p>
 &lt;p>&lt;strong>宣伝&lt;/strong>: &lt;a class="link" href="https://github.com/ress997/zplug" target="_blank" rel="noopener"
->ress997/zplug&lt;/a> では高速化を行ったりPATHが追加されない問題を修正など自分なりに解決してるので是非試してみてください&lt;/p></description></item><item><title>zplug の自動インストールを高速化してみた</title><link>https://www.39.gy/post/zplug-install/</link><pubDate>Thu, 01 Mar 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/zplug-install/</guid><description>&lt;p>いつも使ってる &lt;a href="https://github.com/zplug/zplug">zplug&lt;/a> が遅いと感じ始めたのでちょっと工夫してみました!&lt;/p>
+>ress997/zplug&lt;/a> では高速化を行ったりPATHが追加されない問題を修正など自分なりに解決してるので是非試してみてください&lt;/p></description></item><item><title>zplug の自動インストールを高速化してみた</title><link>https://www.39.gy/post/zplug-install/</link><pubDate>Thu, 01 Mar 2018 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/zplug-install/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/zplug-install/thumbnail.png" alt="Featured image of post zplug の自動インストールを高速化してみた" />&lt;p>いつも使ってる &lt;a class="link" href="https://github.com/zplug/zplug" target="_blank" rel="noopener"
+>zplug&lt;/a> が遅いと感じ始めたのでちょっと工夫してみました!&lt;/p>
 &lt;p>&lt;strong>&lt;code>$ZPLUG_LOADFILE&lt;/code> を設定して、キャッシュを使用してることが前提条件です.&lt;/strong>&lt;/p>
 &lt;h2 id="tldr">tl;dr&lt;/h2>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-diff:.zshrc" data-lang="diff:.zshrc"> source $ZPLUG_HOME/init.zsh
@@ -1005,13 +1003,8 @@ zplug load
 &lt;p>zplug はインストール済みで更新があったときのみ確認したいので &lt;code>[[ $ZPLUG_LOADFILE -nt $ZPLUG_CACHE_DIR/interface ]]&lt;/code> を先に書いてます&lt;/p>
 &lt;p>補足: &lt;code>$ZPLUG_CACHE_DIR&lt;/code> は zplug を読み込むと設定されるので設定しなくても使えます.&lt;/p>
 &lt;h2 id="ちなみに">ちなみに&lt;/h2>
-&lt;figure>
-&lt;amp-img src="https://i.gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc.png" alt="Gyazo" width="1120" height="456" layout="responsive">&lt;/amp-img>
-&lt;figcaption>
-&lt;a href="https://gyazo.com/6fc8e3fdbd49d32c4c79d3c0867338dc" target="_blank">Gyazo&lt;/a>
-&lt;/figcaption>
-&lt;/figure>
-&lt;p>&lt;code>zplug check&lt;/code> を計測してみましたが結構時間がかかってる処理だったので起動が早くなると思います!&lt;/p></description></item><item><title>Mastodon をカスタマイズする</title><link>https://www.39.gy/post/mastodon-customize/</link><pubDate>Mon, 04 Dec 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon-customize/</guid><description>&lt;p>この記事は &lt;a class="link" href="https://qiita.com/advent-calendar/2017/mastodon" target="_blank" rel="noopener"
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/zplug-install/1" alt="" />&lt;/p>
+&lt;p>&lt;code>zplug check&lt;/code> を計測してみましたが結構時間がかかってる処理だったので起動が早くなると思います!&lt;/p></description></item><item><title>Mastodon をカスタマイズする</title><link>https://www.39.gy/post/mastodon-customize/</link><pubDate>Mon, 04 Dec 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon-customize/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon-customize/thumbnail.png" alt="Featured image of post Mastodon をカスタマイズする" />&lt;p>この記事は &lt;a class="link" href="https://qiita.com/advent-calendar/2017/mastodon" target="_blank" rel="noopener"
 >Mastodon Advent Calendar 2017 - Qiita&lt;/a> と &lt;a class="link" href="https://adventar.org/calendars/2265" target="_blank" rel="noopener"
 >Mastodon 2 Advent Calendar 2017 - Adventar&lt;/a> の5日目の記事です。&lt;/p>
 &lt;p>昨日は &lt;a class="link" href="https://qiita.com/xserver" target="_blank" rel="noopener"
@@ -1100,7 +1093,7 @@ user&lt;span style="color:#f92672">.&lt;/span>update(&lt;span style="color:#e6db
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>ちなみに &lt;a class="link" href="https://git.io/vbIQC" target="_blank" rel="noopener"
 >ソースコード&lt;/a> を見ながら行いました。&lt;/p>
 &lt;h2 id="さいごに">さいごに&lt;/h2>
-&lt;p>&amp;ldquo;ここはもっとこうするといいよ!&amp;rdquo; みたいなものがありましたら教えてください！&lt;/p></description></item><item><title>Mastodon を触ったときのメモ</title><link>https://www.39.gy/post/mastodon/</link><pubDate>Wed, 24 May 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon/</guid><description>&lt;p>私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。&lt;/p>
+&lt;p>&amp;ldquo;ここはもっとこうするといいよ!&amp;rdquo; みたいなものがありましたら教えてください！&lt;/p></description></item><item><title>Mastodon を触ったときのメモ</title><link>https://www.39.gy/post/mastodon/</link><pubDate>Wed, 24 May 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon/thumbnail.png" alt="Featured image of post Mastodon を触ったときのメモ" />&lt;p>私が Mastodon を立ち上げるときに使ったメモです。あくまで自分用なのでわかりにくい部分があると思いますが改善していこうと思います。&lt;/p>
 &lt;p>ちなみに構築した環境は CentOS 7.2 + Nginx + Docker です。&lt;/p>
 &lt;h2 id="preparation">Preparation&lt;/h2>
 &lt;p>事前に必要そうな設定を行っていきます。&lt;/p>
@@ -1333,23 +1326,20 @@ sudo systemctl restart nginx
 &lt;/ol>
 &lt;p>これで再起動ができてると思われます。&lt;/p>
 &lt;h2 id="さいごに">さいごに&lt;/h2>
-&lt;p>色々と書きましたが今は違う構成をしてたりしてるのであくまでも参考程度にお願いします。&lt;/p></description></item><item><title>ConoHa で Mastodon を立ててみた (テンプレート使用)</title><link>https://www.39.gy/post/mastodon-conoha/</link><pubDate>Thu, 27 Apr 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon-conoha/</guid><description>&lt;p>&lt;strong>追記&lt;/strong>: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました&lt;/p>
+&lt;p>色々と書きましたが今は違う構成をしてたりしてるのであくまでも参考程度にお願いします。&lt;/p></description></item><item><title>ConoHa で Mastodon を立ててみた (テンプレート使用)</title><link>https://www.39.gy/post/mastodon-conoha/</link><pubDate>Thu, 27 Apr 2017 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/mastodon-conoha/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/mastodon-conoha/thumbnail.png" alt="Featured image of post ConoHa で Mastodon を立ててみた (テンプレート使用)" />&lt;p>&lt;strong>追記&lt;/strong>: 公式にConoHaのメールサーバーの合わせて使う方法が公開されました&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="https://www.conoha.jp/guide/mastodonconoha.php">MastodonアプリケーションイメージｘConoHaメールサーバーでMastodonのインスタンスを作る&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.conoha.jp/guide/mastodonconoha.php" target="_blank" rel="noopener"
+>MastodonアプリケーションイメージｘConoHaメールサーバーでMastodonのインスタンスを作る&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;hr>
 &lt;p>いつも使っている
 &lt;a href="https://www.conoha.jp/referral/?token=RcE0b87cFOCWZzC_.Gqmqqr6Cv7KEQuyK20I.Pk7zcnHZ6aqM78-6GL">ConoHa&lt;/a>
 にMastodonのテンプレートが公開されたので早速使用してみました！&lt;/p>
-&lt;p>参考元: &lt;a href="https://www.conoha.jp/guide/mastodon.php">Mastodonアプリケーションイメージの使い方&lt;/a>&lt;/p>
+&lt;p>参考元: &lt;a class="link" href="https://www.conoha.jp/guide/mastodon.php" target="_blank" rel="noopener"
+>Mastodonアプリケーションイメージの使い方&lt;/a>&lt;/p>
 &lt;h2 id="サーバーを建ててみる">サーバーを建ててみる&lt;/h2>
 &lt;p>せっかくなのでConoHaを使うのでアプリケーションサーバのメールサーバーも立ててみました。&lt;/p>
-&lt;figure>
-&lt;amp-img src="https://i.gyazo.com/eb4730f27ecba8e8e5db494e47c3b192.png" alt="Gyazo" width="818" height="805" layout="responsive">&lt;/amp-img>
-&lt;figcaption>
-&lt;a href="https://gyazo.com/eb4730f27ecba8e8e5db494e47c3b192" target="_blank">Gyazo&lt;/a>
-&lt;/figcaption>
-&lt;/figure>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/mastodon-conoha/1" alt="" />&lt;/p>
 &lt;h3 id="envproduction-を編集する">&lt;code>.env.production&lt;/code> を編集する&lt;/h3>
 &lt;p>ConoHa のテンプレートを使用するとデータベースの部分は自動的に書き換わってると思うのでメールの部分を編集します&lt;/p>
 &lt;pre>&lt;code class="language-diff:.env.production" data-lang="diff:.env.production"># E-mail configuration
@@ -1387,7 +1377,8 @@ sudo apt-get install certbot
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>インストールを終えたら証明書を発行します&lt;/p>
 &lt;pre>&lt;code>sudo certbot certonly --standalone -d example.com
 &lt;/code>&lt;/pre>&lt;p>次に Mastodon 用の Nginx 設定ファイルを用意します&lt;/p>
-&lt;p>&lt;a href="https://git.io/v9sSK">公式ドキュメント&lt;/a> から &lt;code>/etc/nginx/conf.d/mastodon.conf&lt;/code> へコピーしドメインの部分をを適切なものに変更します。&lt;/p>
+&lt;p>&lt;a class="link" href="https://git.io/v9sSK" target="_blank" rel="noopener"
+>公式ドキュメント&lt;/a> から &lt;code>/etc/nginx/conf.d/mastodon.conf&lt;/code> へコピーしドメインの部分をを適切なものに変更します。&lt;/p>
 &lt;p>設定が終わったら Nginx にファイルを読み込ませます&lt;/p>
 &lt;p>&lt;code>sudo nginx -s reload&lt;/code>&lt;/p>
 &lt;p>これで &lt;code>https://&amp;lt;サイトのアドレス&amp;gt;&lt;/code> からアクセスできるようになったと思います。&lt;/p>
@@ -1399,7 +1390,7 @@ sudo apt-get install certbot
 &lt;p>Ubuntuを全然触ったことがないのでやり方が分からなかったです。&lt;/p>
 &lt;p>とりあえず応急雨処置としてConoHaのコントロールパネルからMastodonを運用してるVPSを開き&lt;code>ネットワーク情報&lt;/code> -&amp;gt; &lt;code>接続許可ポート&lt;/code> -&amp;gt; &lt;code>すべて許可&lt;/code>のチェックを外し必要なものだけチェックを入れ対応しました。&lt;/p>
 &lt;h2 id="感想">感想&lt;/h2>
-&lt;p>今日の昼過ぎにテンプレートが公開され帰宅後試してみた程度なので足りない点があると思いますが今のところとりあえず使えるようにはなったので記事にしました。&lt;/p></description></item><item><title>Jekyll で sass を css に変換し style タグ内に挿入する方法</title><link>https://www.39.gy/post/jekyll-sass/</link><pubDate>Tue, 16 Aug 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/jekyll-sass/</guid><description>&lt;p>jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので&lt;/p>
+&lt;p>今日の昼過ぎにテンプレートが公開され帰宅後試してみた程度なので足りない点があると思いますが今のところとりあえず使えるようにはなったので記事にしました。&lt;/p></description></item><item><title>Jekyll で sass を css に変換し style タグ内に挿入する方法</title><link>https://www.39.gy/post/jekyll-sass/</link><pubDate>Tue, 16 Aug 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/jekyll-sass/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/jekyll-sass/thumbnail.png" alt="Featured image of post Jekyll で sass を css に変換し style タグ内に挿入する方法" />&lt;p>jekyll を使って scss を css に変換し style タグ内に挿入したかったがやり方が分からなかったので&lt;/p>
 &lt;p>AMP HTML ページを用意する場合などに使えます。&lt;/p>
 &lt;p>&lt;strong>追記&lt;/strong>: &lt;a class="link" href="https://www.39.gy/post/hugo-sass/" >hugo で行う方法も追記しました&lt;/a>&lt;/p>
 &lt;h2 id="やり方">やり方&lt;/h2>
@@ -1414,7 +1405,7 @@ sudo apt-get install certbot
 &amp;lt;/&lt;span style="color:#f92672">style&lt;/span>&amp;gt;
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>簡単に解決することができました。&lt;/p>
 &lt;h2 id="sass-の場合">Sass の場合&lt;/h2>
-&lt;p>&lt;code>scssify&lt;/code> の部分を &lt;code>sassify&lt;/code> に変えると Sass から css に変換してくれます！&lt;/p></description></item><item><title>AMP で Google Analytics を利用する</title><link>https://www.39.gy/post/amp-analytics/</link><pubDate>Tue, 17 May 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/amp-analytics/</guid><description>&lt;h2 id="やり方">やり方&lt;/h2>
+&lt;p>&lt;code>scssify&lt;/code> の部分を &lt;code>sassify&lt;/code> に変えると Sass から css に変換してくれます！&lt;/p></description></item><item><title>AMP で Google Analytics を利用する</title><link>https://www.39.gy/post/amp-analytics/</link><pubDate>Tue, 17 May 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/amp-analytics/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amp-analytics/thumbnail.png" alt="Featured image of post AMP で Google Analytics を利用する" />&lt;h2 id="やり方">やり方&lt;/h2>
 &lt;p>次のスクリプト分を &lt;code>&amp;lt;head&amp;gt;&lt;/code> 内かつ AMP JS library&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> よりも前に以下の内容を記述&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&amp;lt;&lt;span style="color:#f92672">script&lt;/span> &lt;span style="color:#a6e22e">async&lt;/span> &lt;span style="color:#a6e22e">custom-element&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;amp-analytics&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">src&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;https://cdn.ampproject.org/v0/amp-analytics-0.1.js&amp;#34;&lt;/span>&amp;gt;&amp;lt;/&lt;span style="color:#f92672">script&lt;/span>&amp;gt;
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Body 先頭に以下の内容を記述&lt;/p>
@@ -1442,7 +1433,7 @@ sudo apt-get install certbot
 &lt;p>AMP JS library は &lt;code>&amp;lt;script async src=&amp;quot;https://cdn.ampproject.org/v0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/code> です &lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;/section></description></item><item><title>NeoVim と dein.vim を使ってみる!</title><link>https://www.39.gy/post/dein/</link><pubDate>Sun, 06 Mar 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/dein/</guid><description>&lt;p>最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
+&lt;/section></description></item><item><title>NeoVim と dein.vim を使ってみる!</title><link>https://www.39.gy/post/dein/</link><pubDate>Sun, 06 Mar 2016 12:00:00 +0900</pubDate><guid>https://www.39.gy/post/dein/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/dein/thumbnail.png" alt="Featured image of post NeoVim と dein.vim を使ってみる!" />&lt;p>最近 neobundle から dein.vim へとプラグインマネージャーを変更してる人が増え始めたので便乗して私も変更してみたいと思います.
 ついでに Vim も NeoVim へシフトしてみたいと思います.&lt;/p>
 &lt;h2 id="neovim">NeoVim&lt;/h2>
 &lt;p>&lt;a class="link" href="https://qiita.com/lighttiger2505/items/440c32e40082dc310c1e" target="_blank" rel="noopener"
