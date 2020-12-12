@@ -9,7 +9,6 @@ theme = "stack"
 baseURL = "https://www.39.gy/"
 title = "39.gy"
 copyright = "&copy; 2016 Ress"
-googleAnalytics = "UA-128645055-2"
 
 [params]
 mainSections = ["post"]
