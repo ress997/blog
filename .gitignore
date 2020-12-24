@@ -1,9 +1,9 @@
 # vim:ft=conf:
 
-# firebase
-.firebase/
-
 # hugo
-/themes
-/resources
-/public
+/themes/
+/resources/
+/public/
+
+# tcardgen
+/_tcardgen/font/
