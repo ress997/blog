@@ -1,10 +1,979 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ress.39.gy</title><link>https://ress.39.gy/</link><description>Recent content on ress.39.gy</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://ress.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://ress.39.gy/post/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://ress.39.gy/post/ci-chenge/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png" alt="Featured image of post ブログのビルドをCircleCIからGitHub Actionsに変更した" />GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。 設定 とりあえず設定を晒しておきます name: Build and Deploy on: [push, pull_request, repository_dispatch] jobs: main: name: Build and deploy runs-on:</description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://ress.39.gy/post/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://ress.39.gy/post/oppo-reno-a-128gb/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/oppo-reno-a-128gb/thumbnail.png" alt="Featured image of post OPPO Reno A 128GB を購入しました" />メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。 今回この端末を買った決め手は おサイフケータイ と DSDV に対応し、3万円以下</description></item><item><title>サイバーエージェントのインターンに行ってきました</title><link>https://ress.39.gy/post/intern-sa-k8s/</link><pubDate>Wed, 25 Sep 2019 13:23:37 +0900</pubDate><guid>https://ress.39.gy/post/intern-sa-k8s/</guid><description>&lt;p>アメブロなどで有名なサイバーエージェントの &lt;a class="link" href="https://www.cyberagent.co.jp/careers/students/event/detail/id=23257" target="_blank" rel="noopener"
->Intel NUCで始めるおうちKubernetesクラスタで自宅サーバ入門&lt;/a> に参加してきました。&lt;/p></description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://ress.39.gy/post/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://ress.39.gy/post/hp-chromebook-x360-14/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hp-chromebook-x360-14/thumbnail.png" alt="Featured image of post HP Chromebook x360 14 を購入しました" />今回 HP から発売されている HP Chromebook x360 14 のエグゼクティブモデル (i5 モデル) を購入しました。 今回スーペリアモデル (i3 モデル) ではなくエグゼクティブモデル (i5</description></item><item><title>GMO ペパボのインターンに参加してきました</title><link>https://ress.39.gy/post/intern-pepabo/</link><pubDate>Thu, 05 Sep 2019 16:25:05 +0900</pubDate><guid>https://ress.39.gy/post/intern-pepabo/</guid><description>&lt;p>大学3年生となり、就活をそろそろ考え始めないといけない時期になりました。&lt;/p></description></item><item><title>Docker をセキュアに使うために</title><link>https://ress.39.gy/post/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://ress.39.gy/post/docker-secure/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png" alt="Featured image of post Docker をセキュアに使うために" />&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
-&lt;p>そこで Docker をセキュアに使うためにも自分ようのメモも兼ねて書いておきます。&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://ress.39.gy/post/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://ress.39.gy/post/paclist-v1/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png" alt="Featured image of post Arch Linux パッケージを選定した" />&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p></description></item><item><title>github のアカウントを変更しました</title><link>https://ress.39.gy/post/change-github-account/</link><pubDate>Tue, 28 May 2019 21:32:48 +0900</pubDate><guid>https://ress.39.gy/post/change-github-account/</guid><description>&lt;p>タイトルの通り GitHub のアカウントを &lt;a class="link" href="https://github.com/39e" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ress.39.gy</title><link>https://ress.39.gy/</link><description>Recent content on ress.39.gy</description><generator>Hugo -- gohugo.io</generator><language>ja</language><copyright>&amp;copy; 2016 Ress</copyright><lastBuildDate>Tue, 03 Dec 2019 12:38:16 +0900</lastBuildDate><atom:link href="https://ress.39.gy/index.xml" rel="self" type="application/rss+xml"/><item><title>ブログのビルドをCircleCIからGitHub Actionsに変更した</title><link>https://ress.39.gy/post/ci-chenge/</link><pubDate>Tue, 03 Dec 2019 12:38:16 +0900</pubDate><guid>https://ress.39.gy/post/ci-chenge/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png" alt="Featured image of post ブログのビルドをCircleCIからGitHub Actionsに変更した" />&lt;p>GitHub Actions が使用できるようになったためいままで使用していた CircleCI から変更してみました。&lt;/p>
+&lt;h2 id="設定">設定&lt;/h2>
+&lt;p>とりあえず設定を晒しておきます&lt;/p>
+&lt;pre>&lt;code>name: Build and Deploy
+on: [push, pull_request, repository_dispatch]
+jobs:
+main:
+name: Build and deploy
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v1
+with:
+fetch-depth: 1
+- name: Download theme
+run: git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
+- name: Download hugo
+run: |
+VERSION=$(curl --silent &amp;quot;https://api.github.com/repos/gohugoio/hugo/releases/latest&amp;quot; | grep '&amp;quot;tag_name&amp;quot;:' | sed -E 's/.*&amp;quot;v([^&amp;quot;]+)&amp;quot;.*/\1/')
+wget &amp;quot;https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_Linux-64bit.tar.gz&amp;quot; -O hugo.tar.gz
+tar xzf hugo.tar.gz hugo
+rm -rf hugo.tar.gz
+- name: Build
+run: ./hugo --minify
+- name: Cache node_modules
+uses: actions/cache@preview
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+with:
+path: ~/.cache/yarn
+key: ${{ runner.os }}-projectname-${{ github.sha }}
+restore-keys: ${{ runner.os }}-projectname-
+- name: Install firebase-tools
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+run: yarn add firebase-tools
+- name: Push file to Firebase Hosting
+if: github.event_name == 'repository_dispatch' || (github.ref == 'refs/heads/master' &amp;amp;&amp;amp; github.event_name != 'pull_request')
+env:
+FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+run: yarn run deploy
+&lt;/code>&lt;/pre>&lt;p>私の環境ではデプロイ先として Firebase Hosting を使用しているのでそれぞれ自分が使用しているデプロイ先へ変更してください&lt;/p>
+&lt;h2 id="詳細">詳細&lt;/h2>
+&lt;p>それぞれの設定項目日ついて説明していこうと思います&lt;/p>
+&lt;h3 id="on">&lt;code>on&lt;/code>&lt;/h3>
+&lt;p>CI を使用するものを制限しますが &lt;code>push&lt;/code> と &lt;code>pull_request&lt;/code> を指定しています。&lt;/p>
+&lt;p>&lt;code>repository_dispatch&lt;/code> では api を使用してCIを動かすことができるので追加しています。&lt;/p>
+&lt;h3 id="バージョン指定">バージョン指定&lt;/h3>
+&lt;p>&lt;code>VERSION&lt;/code> の部分で GitHub API を使用して Hugo の最新バージョンを取得しています。&lt;/p>
+&lt;h3 id="cache">cache&lt;/h3>
+&lt;p>firebase を使用している関係で npm を取得するのを高速化するために Actions のキャッシュ機能を使用しています。&lt;/p>
+&lt;h3 id="if">&lt;code>if&lt;/code>&lt;/h3>
+&lt;p>&lt;code>github.event_name&lt;/code> で使用するものを制限します。&lt;/p>
+&lt;p>&lt;code>github.ref&lt;/code> では使用するブランチを制限しています。&lt;/p>
+&lt;p>今回 &lt;code>if&lt;/code> で制限している内容としては &lt;code>repository_dispatch&lt;/code> のときと &lt;code>master&lt;/code> ブランチが更新されたときに動作するようにしています。&lt;/p>
+&lt;h3 id="secrets">&lt;code>secrets&lt;/code>&lt;/h3>
+&lt;p>設定画面に入力したものを使用する場合呼び出す必要があります。&lt;/p>
+&lt;p>CircleCI では環境変数を使用していたため、環境変数として展開しています。&lt;/p>
+&lt;h2 id="repository_dispatch">&lt;code>repository_dispatch&lt;/code>&lt;/h2>
+&lt;p>上記にも述べた通りこれを設定しておくことで GitHub API を使って webhook として使用できます。&lt;/p>
+&lt;pre>&lt;code>curl -XPOST -u &amp;quot;ress997:${TOKEN}&amp;quot; -H &amp;quot;Accept: application/vnd.github.everest-preview+json&amp;quot; -H &amp;quot;Content-Type: application/json&amp;quot; https://api.github.com/repos/ress997/blog/dispatches --data '{&amp;quot;event_type&amp;quot;: &amp;quot;html.preview&amp;quot;}'
+&lt;/code>&lt;/pre>&lt;p>上記のようなすることによってイベントを発火することができます。&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>CircleCI から GitHub Actions に変更してみましたが思っていたよりかんたんにできました。&lt;/p>
+&lt;p>ただこれを書いていて &lt;code>if&lt;/code> がどんどん長くなっていくことが大変でまとめて設定できるようになったらもっと便利になると思います。&lt;/p></description></item><item><title>OPPO Reno A 128GB を購入しました</title><link>https://ress.39.gy/post/oppo-reno-a-128gb/</link><pubDate>Wed, 16 Oct 2019 06:14:00 +0900</pubDate><guid>https://ress.39.gy/post/oppo-reno-a-128gb/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/oppo-reno-a-128gb/thumbnail.png" alt="Featured image of post OPPO Reno A 128GB を購入しました" />&lt;p>メインで使用している楽天電話より新規に発売された OPPO Reno A 128GB を購入しました。&lt;/p>
+&lt;p>今回この端末を買った決め手は &lt;strong>おサイフケータイ&lt;/strong> と &lt;strong>DSDV&lt;/strong> に対応し、3万円以下と安く買えたからです。&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/1" alt="" />&lt;/p>
+&lt;h2 id="スペック">スペック&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">項目&lt;/th>
+&lt;th>内容&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">本体サイズ&lt;/td>
+&lt;td>約158.4 x 約75.4 x 約7.8 (mm)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">画面サイズ&lt;/td>
+&lt;td>約6.4インチ&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">質量&lt;/td>
+&lt;td>約169.5g&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">CPU&lt;/td>
+&lt;td>Qualcomm® Snapdragon™ 710/オクタコア 2.2GHz + 1.7G&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">OS&lt;/td>
+&lt;td>Color OS 6 (Android™ 9 Pie ベース)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">RAM&lt;/td>
+&lt;td>6GB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">ROM&lt;/td>
+&lt;td>128GB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">バッテリー容量&lt;/td>
+&lt;td>約3,600mAh&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;a class="link" href="https://mobile.rakuten.co.jp/product/reno-a/" target="_blank" rel="noopener"
+>公式より引用&lt;/a>&lt;/p>
+&lt;h2 id="比較">比較&lt;/h2>
+&lt;p>大きさが近い iPhone 11 Pro Max と比較してみたいと思います。&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/2" alt="" /> &lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/oppo-reno-a-128gb/3" alt="" />&lt;/p>
+&lt;p>サイズはほぼ同じとなっておりだいぶ大きいです&lt;/p>
+&lt;p>しかし iPhone 11 Pro Max より OPPO Reno A のほうが軽く手で持ち上げていてもそこまで負担になりませんでした&lt;/p></description></item><item><title>サイバーエージェントのインターンに行ってきました</title><link>https://ress.39.gy/post/intern-sa-k8s/</link><pubDate>Wed, 25 Sep 2019 13:23:37 +0900</pubDate><guid>https://ress.39.gy/post/intern-sa-k8s/</guid><description>&lt;p>アメブロなどで有名なサイバーエージェントの &lt;a class="link" href="https://www.cyberagent.co.jp/careers/students/event/detail/id=23257" target="_blank" rel="noopener"
+>Intel NUCで始めるおうちKubernetesクラスタで自宅サーバ入門&lt;/a> に参加してきました。&lt;/p>
+&lt;p>もともと &lt;a class="link" href="https://developers.cyberagent.co.jp/blog/archives/14721/" target="_blank" rel="noopener"
+>Raspberry Pi のおうち Kubernetes&lt;/a> は知っていたため今回も Raspberry Pi を使用するのかな？と思ってたら Intel NUC を使用しとても楽しかったです。&lt;/p>
+&lt;p>&lt;strong>追記&lt;/strong>: ブログの再構築時にデータが消えてしまっていたので書き直しました&lt;/p>
+&lt;h2 id="きっかけ">きっかけ&lt;/h2>
+&lt;p>もともとサイバーエージェントのインターンに行こうと思い違うインターンに応募してましたがそれが落選してしまいましたがこのインターンに案内されました。&lt;/p>
+&lt;p>Kubernetes はもともと興味があり色々と勉強しているところだったためちょうどよかったと思います。&lt;/p>
+&lt;h2 id="やったこと">やったこと&lt;/h2>
+&lt;p>おうち Kubernetes ということだったため &lt;a class="link" href="https://www.keycloak.org/" target="_blank" rel="noopener"
+>Keycloak&lt;/a> を使用したグループウェアを構築しました。&lt;/p>
+&lt;p>普段使っている &lt;a class="link" href="https://github.com/go-gitea/gitea" target="_blank" rel="noopener"
+>Gitea&lt;/a>, &lt;a class="link" href="https://github.com/weseek/growi" target="_blank" rel="noopener"
+>GROWI&lt;/a>, &lt;a class="link" href="https://github.com/minio/minio" target="_blank" rel="noopener"
+>minio&lt;/a> などをグループウェアとして使用するときにそれぞれ認証するのが大変なため統一して使いやすいようにしようとしました。&lt;/p>
+&lt;p>&lt;a href="https://github.com/ress997/nuc-k8s">https://github.com/ress997/nuc-k8s&lt;/a> に2日間でやったことのファイルをおいています。&lt;/p>
+&lt;h2 id="感想">感想&lt;/h2>
+&lt;p>他の人がいろいろとやっていたことに気になる技術があったため後日調べ便上になりました。&lt;/p>
+&lt;p>インターン期間中に Keycloak を使用し色々と使用していくとメモリが足りなくなりインターン1日目終了後に急いで秋葉原に行きメモリを買いに行くなどやり目立ちましたがそれでも2日間で多くのことを学べたと思います。&lt;/p>
+&lt;p>&lt;strong>追記&lt;/strong>: 気になった技術を追加しました。&lt;/p>
+&lt;h2 id="気になった技術">気になった技術&lt;/h2>
+&lt;ul>
+&lt;li>kubevirt&lt;/li>
+&lt;li>argocd&lt;/li>
+&lt;li>Calico&lt;/li>
+&lt;li>Kubernetes Cluster Federation&lt;/li>
+&lt;/ul>
+&lt;h2 id="事前に勉強した資料">事前に勉強した資料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.amazon.co.jp/dp/B07HFS7TDT" target="_blank" rel="noopener"
+>Kubernetes完全ガイド&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.katacoda.com/courses/kubernetes" target="_blank" rel="noopener"
+>Learn Kubernetes using Interactive Browser-Based Scenarios&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://thinkit.co.jp/article/13738" target="_blank" rel="noopener"
+>KubernetesのDiscovery＆LBリソース（その1）&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://thinkit.co.jp/article/13611" target="_blank" rel="noopener"
+>KubernetesのWorkloadsリソース（その2）&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>HP Chromebook x360 14 を購入しました</title><link>https://ress.39.gy/post/hp-chromebook-x360-14/</link><pubDate>Tue, 10 Sep 2019 09:27:00 +0900</pubDate><guid>https://ress.39.gy/post/hp-chromebook-x360-14/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/hp-chromebook-x360-14/thumbnail.png" alt="Featured image of post HP Chromebook x360 14 を購入しました" />&lt;p>今回 HP から発売されている &lt;a class="link" href="https://jp.ext.hp.com/notebooks/personal/chromebook_x360_14/" target="_blank" rel="noopener"
+>HP Chromebook x360 14&lt;/a> のエグゼクティブモデル (i5 モデル) を購入しました。&lt;/p>
+&lt;p>今回スーペリアモデル (i3 モデル) ではなくエグゼクティブモデル (i5 モデル) を買ったのかなど書いていこうと思います。&lt;/p>
+&lt;p>今回購入にあたって国内限定など指定が私にはあったのであくまでも参考程度にお願いします。&lt;/p>
+&lt;h2 id="購入までの経緯">購入までの経緯&lt;/h2>
+&lt;p>Chrome OS では Android アプリが使用できまだベータ版ですが Linux が使用できるので、普段やっていることが Chrome OS でも可能だと思い Chromebook を選ぶことにしました。&lt;/p>
+&lt;p>そこで最初に目をつけたのが ASUS Chromebook Flip C434TA でした。&lt;/p>
+&lt;p>しかし &lt;a class="link" href="https://www.asus.com/jp/2-in-1-PCs/ASUS-Chromebook-Flip-C434TA/Tech-Specs/" target="_blank" rel="noopener"
+>C434TA のスペック&lt;/a> を見てみると性能が飛躍的にアップした第8世代ですが m シリーズを使用しメモリが LPDDR3 だったりと古めの構成となっていました。&lt;/p>
+&lt;p>そこで他の機種などを調べていく有為に出会ったのが HP Chromebook x360 14 でした。&lt;/p>
+&lt;p>&lt;a class="link" href="https://jp.ext.hp.com/campaign/personal/others/80th_anniversary/" target="_blank" rel="noopener"
+>80周年記念セール&lt;/a> で安くなっており C434TA とほぼ同じ値段で性能が良くなるのであればと思い今回選びました。&lt;/p>
+&lt;p>普段からパソコンでは調べるときなど数十単位でタブを使用していることも多く開発関係も行う予定だったため上位のエグゼクティブモデルを購入しました。&lt;/p>
+&lt;h2 id="レビュー">レビュー&lt;/h2>
+&lt;p>HP Chromebook 13 G1 を1週間ほどですが使用していました。&lt;/p>
+&lt;p>HP Chromebook 13 G1 と比べて最初に感じるのはやはり HP Chromebook x360 14 のほうが重たく感じます。&lt;/p>
+&lt;p>しかし機能性を見てみると左右に充電可能な Type-C ソケットが存在しバックスペースの上に存在した電源ボタンがロックボタンに変更されました。&lt;/p>
+&lt;p>今まで iPhone iPad PC など複数持ち運び目的によって使い分けていました。そんな環境のなか HP Chromebook 13 G1 を使用していると、タッチディスプレイや360度回転もしなかったためタブレットとパソコンの中間的な扱いでした、&lt;/p>
+&lt;p>しかし今回のレビュー記事を書くにあたって軽く触ってみた結果メインパソコンとして使用してもいいぐらい快適に使用できています。&lt;/p>
+&lt;h2 id="比較">比較&lt;/h2>
+&lt;p>今まで現役で使用していた Macbook Pro 13 と比較したいと思います&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/1" alt="" /> &lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/hp-chromebook-x360-14/2" alt="" />&lt;/p>
+&lt;p>Macbook より大きいですが軽く持ち運びに苦にならなかったです&lt;/p>
+&lt;h2 id="結論">結論&lt;/h2>
+&lt;p>ASUS の C434TA よりも高性能でハイスペックな Chromebook をメインのノートパソコンとして選ぶのであればおすすめだと思います！&lt;/p></description></item><item><title>GMO ペパボのインターンに参加してきました</title><link>https://ress.39.gy/post/intern-pepabo/</link><pubDate>Thu, 05 Sep 2019 16:25:05 +0900</pubDate><guid>https://ress.39.gy/post/intern-pepabo/</guid><description>&lt;p>大学3年生となり、就活をそろそろ考え始めないといけない時期になりました。&lt;/p>
+&lt;p>そこで実際の現場を体験してみたいなどの理由からインターンに応募し Pepabo の夏のインターンに参加することができました。&lt;/p>
+&lt;p>そこではロリポップの&lt;a class="link" href="https://mc.lolipop.jp" target="_blank" rel="noopener"
+>マネージドクラウド&lt;/a>に配属されました。&lt;/p>
+&lt;p>ありがたいことにインターン用の課題が用意されていましたが、メンターの方と相談した結果マネージドクラウドで使用されているユーザー用コンテナイメージの DevSecOps に挑戦しました。&lt;/p>
+&lt;h2 id="devsecops">DevSecOps&lt;/h2>
+&lt;p>バージョンの更新やパッチの適用などが行われるとユーザー用コンテナイメージを開発者が手元のパソコンでビルドし本番環境に適用していました。&lt;/p>
+&lt;p>そこで私はまずマネージドクラウドで提供されているイメージごとにビルドを GitHub Actions を使用しペパボで利用している Docker レジストリにデプロイできるようにしました。&lt;/p>
+&lt;p>他にも共通部分の切り出しや &lt;a class="link" href="https://github.com/aquasecurity/trivy" target="_blank" rel="noopener"
+>Trivy&lt;/a>, &lt;a class="link" href="https://github.com/goodwithtech/dockle" target="_blank" rel="noopener"
+>Dockle&lt;/a> の導入、slackに通知するように変更しました。&lt;/p>
+&lt;p>今回使用した GitHub Actions ですが &lt;a class="link" href="https://github.blog/jp/2019-08-21-github-actions-now-supports-ci-cd/" target="_blank" rel="noopener"
+>先日更新され&lt;/a> ドキュメントや他の知見を探すのが大変でした。&lt;/p>
+&lt;h3 id="在宅勤務">在宅勤務&lt;/h3>
+&lt;p>インターン期間中に&lt;a class="link" href="https://ja.wikipedia.org/wiki/%e4%bb%a4%e5%92%8c%e5%85%83%e5%b9%b48%e6%9c%88%e4%b9%9d%e5%b7%9e%e5%8c%97%e9%83%a8%e8%b1%aa%e9%9b%a8" target="_blank" rel="noopener"
+>令和元年8月九州北部豪雨&lt;/a>によって在宅勤務することになりました。&lt;/p>
+&lt;p>インターンで在宅勤務ができるという贅沢な？体験でしたが思っていた以上に在宅勤務は楽でいい経験になったと思います。&lt;/p>
+&lt;h3 id="ネーミング">ネーミング&lt;/h3>
+&lt;p>ペパボのサービスですがムームードメインやロリポップなどユニークなネーミングしています。&lt;/p>
+&lt;p>しかし私が関わったプロジェクトではコードネームが福岡の地名を使用していたので最初なにがどのサービスなのかわからず関係図を書きましたw&lt;/p>
+&lt;h2 id="イベントに参加しました">イベントに参加しました&lt;/h2>
+&lt;p>せっかく福岡に行ったので勉強会などにも参加したいなぁと思い2つ参加しました&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://fukuokago.connpass.com/event/139929/" target="_blank" rel="noopener"
+>Go 1.13 Release Party&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://nagasaki-it-engineers.connpass.com/event/139417/" target="_blank" rel="noopener"
+>NaITE もぐもぐ会 in 2019-08&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>もくもく会ではなくもぐもぐ会とリリースパーティーに行きましたが思っていた以上にペパボ社員率が高くびっくりしました。&lt;/p>
+&lt;p>福岡の言語系勉強会はペパボの社員がやってることが多くイベントに積極的な体勢がすごいと思いました。&lt;/p></description></item><item><title>Docker をセキュアに使うために</title><link>https://ress.39.gy/post/docker-secure/</link><pubDate>Tue, 06 Aug 2019 11:07:12 +0900</pubDate><guid>https://ress.39.gy/post/docker-secure/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png" alt="Featured image of post Docker をセキュアに使うために" />&lt;p>開発に Docker を使う機械が増えてきましたが使っててきになるのがセキュリティです。&lt;/p>
+&lt;p>そこで Docker をセキュアに使うためにも自分ようのメモも兼ねて書いておきます。&lt;/p>
+&lt;p>まず root 権限で docker グループにパスワードを設定します。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo gpasswd docker
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>一時的に &lt;code>docker&lt;/code> を使いたいユーザーを Docker グループに参加します&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">newgrp docker
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>これで &lt;code>sudo&lt;/code> を使わず Docker を使えます!&lt;/p></description></item><item><title>Arch Linux パッケージを選定した</title><link>https://ress.39.gy/post/paclist-v1/</link><pubDate>Wed, 10 Jul 2019 14:29:50 +0900</pubDate><guid>https://ress.39.gy/post/paclist-v1/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png" alt="Featured image of post Arch Linux パッケージを選定した" />&lt;p>Arch Linux を使用しててパッケージが増えすぎたので整理も兼て選定しました。&lt;/p>
+&lt;h2 id="system">System&lt;/h2>
+&lt;p>今回パッケージを選ぶときに &lt;code>python2&lt;/code>, &lt;code>qt4&lt;/code>, &lt;code>qt5&lt;/code>, &lt;code>gtk2&lt;/code> を使用しないようにしました。&lt;/p>
+&lt;h3 id="core">Core&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>intel-ucode&lt;/code>&lt;/li>
+&lt;li>&lt;code>linux-zen&lt;/code>&lt;/li>
+&lt;li>&lt;code>yay-bin&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>今回は &lt;a class="link" href="https://github.com/zen-kernel/zen-kernel" target="_blank" rel="noopener"
+>ZEN Kernel&lt;/a> を使用しインテルのマイクロコードなどを追加しました&lt;/p>
+&lt;h3 id="lib">Lib&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>btrfs-progs&lt;/code>&lt;/li>
+&lt;li>&lt;code>exfat-utils&lt;/code>&lt;/li>
+&lt;li>&lt;code>libsecret&lt;/code>&lt;/li>
+&lt;li>&lt;code>libu2f-host&lt;/code>&lt;/li>
+&lt;li>&lt;code>libxss&lt;/code>&lt;/li>
+&lt;li>&lt;code>aic94xx-firmware&lt;/code>&lt;/li>
+&lt;li>&lt;code>wd719x-firmware&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>Yubikey や Btrfs などのドライバを追加しました。&lt;/p>
+&lt;h3 id="base">Base&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>wayland&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>xorg-server-xwayland&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>いままで wayland を試したことがなかったので導入します。
+動かないアプリが発生しないように xwayland も導入しておきます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>rescached-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>DNS のクリエを標準のままではキャッシュしてくれないので導入しました。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>xdg-user-dirs&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>XDG ユーザーディレクトリに従ってディレクトリ構造を共通化したいため導入します&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>usb_modeswitch&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>前回記事にも書きましたがモバイルルーターを接続するために入れます。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>intel-media-driver&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ttf-noto-fonts-simple&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ttf-twemoji-color&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>mailcap-mime-types&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>xdg-utils&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>pulseaudio&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>pulseaudio-alsa&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="gui">GUI&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>adwaita-icon-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>arc-gtk-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>arc-icon-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gsettings-desktop-schemas-git&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gtk3-mushrooms&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>numix-cursor-theme&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>sway&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>swaylock&lt;/code>&lt;/li>
+&lt;li>&lt;code>waybar&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="tools">Tools&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>fcitx5-anthy-git&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>enchant-pure&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>IME&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>light&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ディスプレイの明るさ&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mako&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>通知&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>wl-clipboard&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>クリップボード&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>rofi&lt;/code>&lt;/li>
+&lt;li>&lt;code>rofi-dmenu&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ランチャー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>grim&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>slurp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>スクショ&lt;/p>
+&lt;h4 id="app">App&lt;/h4>
+&lt;ul>
+&lt;li>&lt;code>opera&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>profile-sync-daemon&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>ブラウザ! &lt;code>profile-sync-daemon&lt;/code> を使って高速化&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>pavucontrol&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>音量ミキサー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>pcmanfm-gtk3&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>gvfs&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>ファイラー&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>vimiv&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>libgexiv2&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>画像ビューア&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>xarchiver&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>p7zip&lt;/code>&lt;/li>
+&lt;li>&lt;code>unrar&lt;/code>&lt;/li>
+&lt;li>&lt;code>unzip&lt;/code>&lt;/li>
+&lt;li>&lt;code>zip&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>展開!&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>deadbeef&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>音楽プレイヤー&lt;/p>
+&lt;h2 id="net">Net&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>connman-git&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>iwd-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>connman-gtk&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>netctl&lt;/code> でもいいのですが &lt;code>iwd&lt;/code> を使用したかったので&lt;/p>
+&lt;h2 id="dev">Dev&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>zsh&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>zsh&lt;/code> 派なので&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>go&lt;/code>&lt;/li>
+&lt;li>&lt;code>nodejs-lts-dubnium&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>yarn&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>開発に使用する言語もインストール&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>bat&lt;/code>&lt;/li>
+&lt;li>&lt;code>exa&lt;/code>&lt;/li>
+&lt;li>&lt;code>fd&lt;/code>&lt;/li>
+&lt;li>&lt;code>fzy&lt;/code>&lt;/li>
+&lt;li>&lt;code>ghq-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>ripgrep&lt;/code>&lt;/li>
+&lt;li>&lt;code>tig&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>便利な cli で動くツールたち&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>docker-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>docker-compose-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>kind-bin&lt;/code>&lt;/li>
+&lt;li>&lt;code>kubectl-bin&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>仮想化関係も入れておきます&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>alacritty&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>ターミナル&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>google-chrome-dev&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>最新の変更を調査するためと開発ツールが便利なので&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>neovim&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>python-neovim&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>エディタ!
+昔は Vim でした&amp;hellip;&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>openssh&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>ssh&lt;/code> しようと思ったら&lt;strong>存在しない&lt;/strong>と起こられたことがあるので明示してインストールしてます。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>yaskkserv&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>eskk.vim&lt;/code> で仕様してます。&lt;/p>
+&lt;h2 id="etc">etc.&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>keybase&lt;/code>&lt;/li>
+&lt;li>&lt;code>seahorse-git&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>たまーに使うツール&lt;/p></description></item><item><title>github のアカウントを変更しました</title><link>https://ress.39.gy/post/change-github-account/</link><pubDate>Tue, 28 May 2019 21:32:48 +0900</pubDate><guid>https://ress.39.gy/post/change-github-account/</guid><description>&lt;p>タイトルの通り GitHub のアカウントを &lt;a class="link" href="https://github.com/39e" target="_blank" rel="noopener"
 >@39e&lt;/a> から &lt;a class="link" href="https://github.com/ress997" target="_blank" rel="noopener"
->@ress997&lt;/a> に変更しました。&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://ress.39.gy/post/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://ress.39.gy/post/defx/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png" alt="Featured image of post Defx.nvim を使う!" />&lt;p>今まで vim でファイラーを使うとなったときに &lt;a class="link" href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener"
+>@ress997&lt;/a> に変更しました。&lt;/p>
+&lt;p>以前まで使用してた &lt;a class="link" href="https://github.com/39e" target="_blank" rel="noopener"
+>@39e&lt;/a> ですが一時的にログインできなくなり使用ができませんでした。&lt;/p>
+&lt;p>そこで自分で Gitea を運用してました。&lt;/p>
+&lt;p>しかし GitHub のほうがサードパーティ製ツールが充実しており、使いやすかったため GitHub に戻ってきました。&lt;/p>
+&lt;p>以前のアカウントはログインできるようになりましたが GitHub 側から&lt;/p>
+&lt;blockquote>
+&lt;p>新しくアカウントを作ってたりしたのであれば使わないアカウントを消してくれ&lt;/p>
+&lt;/blockquote>
+&lt;p>と言われたため &lt;a class="link" href="https://github.com/39e" target="_blank" rel="noopener"
+>@39e&lt;/a> を消し &lt;a class="link" href="https://github.com/ress997" target="_blank" rel="noopener"
+>@ress997&lt;/a> を使うことにしました。&lt;/p></description></item><item><title>Defx.nvim を使う!</title><link>https://ress.39.gy/post/defx/</link><pubDate>Thu, 23 May 2019 21:26:25 +0900</pubDate><guid>https://ress.39.gy/post/defx/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png" alt="Featured image of post Defx.nvim を使う!" />&lt;p>今まで vim でファイラーを使うとなったときに &lt;a class="link" href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener"
 >NERDtree&lt;/a> しか使ってませんでしたが &lt;a class="link" href="https://github.com/Shougo" target="_blank" rel="noopener"
->@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p></description></item><item><title>Robust のメンテナーになりました</title><link>https://ress.39.gy/post/robust-maintainer/</link><pubDate>Mon, 13 May 2019 23:42:54 +0900</pubDate><guid>https://ress.39.gy/post/robust-maintainer/</guid><description>&lt;p>以前まで使用してたブログテーマの &lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust" target="_blank" rel="noopener"
+>@Shougo&lt;/a> さんがまた使いやすファイラーを作ったいたので紹介したいと思います。&lt;/p>
+&lt;p>vim ではなく &lt;a class="link" href="https://neovim.io/" target="_blank" rel="noopener"
+>neovim&lt;/a> を使っています。またプラグイン管理には &lt;a class="link" href="https://github.com/Shougo/dein.vim" target="_blank" rel="noopener"
+>dein.vim&lt;/a> を使用してます。各自自分が使用してる環境に読み替えて使用してください。&lt;/p>
+&lt;h2 id="設定">設定&lt;/h2>
+&lt;p>私は toml ファイルで管理しています。下記のように書くことでプラグインを追加できます&lt;/p>
+&lt;pre>&lt;code>[[plugins]]
+repo ='Shougo/defx.nvim'
+on_cmd = 'Defx'
+hook_add = '''
+nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx -listed -resume -buffer-name=tab`tabpagenr()`&amp;lt;CR&amp;gt;
+'''
+&lt;/code>&lt;/pre>&lt;p>私は &lt;code>&amp;lt;Space&amp;gt;f&lt;/code> で開けるようにしてるので人によっては書き換えてください。&lt;/p>
+&lt;h3 id="カスタマイズ">カスタマイズ&lt;/h3>
+&lt;p>vscode みたいにファイルアイコンを表示したり &lt;a class="link" href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener"
+>NERDtree&lt;/a> でもやってましたが Git の変更などを表示したかったためプラグインを追加して使ってます。&lt;/p>
+&lt;p>ファイルアイコン表示するために &lt;a class="link" href="https://github.com/kristijanhusak/defx-icons" target="_blank" rel="noopener"
+>defx-icons&lt;/a>&lt;/p>
+&lt;p>Git の変更を表示するために &lt;a class="link" href="https://github.com/kristijanhusak/defx-git" target="_blank" rel="noopener"
+>defx-git&lt;/a>&lt;/p>
+&lt;p>を使ってます。標準でアイコンを表示したいので下記のように設定します。
+(また隠しファイルも標準で表示してほしいのでその設定も追記してます)&lt;/p>
+&lt;pre>&lt;code>call defx#custom#option('_', {
+\ 'columns': 'indent:git:icons:filename',
+\ 'show_ignored_files': 1,
+\ })
+&lt;/code>&lt;/pre>&lt;p>カスタマイズを更に行いうとこんな感じにできます！&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/defx/1" alt="" />&lt;/p>
+&lt;h3 id="設定例">設定例&lt;/h3>
+&lt;p>私の設定は &lt;a class="link" href="https://github.com/ress997/dotfiles-neovim" target="_blank" rel="noopener"
+>GitHub にアップ&lt;/a> してるので最新はそちらを確認してください&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">
+&lt;span class="p">[[&lt;/span>&lt;span class="nx">plugins&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;span class="nx">repo&lt;/span> &lt;span class="p">=&lt;/span>&lt;span class="s1">&amp;#39;kristijanhusak/defx-icons&amp;#39;&lt;/span>
+&lt;span class="p">[[&lt;/span>&lt;span class="nx">plugins&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;span class="nx">repo&lt;/span> &lt;span class="p">=&lt;/span>&lt;span class="s1">&amp;#39;kristijanhusak/defx-git&amp;#39;&lt;/span>
+&lt;span class="nx">hook_add&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span class="s1"> let g:defx_git#indicators = {
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Modified&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">+&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Staged&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">●&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Untracked&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">?&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Renamed&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">➜&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Unmerged&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">═&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Deleted&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">Unknown&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">?&lt;/span>&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;span class="s1"> \ }
+&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span class="p">[[&lt;/span>&lt;span class="nx">plugins&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;span class="nx">repo&lt;/span> &lt;span class="p">=&lt;/span>&lt;span class="s1">&amp;#39;Shougo/defx.nvim&amp;#39;&lt;/span>
+&lt;span class="nx">on_cmd&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;Defx&amp;#39;&lt;/span>
+&lt;span class="nx">depends&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;defx-icons&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;defx-git&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="nx">hook_add&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt; &amp;lt;Space&amp;gt;f :&amp;lt;C-u&amp;gt;Defx -listed -resume -buffer-name=tab`tabpagenr()`&amp;lt;CR&amp;gt;
+&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span class="nx">hook_source&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span class="s1"> function! Root(path) abort
+&lt;/span>&lt;span class="s1"> return fnamemodify(a:path, &amp;#39;&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="nx">t&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> endfunction
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> call defx#custom#source(&amp;#39;&lt;/span>&lt;span class="nx">file&lt;/span>&lt;span class="s1">&amp;#39;, {
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">root&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="nx">Root&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \})
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> call defx#custom#column(&amp;#39;&lt;/span>&lt;span class="nx">filename&lt;/span>&lt;span class="s1">&amp;#39;, {
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">directory_icon&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="err">&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">opened_icon&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="err">&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ })
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> call defx#custom#column(&amp;#39;&lt;/span>&lt;span class="nx">mark&lt;/span>&lt;span class="s1">&amp;#39;, {
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">readonly_icon&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="err">✗&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">selected_icon&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="err">✓&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ })
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> call defx#custom#option(&amp;#39;&lt;/span>&lt;span class="nx">_&lt;/span>&lt;span class="s1">&amp;#39;, {
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">columns&lt;/span>&lt;span class="s1">&amp;#39;: &amp;#39;&lt;/span>&lt;span class="nx">indent&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="nx">git&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="nx">icons&lt;/span>&lt;span class="err">:&lt;/span>&lt;span class="nx">filename&lt;/span>&lt;span class="s1">&amp;#39;,
+&lt;/span>&lt;span class="s1"> \ &amp;#39;&lt;/span>&lt;span class="nx">show_ignored_files&lt;/span>&lt;span class="s1">&amp;#39;: 1,
+&lt;/span>&lt;span class="s1"> \ })
+&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;span class="p">[&lt;/span>&lt;span class="nx">plugins&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ftplugin&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;span class="nx">defx&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; ~ defx#async_action(&amp;#39;&lt;/span>&lt;span class="nx">cd&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; h defx#async_action(&amp;#39;&lt;/span>&lt;span class="nx">cd&lt;/span>&lt;span class="s1">&amp;#39;, [&amp;#39;&lt;/span>&lt;span class="p">..&lt;/span>&lt;span class="s1">&amp;#39;])
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; j line(&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="s1">&amp;#39;) == line(&amp;#39;&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="s1">&amp;#39;) ? &amp;#39;&lt;/span>&lt;span class="nx">gg&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="nx">j&lt;/span>&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; k line(&amp;#39;&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="s1">&amp;#39;) == 1 ? &amp;#39;&lt;/span>&lt;span class="nx">G&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="nx">k&lt;/span>&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; l defx#async_action(&amp;#39;&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; . defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">toggle_ignored_files&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;Tab&amp;gt; winnr(&amp;#39;&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="s1">&amp;#39;) != 1 ? &amp;#39;&lt;/span>&lt;span class="err">:&amp;lt;&lt;/span>&lt;span class="nx">C&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">u&lt;/span>&lt;span class="err">&amp;gt;&lt;/span>&lt;span class="nx">wincmd&lt;/span> &lt;span class="nx">w&lt;/span>&lt;span class="err">&amp;lt;&lt;/span>&lt;span class="nx">CR&lt;/span>&lt;span class="err">&amp;gt;&lt;/span>&lt;span class="s1">&amp;#39; : &amp;#39;&lt;/span>&lt;span class="err">:&amp;lt;&lt;/span>&lt;span class="nx">C&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">u&lt;/span>&lt;span class="err">&amp;gt;&lt;/span>&lt;span class="nx">Defx&lt;/span> &lt;span class="err">-&lt;/span>&lt;span class="nx">buffer&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nx">temp&lt;/span> &lt;span class="err">-&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nx">vertical&lt;/span>&lt;span class="err">&amp;lt;&lt;/span>&lt;span class="nx">CR&lt;/span>&lt;span class="err">&amp;gt;&lt;/span>&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;Space&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">toggle_select&lt;/span>&lt;span class="s1">&amp;#39;) . &amp;#39;&lt;/span>&lt;span class="nx">j&lt;/span>&lt;span class="s1">&amp;#39;
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;CR&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; q defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">quit&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; o defx#async_action(&amp;#39;&lt;/span>&lt;span class="nx">open_or_close_tree&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; O defx#async_action(&amp;#39;&lt;/span>&lt;span class="nx">open_tree_recursive&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1">
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; ! defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">execute_command&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; * defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">toggle_select_all&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;C-g&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">print&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; &amp;lt;C-l&amp;gt; defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">redraw&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; E defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="s1">&amp;#39;, &amp;#39;&lt;/span>&lt;span class="nx">vsplit&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; K defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">new_directory&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; M defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">new_multiple_files&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; N defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">new_file&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; P defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">open&lt;/span>&lt;span class="s1">&amp;#39;, &amp;#39;&lt;/span>&lt;span class="nx">pedit&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; S defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">toggle_sort&lt;/span>&lt;span class="s1">&amp;#39;, &amp;#39;&lt;/span>&lt;span class="nx">Time&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; c defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">copy&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; d defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">remove_trash&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; m defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">move&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; p defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">paste&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; r defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">rename&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; se defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">save_session&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; sl defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">load_session&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; x defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">execute_system&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1"> nnoremap &amp;lt;silent&amp;gt;&amp;lt;buffer&amp;gt;&amp;lt;expr&amp;gt; yy defx#do_action(&amp;#39;&lt;/span>&lt;span class="nx">yank_path&lt;/span>&lt;span class="s1">&amp;#39;)
+&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>dein.vim&lt;/code> の機能ですが &lt;code>autocmd FileType defx call s:defx_my_settings()&lt;/code> みたいな記述は &lt;code>[plugins.ftplugin]&lt;/code> を使うとわかりやすく書けるのでぜひ使ってください。&lt;/p>
+&lt;h2 id="あとがき">あとがき&lt;/h2>
+&lt;p>&lt;code>defx.nvim&lt;/code> についてしらべると &lt;a class="link" href="https://takkii.hatenablog.com/about" target="_blank" rel="noopener"
+>@takkii&lt;/a> さんの記事しかありませんでした。&lt;/p>
+&lt;p>そこでカスタマイズ性の高い &lt;code>defx.nvim&lt;/code> を使ってほしいです！&lt;/p></description></item><item><title>Robust のメンテナーになりました</title><link>https://ress.39.gy/post/robust-maintainer/</link><pubDate>Mon, 13 May 2019 23:42:54 +0900</pubDate><guid>https://ress.39.gy/post/robust-maintainer/</guid><description>&lt;p>以前まで使用してたブログテーマの &lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust" target="_blank" rel="noopener"
 >robust&lt;/a> ですが気がつくと &lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust/commit/e7a073f0a31ee990b641824e7864c9edbf7191e5" target="_blank" rel="noopener"
 >メンテナンスを中止&lt;/a> たので &lt;a class="link" href="https://github.com/ress997/hugo-wolke" target="_blank" rel="noopener"
->改良テーマ&lt;/a> も作ってたこともありメンテナンスをしようと思いました。&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://ress.39.gy/post/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://ress.39.gy/post/pleroma/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png" alt="Featured image of post Amazon Lightsail に Pleroma をインストールしてみた" />今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能</description></item><item><title>Google Cloud Platform Tips</title><link>https://ress.39.gy/post/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://ress.39.gy/post/gcp/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/gcp/thumbnail.png" alt="Featured image of post Google Cloud Platform Tips" />Google Cloud Platform を使用していく上でハマった点などを書いていきます。 今後もハマった点があれば追加していく予定です。 有料アカウントへアップグレード 1週間前</description></item><item><title>forestry.io Tips</title><link>https://ress.39.gy/post/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://ress.39.gy/post/forestry/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/forestry/thumbnail.png" alt="Featured image of post forestry.io Tips" />forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます! 今後も更新し追加していく予定です。 タイムゾーン タイムゾ</description></item><item><title>cloudinary が便利!</title><link>https://ress.39.gy/post/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://ress.39.gy/post/cloudinary/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/cloudinary/thumbnail.png" alt="Featured image of post cloudinary が便利!" />最近ホスティングを変更した関係で 1GB 以上になると料金が発生します。 そこで無料で使用できる画像管理サービスを探しました。 Gyazo や imgix など様々なサービス</description></item><item><title>パスワード管理について考え直してみた</title><link>https://ress.39.gy/post/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://ress.39.gy/post/password-management/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/password-management/thumbnail.png" alt="Featured image of post パスワード管理について考え直してみた" />パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。 しかし、サブスクリプションに移行したことによ</description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://ress.39.gy/post/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://ress.39.gy/post/amazon-lightsail-cheaper/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png" alt="Featured image of post Amazon Lightsail が国内最安に" />Developers.IO でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。 Amazon Lightsail とは Amazon Lightsail とは AWS の EC2 をより簡単に使</description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://ress.39.gy/post/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://ress.39.gy/post/instapaper-premium/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/instapaper-premium/thumbnail.png" alt="Featured image of post instapaper premium がリニューアル 一部機能が有料化" />公式ブログ によるとプレミアムをリニューアルし、今まで使えてた一部機能がプレミアム機能となり有料化することが決まりました。 今まで 今までは Pinterest に回</description></item><item><title>ブログ環境を整えた</title><link>https://ress.39.gy/post/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://ress.39.gy/post/renewal/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/renewal/thumbnail.png" alt="Featured image of post ブログ環境を整えた" />いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。 TL;DR サイトジェネレーター: Hugo バージョン管理: GitHub ビルド/公</description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://ress.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://ress.39.gy/post/information-gathering/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/information-gathering/thumbnail.png" alt="Featured image of post 私はこんなふうに情報収集しています!" />最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。 皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita Web</description></item></channel></rss>
+>改良テーマ&lt;/a> も作ってたこともありメンテナンスをしようと思いました。&lt;/p>
+&lt;p>日本で hugo のことについて調べると robust を使ってる事例をよく見ます。&lt;/p>
+&lt;p>そこで他の人も行っていますが改良をしたらもっと使いやすくなるのではないかと &lt;a class="link" href="https://github.com/ress997/hugo-wolke" target="_blank" rel="noopener"
+>rerobust&lt;/a> として改良してました。
+(更に改良を行い後方互換性をなくしたため新たにテーマを独立させた &lt;a class="link" href="https://github.com/ress997/hugo-rerobust" target="_blank" rel="noopener"
+>wolke&lt;/a> も作りました。)&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust/commit/e7a073f0a31ee990b641824e7864c9edbf7191e5" target="_blank" rel="noopener"
+>メンテナンスが中止&lt;/a> されたけど &lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust/issues/35" target="_blank" rel="noopener"
+>残ってるバグ&lt;/a> が存在したりみんなにもっと使ってほしかったこともあり &lt;a class="link" href="https://github.com/dim0627/hugo_theme_robust/commit/d03ff2d04b47a4de868a094de7fc17fbadc8bf2a" target="_blank" rel="noopener"
+>メンテナー&lt;/a> になりました。&lt;/p>
+&lt;p>&lt;strong>こんな機能がほしい&lt;/strong> や &lt;strong>ここはこうしたほうが見やすい&lt;/strong> など意見がありましたら GitHub などで教えてください!&lt;/p></description></item><item><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link>https://ress.39.gy/post/pleroma/</link><pubDate>Mon, 08 Oct 2018 20:45:00 +0900</pubDate><guid>https://ress.39.gy/post/pleroma/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png" alt="Featured image of post Amazon Lightsail に Pleroma をインストールしてみた" />&lt;p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。&lt;/p>
+&lt;p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>Amazon Lightsail
+&lt;ul>
+&lt;li>OS: Ubuntu LTS 16.04.5&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Amazon S3
+&lt;ul>
+&lt;li>Static website hosting 有効化すること&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="setup">Setup&lt;/h2>
+&lt;p>事前に必要なものをインストールしていきます。
+ついでにタイムゾーンと言語設定を日本に変更します。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">apt update
+apt -y dist-upgrade
+apt -y autoremove
+apt -y install language-pack-ja
+update-locale &lt;span class="nv">LANG&lt;/span>&lt;span class="o">=&lt;/span>ja_JP.UTF-8
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+apt -y install git build-essential openssl ssh sudo
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="caddy">Caddy&lt;/h2>
+&lt;p>今回リバースプロキシには &lt;a class="link" href="https://caddyserver.com/" target="_blank" rel="noopener"
+>Caddy&lt;/a> を使用します。
+Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">curl https://getcaddy.com &lt;span class="p">|&lt;/span> bash -s personal
+chown root:root /usr/local/bin/caddy
+chmod &lt;span class="m">755&lt;/span> /usr/local/bin/caddy
+setcap &lt;span class="s1">&amp;#39;cap_net_bind_service=+ep&amp;#39;&lt;/span> /usr/local/bin/caddy
+&lt;span class="c1"># グループ・ユーザーが存在しない場合のみ実行してください。&lt;/span>
+&lt;span class="c1"># グループ一覧: /etc/group&lt;/span>
+&lt;span class="c1"># ユーザー一覧: /etc/passwd&lt;/span>
+groupadd --system -g &lt;span class="m">33&lt;/span> www-data
+useradd &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span> -g www-data --no-user-group &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span> --home-dir /var/www --no-create-home &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span> --shell /usr/sbin/nologin &lt;span class="se">\
+&lt;/span>&lt;span class="se">&lt;/span> --system --uid &lt;span class="m">33&lt;/span> www-data
+&lt;span class="c1"># 使用するフォルダを用意します&lt;/span>
+mkdir -p /etc/caddy
+chown -R root:root /etc/caddy
+mkdir -p /etc/ssl/caddy
+chown -R root:www-data /etc/ssl/caddy
+chmod &lt;span class="m">770&lt;/span> /etc/ssl/caddy
+&lt;span class="c1"># 設定ファイルを作成します&lt;/span>
+&lt;span class="c1"># domain.tld など実際に使用する環境に合わせて変更してください&lt;/span>
+cat &lt;span class="s">&amp;lt;&amp;lt;EOL &amp;gt; /etc/caddy/Caddyfile
+&lt;/span>&lt;span class="s">http:// {
+&lt;/span>&lt;span class="s"> gzip
+&lt;/span>&lt;span class="s"> root /var/www/html
+&lt;/span>&lt;span class="s">}
+&lt;/span>&lt;span class="s">
+&lt;/span>&lt;span class="s">social.domain.tld {
+&lt;/span>&lt;span class="s"> gzip
+&lt;/span>&lt;span class="s">
+&lt;/span>&lt;span class="s"> tls social@domain.tld
+&lt;/span>&lt;span class="s">
+&lt;/span>&lt;span class="s"> proxy / localhost:4000 {
+&lt;/span>&lt;span class="s"> websocket
+&lt;/span>&lt;span class="s"> transparent
+&lt;/span>&lt;span class="s"> }
+&lt;/span>&lt;span class="s">}
+&lt;/span>&lt;span class="s">EOL&lt;/span>
+&lt;span class="c1"># 公開用フォルダを作成します&lt;/span>
+mkdir -p /var/www/html
+cat &lt;span class="s">&amp;lt;&amp;lt;EOL &amp;gt; /var/www/html/index.html
+&lt;/span>&lt;span class="s">&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt;
+&lt;/span>&lt;span class="s">EOL&lt;/span>
+chown -R www-data:www-data /var/www
+chmod &lt;span class="m">555&lt;/span> /var/www
+&lt;span class="c1"># systemd を設定します&lt;/span>
+curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+chown root:root /etc/systemd/system/caddy.service
+chmod &lt;span class="m">644&lt;/span> /etc/systemd/system/caddy.service
+systemctl daemon-reload
+systemctl start caddy.service
+systemctl &lt;span class="nb">enable&lt;/span> caddy.service
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>サーバーはこれで用意できるのであとポート設定などは各自調べてください&lt;/p>
+&lt;h2 id="postgresql">postgresql&lt;/h2>
+&lt;p>データベースをインストールします。
+今回は PostgreSQL 10 を使います。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">cat &lt;span class="s">&amp;lt;&amp;lt;EOL &amp;gt; /etc/apt/sources.list.d/pgdg.list
+&lt;/span>&lt;span class="s">deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+&lt;/span>&lt;span class="s">EOL&lt;/span>
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc &lt;span class="p">|&lt;/span> apt-key add -
+apt update
+apt install postgresql-10 postgresql-contrib-10
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="elixirerlang">Elixir/Erlang&lt;/h2>
+&lt;p>Pleroma を実行する Elixir/Erlang をインストールします。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
+apt update
+apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="pleroma">pleroma&lt;/h2>
+&lt;p>ユーザーを追加しソースコードを git でダウンロードします。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">adduser pleroma
+usermod -aG sudo pleroma
+su pleroma
+&lt;span class="nb">cd&lt;/span> ~
+git clone https://git.pleroma.social/pleroma/pleroma
+&lt;span class="nb">cd&lt;/span> pleroma/
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>依存関係をダウンロードします&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">mix deps.get
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定ファイルを作成します&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="c1"># まずは自動生成&lt;/span>
+mix generate_config
+cp config/generated_config.exs config/prod.secret.exs
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>config/prod.secret.exs&lt;/code> を次項のサンプルを例に編集します&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">vi config/prod.secret.exs
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>データベースの設定をします&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">sudo su postgres -c &lt;span class="s1">&amp;#39;psql -f config/setup_db.psql&amp;#39;&lt;/span>
+&lt;span class="nv">MIX_ENV&lt;/span>&lt;span class="o">=&lt;/span>prod mix ecto.migrate
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sample-config">sample config&lt;/h3>
+&lt;p>見やすいように私は設定の順序を変更してます&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-elixir" data-lang="elixir">&lt;span class="kn">use&lt;/span> &lt;span class="nc">Mix.Config&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nc">Pleroma.Web.Endpoint&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">url&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="ss">host&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;インスタンスURL&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">scheme&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;https&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">port&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">443&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;span class="ss">secret_key_base&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;なんとか&amp;#34;&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nc">Pleroma.Repo&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">adapter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nc">Ecto.Adapters.Postgres&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">username&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;pleroma&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">password&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;なんとか&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">database&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;pleroma_dev&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">hostname&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">pool_size&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">10&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">:instance&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;インスタンス名&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">email&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;メールアドレス&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">dedupe_media&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">false&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">limit&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5000&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">registrations_open&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>
+&lt;span class="c1"># limit は文字数制限です&lt;/span>
+&lt;span class="c1"># registrations_open は新規登録するかの設定です&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">:media_proxy&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">enabled&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">false&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">redirect_on_failure&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>
+&lt;span class="c1"># 今回東京リージョンのS3を使います&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:ex_aws&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">:s3&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">access_key_id&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;XXXXXXXXXXXX&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">secret_access_key&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;YYYYYYYYYYYYYYYYYYYYY&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">region&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;ap-northeast-1&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">scheme&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;https://&amp;#34;&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nc">Pleroma.Uploaders.S3&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">bucket&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;bucket名&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">public_endpoint&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;s3.dualstack.ap-northeast-1.amazonaws.com&amp;#34;&lt;/span>
+&lt;span class="c1"># この部分でアップロード先をS3に変更します&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nc">Pleroma.Upload&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">uploader&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nc">Pleroma.Uploaders.S3&lt;/span>
+&lt;span class="c1"># 各機能の有効化します&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">:fe&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">show_instance_panel&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">scope_options_enabled&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">collapse_message_with_subject&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>
+&lt;span class="n">config&lt;/span> &lt;span class="ss">:pleroma&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ss">:suggestions&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="ss">enabled&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="no">true&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>設定についてはまた今度まとめたいと思います&lt;/p>
+&lt;h3 id="systemd">systemd&lt;/h3>
+&lt;p>&lt;code>systemd&lt;/code> を設定します&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>/etc/systemd/system/pleroma.service&lt;/code> の &lt;code>Environment&lt;/code> と書いてる下に &lt;code>Environment=&amp;quot;MIX_ENV=prod&amp;quot;&lt;/code> を追記します&lt;/p>
+&lt;p>run &lt;code>systemctl enable --now pleroma.service&lt;/code>&lt;/p>
+&lt;h2 id="補足説明">補足説明&lt;/h2>
+&lt;p>今回コピペするとすべて用意できるように &lt;code>cat&lt;/code> コマンドを使ってファイルを作成してます。&lt;/p>
+&lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-sh" data-lang="sh">cat &lt;span class="s">&amp;lt;&amp;lt;EOL &amp;gt; 書き込む対象のファイル
+&lt;/span>&lt;span class="s">ファイルの内容
+&lt;/span>&lt;span class="s">EOL&lt;/span> &lt;span class="c1"># 書き込み終了&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Google Cloud Platform Tips</title><link>https://ress.39.gy/post/gcp/</link><pubDate>Fri, 28 Sep 2018 07:00:00 +0900</pubDate><guid>https://ress.39.gy/post/gcp/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/gcp/thumbnail.png" alt="Featured image of post Google Cloud Platform Tips" />&lt;p>Google Cloud Platform を使用していく上でハマった点などを書いていきます。&lt;/p>
+&lt;p>今後もハマった点があれば追加していく予定です。&lt;/p>
+&lt;h2 id="有料アカウントへアップグレード">有料アカウントへアップグレード&lt;/h2>
+&lt;p>1週間前メールによる通知がありましたが後回しした結果忘れてました。&lt;/p>
+&lt;p>結果無料期間終了後使用してるサービスがすべて強制終了されました。&lt;/p>
+&lt;h2 id="使用していない静的ipアドレスが課金される">使用していない静的IPアドレスが課金される&lt;/h2>
+&lt;p>ここは AWS と同じで使用してない静的IPアドレスを確保してる場合は課金されます。&lt;/p>
+&lt;p>インスタンスは削除しても残ってる場合があるので注意が必要です。&lt;/p>
+&lt;h2 id="中国とオーストラリアからのアクセスは別料金が発生する">中国とオーストラリアからのアクセスは別料金が発生する&lt;/h2>
+&lt;p>無料枠以内に抑えるためには中国とオーストラリアからのアクセスは注意が必要です。&lt;/p>
+&lt;p>主に中国からの DDoS によって数ヶ月間 &lt;code>900円/月&lt;/code> 発生してました。 (許すまじ)&lt;/p>
+&lt;p>調べれば中国のIPアドレス範囲がわかるのでファイヤーウォールでアクセス拒否設定をするといいと思います。&lt;/p></description></item><item><title>forestry.io Tips</title><link>https://ress.39.gy/post/forestry/</link><pubDate>Fri, 21 Sep 2018 12:00:00 +0900</pubDate><guid>https://ress.39.gy/post/forestry/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/forestry/thumbnail.png" alt="Featured image of post forestry.io Tips" />&lt;p>forestry.io でサイトを更新するときにちょっと工夫しないと大変な部分があったので紹介していきます!&lt;/p>
+&lt;p>今後も更新し追加していく予定です。&lt;/p>
+&lt;h2 id="タイムゾーン">タイムゾーン&lt;/h2>
+&lt;p>タイムゾーンを日本に変更します。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>settings&lt;/code> を開く&lt;/li>
+&lt;li>&lt;code>TIMEZONE&lt;/code> を &lt;code>(GTM+09:00) Osaka&lt;/code> に変更する&lt;/li>
+&lt;/ol>
+&lt;p>(バグなのか &lt;code>(GTM+09:00) Tokyo&lt;/code> は選べませんでした)&lt;/p>
+&lt;h2 id="ファイル名">ファイル名&lt;/h2>
+&lt;p>forestry.io で記事を追加するときにタイトルとファイル名の取扱に注意が必要です。&lt;/p>
+&lt;p>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/f_auto,q_auto:good/blog/post/forestry/1" alt="" />&lt;/p>
+&lt;p>&lt;code>Add New&lt;/code> ボタンを押し &lt;code>Create Pages&lt;/code> で設定する &lt;code>TITLE&lt;/code> はファイル名に使用されます。&lt;/p>
+&lt;p>そこで slug は英語、タイトルは日本語と分けたい場合は注意が必要です。
+上記のタイトルを英語 slug、Front Matter で日本語のタイトルとすることによって分けることができます&lt;/p></description></item><item><title>cloudinary が便利!</title><link>https://ress.39.gy/post/cloudinary/</link><pubDate>Thu, 20 Sep 2018 16:00:00 +0900</pubDate><guid>https://ress.39.gy/post/cloudinary/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/cloudinary/thumbnail.png" alt="Featured image of post cloudinary が便利!" />&lt;p>最近&lt;a class="link" href="https://ress.39.gy/post/renewal/" >ホスティングを変更した&lt;/a>関係で 1GB 以上になると料金が発生します。
+そこで無料で使用できる画像管理サービスを探しました。&lt;/p>
+&lt;p>Gyazo や imgix など様々なサービスと比較していった中で cloudinary を使うことにしました。&lt;/p>
+&lt;h2 id="特徴">特徴&lt;/h2>
+&lt;ul>
+&lt;li>最適な画像形式に自動変換ができる&lt;/li>
+&lt;li>様々な画像加工ができる&lt;/li>
+&lt;li>画像の CDN 配信&lt;/li>
+&lt;/ul>
+&lt;p>などがあり無料で 30万枚/10GB まで保存することができます。&lt;/p>
+&lt;h3 id="最適な画像形式に変換">最適な画像形式に変換&lt;/h3>
+&lt;p>cloudinary に保存した写真は以下のような形式で配信されます&lt;/p>
+&lt;p>&lt;code>https://res.cloudinary.com/&amp;lt;cloud name&amp;gt;/image/upload/&amp;lt;option: 省略可能&amp;gt;/&amp;lt;path&amp;gt;&lt;/code>&lt;/p>
+&lt;p>このオプションの部分に &lt;code>f_auto&lt;/code> を追加することによって WebP など最適な形式に変換し画像を配信することができます。&lt;/p>
+&lt;p>また、&lt;code>q_auto&lt;/code> を追加することによって画像のサイズを最適化することができます。
+(ちなみに複数のオプションを書く場合はコンマ区切りで書きます)&lt;/p>
+&lt;h3 id="様々な画像加工ができる">様々な画像加工ができる&lt;/h3>
+&lt;p>これも先程のオプション部分に対して書くと可能です。&lt;/p>
+&lt;p>&lt;a class="link" href="https://qiita.com/kanaxx/items/7d88948c9f8f43cdf760" target="_blank" rel="noopener"
+>Cloudinaryを使って画像の変換をやってみる&lt;/a>に日本語で詳しく書いてあります。&lt;/p>
+&lt;h3 id="画像の-cdn-配信">画像の CDN 配信&lt;/h3>
+&lt;blockquote>
+&lt;p>FAST DELIVERY Get your images and videos delivered lightning-fast, responsively and highly optimized for any device in any location. Assets are served via Akamai, Fastly and CloudFront CDN.&lt;/p>
+&lt;/blockquote>
+&lt;p>と書いてあるように Akamai と Fastly と CloudFront を使って画像の CDN 配信を行ってくれます。&lt;/p>
+&lt;h2 id="cms-と連携">CMS と連携&lt;/h2>
+&lt;p>みんな大好き WordPress や私の使ってる forestry.io に対応してます!&lt;/p>
+&lt;p>WordPress の場合はアドオンとして対応してます。
+アドオンをインストール後 &lt;a class="link" href="https://cloudinary.com/console" target="_blank" rel="noopener"
+>cloudinary にログイン&lt;/a>すると表示される Account Details の Environment variable を設定することで使えるようになります。&lt;/p>
+&lt;p>forestry.io の場合 Media 設定から指定することができます。
+(詳しくは &lt;a class="link" href="https://forestry.io/docs/media/cloudinary/" target="_blank" rel="noopener"
+>公式ドキュメント&lt;/a>に書いてあります)&lt;/p>
+&lt;h2 id="さいごに">さいごに&lt;/h2>
+&lt;p>cloudinary によって画像管理を簡単に行うことがます。
+ほかにも簡単に画像加工を行ったり、高速に配信されるためおすすめです!&lt;/p></description></item><item><title>パスワード管理について考え直してみた</title><link>https://ress.39.gy/post/password-management/</link><pubDate>Thu, 13 Sep 2018 22:34:00 +0900</pubDate><guid>https://ress.39.gy/post/password-management/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/password-management/thumbnail.png" alt="Featured image of post パスワード管理について考え直してみた" />&lt;p>パスワードを管理するのが億劫になって結構前から私はパスワード管理サービスの 1Password を使用してきました。&lt;/p>
+&lt;p>しかし、サブスクリプションに移行したことによるコスト発生や、パスワード管理を一任してたことで発生してるセキュリティリスクなどを考えた結果管理体制を変えました。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>1Password が OTP に対応してクラウド同期、全デバイスで使用可能、チームや家族間で共有が楽など便利な機能がたくさんあります。&lt;/p>
+&lt;p>しかしよく考えてみるとセキュリティリスクをすべて 1Password に預けています。 また 2FA も同時に管理しているため段階を分けることによるセキュリティの向上も得られません。&lt;/p>
+&lt;p>また今までアプリの買い切りで使用できていた 1Password ですがサブスクリプションに移行したことによってコストが発生するようになったため人によっては負担になります。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>そこで他パスワード管理ソフト・サービスを比較しました。 その中でも一番気に入ったのはオープンソースである KeePass でした。 しかし全デバイスに同期させる手間や鍵の管理など管理して行く上でデメリットが多かったので諦めました。&lt;/p>
+&lt;p>そんな中 bitwarden に出会いました。 bitwarden のソースはすべて &lt;!-- raw HTML omitted -->GitHub&lt;!-- raw HTML omitted --> にあり、セルフホスティングすることもできるなど魅力的な点が多かったです。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>1要素によって行う2要素認証は1要素認証と変わらないので 1Password で OTP を管理するのを辞めました。&lt;/p>
+&lt;p>そのかわり Authy による2要素認証や Yubikey も設定し多要素で認証できるようにしました。 (その結果スマホにパスワードが集中するので取り扱いには気をつけないといけませんが…)&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>bitwarden は Web 版と OS インストールソフトとブラウザプラグインがありコマンドラインツールまで要ししてます。&lt;/p>
+&lt;p>また Docker によるセルフホスティング対応など開発者にとって使いやすさが求められた結果が見受けられます。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>料金体制は至ってシンプルで個人で使用するなら Free プランと Premium プランが用意してあります。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;!-- raw HTML omitted -->$10/year&lt;!-- raw HTML omitted --> で使用することができ主に次のような機能が追加されます。&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;!-- raw HTML omitted -->$10/year&lt;!-- raw HTML omitted --> と安く、bitwarden へアクセスする際 2FA を設定できるのですぐに Premium プランにしましたw&lt;/p>
+&lt;p>また今回体制を見直すにあたって様々なサービスに登録して 120 個ほどあるアカウントを整理できてよかったと思います!&lt;/p></description></item><item><title>Amazon Lightsail が国内最安に</title><link>https://ress.39.gy/post/amazon-lightsail-cheaper/</link><pubDate>Fri, 24 Aug 2018 18:16:52 +0900</pubDate><guid>https://ress.39.gy/post/amazon-lightsail-cheaper/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png" alt="Featured image of post Amazon Lightsail が国内最安に" />&lt;p>&lt;a class="link" href="https://dev.classmethod.jp/cloud/aws/amazon-lightsail-cheaper/" target="_blank" rel="noopener"
+>Developers.IO&lt;/a> でも紹介されましたが AWS の VPS と言われている Amazon Lightsail がほぼ半額になり(私が知ってる中で)国内最安となりました。&lt;/p>
+&lt;h2 id="amazon-lightsail-とは">Amazon Lightsail とは&lt;/h2>
+&lt;p>Amazon Lightsail とは AWS の EC2 をより簡単に使えるようにした VPS です。&lt;/p>
+&lt;p>EC2 に比べるとファイヤーウォールが貧弱だったりしますが問題なく使えると思います。&lt;/p>
+&lt;h3 id="ファイヤーウォール">ファイヤーウォール&lt;/h3>
+&lt;p>EC2 では AWS 側で特定の IP アドレスのみ特定のポート(例: 22番ポート)をアクセス許可するなど柔軟な設定をすることが可能です。
+しかし Lightsail では &lt;code>0.0.0.0&lt;/code> に対して外部からのアクセスに関して特定のポートをを許可するようになってます。&lt;/p>
+&lt;p>ですが、ConoHa などの他 VPS サービスでも同じように外部からの接続に対して特定のポートを通すようなファイヤーウォールなので問題ないと思います。&lt;/p>
+&lt;h3 id="ブラウザコンソール">ブラウザコンソール&lt;/h3>
+&lt;p>Lightsail でも他 VPS のようにブラウザからコンソールを開くことができます。&lt;/p>
+&lt;p>しかし他 VPS ではいわいる “サーバーコンソール” ですが Lightsail では SSH コンソールとなってるためなにか問題あったときに “強制的になにかやる” と言ったことができないので注意が必要です。&lt;/p>
+&lt;h3 id="料金について">料金について&lt;/h3>
+&lt;p>Lightsail では他 VPS と同じように停止中でも課金されます。&lt;/p>
+&lt;p>また &lt;a class="link" href="https://aws.amazon.com/jp/lightsail/" target="_blank" rel="noopener"
+>公式サイト&lt;/a> が執筆時点では古い料金での表示となってるので気をつけてください。
+(ちなみに、ログイン後の新規作成画面では新料金になってます)&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>国内最安となった Lightsail は初心者には難しい部分がありますが、コストパフォーマンス的に優れているのでこれから活用していきたいと思います。&lt;/p></description></item><item><title>instapaper premium がリニューアル 一部機能が有料化</title><link>https://ress.39.gy/post/instapaper-premium/</link><pubDate>Mon, 13 Aug 2018 09:30:00 +0900</pubDate><guid>https://ress.39.gy/post/instapaper-premium/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/instapaper-premium/thumbnail.png" alt="Featured image of post instapaper premium がリニューアル 一部機能が有料化" />&lt;p>&lt;a class="link" href="http://blog.instapaper.com/post/176732408411" target="_blank" rel="noopener"
+>公式ブログ&lt;/a> によるとプレミアムをリニューアルし、今まで使えてた一部機能がプレミアム機能となり有料化することが決まりました。&lt;/p>
+&lt;h2 id="今まで">今まで&lt;/h2>
+&lt;p>今までは Pinterest に回収されたあとプレミアム機能を無料で提供してきました。&lt;/p>
+&lt;p>しかし、 &lt;a class="link" href="https://japanese.engadget.com/2018/07/17/instapaper-pinterest-2-instant-paper/" target="_blank" rel="noopener"
+>Engadget によると Instapaper が Pinterest から独立&lt;/a>、今後有料化されると予想されてました。&lt;/p>
+&lt;h2 id="今後は">今後は&lt;/h2>
+&lt;p>下記の機能が &lt;strong>$2.99/月&lt;/strong> か &lt;strong>$29.99/年&lt;/strong> で利用できます。&lt;/p>
+&lt;ul>
+&lt;li>Full-text search for all articles in your account (全文検索)&lt;/li>
+&lt;li>Unlimited Notes (無制限のメモ)&lt;/li>
+&lt;li>Text-to-Speech playlists on mobile (テキスト読み上げ)&lt;/li>
+&lt;li>Speed reading to get through all of your articles up to 3x faster (速読)&lt;/li>
+&lt;li>An ad-free Instapaper website (ウェブサイトで広告を表示しない)&lt;/li>
+&lt;li>“Send to Kindle” using a bookmarklet or our mobile apps (ブックマークレットやモバイルアプリ経由の｢Kindleへの送信｣)&lt;/li>
+&lt;/ul>
+&lt;p>カッコの中は私が簡単に訳したものなので間違えがあれば教えてください&lt;/p></description></item><item><title>ブログ環境を整えた</title><link>https://ress.39.gy/post/renewal/</link><pubDate>Mon, 30 Jul 2018 12:00:00 +0900</pubDate><guid>https://ress.39.gy/post/renewal/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/renewal/thumbnail.png" alt="Featured image of post ブログ環境を整えた" />&lt;p>いままで迷走していたブログ環境が現状満足するところまで整えることができたので書きます。&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>サイトジェネレーター: Hugo&lt;/li>
+&lt;li>バージョン管理: GitHub&lt;/li>
+&lt;li>ビルド/公開: Netlify&lt;/li>
+&lt;li>CMS: forestry.io&lt;/li>
+&lt;/ul>
+&lt;p>無料で構築する事ができますが私は GitHub の Private や独自ドメインなどを使用してるので多少費用がかかってます。
+(と言ってもレンタルサーバーを借りるより格安です。)&lt;/p>
+&lt;h2 id="いままでは">いままでは&lt;/h2>
+&lt;p>経緯をだらだらと書いてるだけなので飛ばしていただいて構いませんw&lt;/p>
+&lt;p>(途中ではてなブログなどに浮気したり WordPress に戻ったりしましたがそこは飛ばします)&lt;/p>
+&lt;h3 id="wordpress-を使い始めた">WordPress を使い始めた&lt;/h3>
+&lt;p>プラグインによる拡張が簡単で事前知識が(ほぼ)なくても使い始めることができるということで WordPress にしました。&lt;/p>
+&lt;p>しかしプラグインの入れすぎなどで表示速度が遅くなりストレスがたまるようになりました。&lt;/p>
+&lt;h3 id="自作テーマに変更">自作テーマに変更&lt;/h3>
+&lt;p>そこで私は Web 系の勉強にと思い、テーマを自作してみることにしました！&lt;/p>
+&lt;p>プラグインの行ってることで、テーマに実装できることは積極的に取り込みました。&lt;/p>
+&lt;p>しかし趣味で公開してるサイトなのにサーバー費などのコスト面が負担でした。&lt;/p>
+&lt;h3 id="静的サイトジェネレーターに出会う">静的サイトジェネレーターに出会う&lt;/h3>
+&lt;p>そんななか “無料でサイトを公開できないか” といろいろ調べて GitHub Pages に出会いました。&lt;/p>
+&lt;p>当時、良く触っていた Ruby を使えるということだったので使い始めました。&lt;/p>
+&lt;p>しかし GitHub Pages では、プラグインを使用できませんでした。そこで CI を組み合わせてビルドした成果物を AWS S3 に配置し、公開するようにしました。&lt;/p>
+&lt;p>ですが AWS を使用したのでわずかながらもコストが掛かり悩みました。&lt;/p>
+&lt;h3 id="netlify-へ変更">Netlify へ変更&lt;/h3>
+&lt;p>そんななかビルドと公開まで行ってくれる Netlify を知りました。&lt;/p>
+&lt;p>Netlify を使用することで、公開するサーバー側のコストが無くなりました。&lt;/p>
+&lt;p>次に Jekyll の生成速度が遅くなり始めました。どうやら記事数やプラグインによって生成速度が遅くなることを知りました。&lt;/p>
+&lt;h3 id="hugo-へ変更">Hugo へ変更&lt;/h3>
+&lt;p>趣味のブログなので Jekyll にこだわる必要は無いと今まで作っていたものをすべて捨て Hugo に移りました。&lt;/p>
+&lt;p>サイトの表示速度をなるべく高速にしなおかつ Hugo で実装できる AMP HTML なども取り込もうと思い様々なテーマを検討しました。&lt;/p>
+&lt;p>(あくまで個人的な意見ですが)全体的にビミョーなテーマが多かったです。その中で一番気に入った Robust をフォークした ReRobust をベースに作成した Wolke を使用してます。&lt;/p>
+&lt;p>&lt;strong>宣伝: みんなもぜひ&lt;/strong>&lt;a class="link" href="https://github.com/ress997/hugo-wolke" target="_blank" rel="noopener"
+>&lt;strong>Wolke&lt;/strong>&lt;/a>&lt;strong>使ってね!!&lt;/strong>&lt;/p>
+&lt;h3 id="cms-について">CMS について&lt;/h3>
+&lt;p>スマホでサイトを眺めてたときに誤字を見つけてしまいサクッと修正しようと思いましたが、わざわざ GitHub にアクセスして対象のファイルを開き… と行うのがめんd… 大変だったので編集機能を実装できないか調べました。&lt;/p>
+&lt;h4 id="netlify-cms">Netlify CMS&lt;/h4>
+&lt;p>Netlify を紹介してる記事にたまに紹介されて、とりあえず使ってみました。&lt;/p>
+&lt;p>しかし本来想定してたスマホでの使用が使い辛く変わりのものを探しました。&lt;/p>
+&lt;h4 id="forestryio">forestry.io&lt;/h4>
+&lt;p>日本語記事がなく初回の設定が大変ですがストレスなく使用で便利です。&lt;/p>
+&lt;p>(運用するにあたって注意点などがあるので後日書きます！)&lt;/p>
+&lt;h2 id="まとめ">まとめ&lt;/h2>
+&lt;p>多いときは ¥1000/月 ほどかかってたブログ環境ですが、PV もなくダラダラと趣味の話を書いているブログには今の環境で十分だと思います。&lt;/p>
+&lt;p>“毎月コストが発生してるから書かないとと” いう焦燥感もなく、気が向いたときに書けばいいという感覚で、これからも更新していきます！&lt;/p>
+&lt;hr>
+&lt;p>&lt;strong>追記&lt;/strong>: ブログのリニューアルしたことを書きましたが今回 Netlify から Firebase Hosting にお引越ししました&lt;/p>
+&lt;h2 id="tldr-1">TL;DR&lt;/h2>
+&lt;ul>
+&lt;li>Netlify がたまに落ちている&lt;/li>
+&lt;li>CDN を使用してるらいしけど遅い&lt;/li>
+&lt;li>もっと柔軟に設定したい&lt;/li>
+&lt;/ul>
+&lt;h2 id="netlify">Netlify&lt;/h2>
+&lt;p>Netlify は簡単にデプロイでき、小規模なページなどであれば問題がありません。&lt;/p>
+&lt;p>しかし、配信の最適化するために HTTP ヘッダなどをいじるとき少々手間がかかり大変でした。&lt;/p>
+&lt;p>そして、接続障害が発生したり、SSL エラーが発生したのでちょっとインフラに不安を感じ始めました。&lt;/p>
+&lt;h2 id="firebase">Firebase&lt;/h2>
+&lt;p>そこで、Firebase Hosting を使い始めました。&lt;/p>
+&lt;p>Firebase は Fastly を採用してるので世界各地にある CDN から配信されレスポンスが高速になりました。&lt;/p>
+&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://ress.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://ress.39.gy/post/information-gathering/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/information-gathering/thumbnail.png" alt="Featured image of post 私はこんなふうに情報収集しています!" />&lt;p>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。&lt;/p>
+&lt;ul>
+&lt;li>&lt;!-- raw HTML omitted -->皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita&lt;!-- raw HTML omitted -->&lt;/li>
+&lt;li>&lt;!-- raw HTML omitted -->Webデザイナーの私はこんな風に情報収集しています | Webクリエイターボックス&lt;!-- raw HTML omitted -->&lt;/li>
+&lt;/ul>
+&lt;p>私も気になりなる ＆ 私のやり方をも発信したいと思ったので書きます!&lt;/p>
+&lt;p>注意: 結構ポエム気味です&lt;/p>
+&lt;h2 id="tldr">TL;DR&lt;/h2>
+&lt;p>よく見るサイトの RSS/Atom Feed を取得してフィードリーダーで見ています。&lt;/p>
+&lt;p>RSS Feed が配信していなサイトは &lt;!-- raw HTML omitted -->Feed43&lt;!-- raw HTML omitted --> を使って情報を収取し、Twitter の発信は &lt;!-- raw HTML omitted -->Twitter Great RSS&lt;!-- raw HTML omitted --> を使って RSS を生成してます!&lt;/p>
+&lt;p>気になった記事や保存したい記事は &lt;!-- raw HTML omitted -->Instapaper&lt;!-- raw HTML omitted --> に保存して後から読むようにしてます。&lt;/p>
+&lt;h2 id="過去の私は">過去の私は&lt;/h2>
+&lt;p>最初は Twitter を &lt;!-- raw HTML omitted -->Tweetbot&lt;!-- raw HTML omitted --> や &lt;!-- raw HTML omitted -->TweetDeck&lt;!-- raw HTML omitted --> を使ってジャンルごとにタイムラインを並べて情報を収集してました。&lt;/p>
+&lt;p>そんな私に slack を試すきっかけが訪れました。&lt;/p>
+&lt;p>一通り使えるようになって &lt;!-- raw HTML omitted -->便利! もっと活用しよう&lt;!-- raw HTML omitted --> と思い情報収集を slack に集結するようになりました。&lt;/p>
+&lt;h2 id="情報収集に疲れた私は">情報収集に疲れた私は&lt;/h2>
+&lt;p>周りの環境が変化し1年半ほど使ってた slack を使わなくなりました。&lt;/p>
+&lt;p>ですが情報収集用に一人 slack を運用してましたが、slack を開くと読み込み時間が長く過去のデータを調べようと思うとログの制限があり不便でした。&lt;/p>
+&lt;p>そこで情報収集を1回やめることにしました。&lt;/p>
+&lt;h2 id="情報収集に関して考え直してみた">情報収集に関して考え直してみた&lt;/h2>
+&lt;p>一度情報収集やめて情報収集に関して考え直しました。&lt;/p>
+&lt;p>そんなときに次の記事を見つけました。&lt;/p>
+&lt;p>&lt;a href="https://qiita.com/naga3/items/18079cd07c230e448cee">https://qiita.com/naga3/items/18079cd07c230e448cee&lt;/a>&lt;/p>
+&lt;p>そこで情報収集は &lt;strong>かならなずやらないといけない&lt;/strong> や &lt;strong>何か崇高な行為&lt;/strong> ではなく &lt;strong>ただの娯楽&lt;/strong> だと割り切れるようになりました。&lt;/p>
+&lt;h2 id="これから私は">これから私は&lt;/h2>
+&lt;p>情報収集を考え直した結果これからは趣味としてやっていこうと思います。&lt;/p>
+&lt;h2 id="おまけ">おまけ&lt;/h2>
+&lt;p>ちなみにフィードリーダーは &lt;!-- raw HTML omitted -->Feedly&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->inoreader&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->Miniflux&lt;!-- raw HTML omitted --> と変わっていきまた&lt;/p>
+&lt;p>Miniflux は少し前まで PHP で実装されていました。 ですが最近 Go 言語で作り直されて使いやすくなりましたので、ぜひ皆さんも使ってください!&lt;/p></description></item></channel></rss>
