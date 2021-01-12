@@ -1,162 +1,164 @@
-<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link rel=canonical href=https://www.39.gy/post/pleroma/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Amazon Lightsail に Pleroma をインストールしてみた"><meta property="og:description" content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta property="og:url" content="https://www.39.gy/post/pleroma/"><meta property="og:site_name" content="39.gy"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="AWS"><meta property="article:tag" content="Amazon S3"><meta property="article:tag" content="Amazon Lightsail"><meta property="article:tag" content="Pleroma"><meta property="article:published_time" content="2018-10-08T20:45:00+09:00"><meta property="article:modified_time" content="2020-10-08T16:17:54+09:00"><meta property="og:image" content="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png"><meta name=twitter:site content="@ress997"><meta name=twitter:title content="Amazon Lightsail に Pleroma をインストールしてみた"><meta name=twitter:description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png"><link rel=preconnect href=https://res.cloudinary.com/></head><body><div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
-<span class=hamburger-box><span class=hamburger-inner></span></span></button><header class=site-info><figure class=site-avatar><img src=/img/avatar_hua3d9c57f11aa6bec7822838cfcfce9d1_118733_300x300_resize_box_2.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
-<span class=emoji>🦋</span></figure><h1 class=site-name><a href=https://www.39.gy/>39.gy</a></h1><h2 class=site-description>noob から hacker になりたい</h2></header><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/about><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>About</span></a></li><li><a href=/archives><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li></ol></aside><main class="main full-width"><div id=article-toolbar><a href=https://www.39.gy/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><article class="has-image main-article"><header class=article-header><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png loading=lazy alt="Featured image of post Amazon Lightsail に Pleroma をインストールしてみた"></div><div class=article-details><header class=article-category><a href=/categories/tech/>tech</a></header><h2 class=article-title><a href=/post/pleroma/>Amazon Lightsail に Pleroma をインストールしてみた</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Oct 08, 2018</time></footer></div></header><section class=article-content><p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
+<!doctype html><html lang=ja><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><title>Amazon Lightsail に Pleroma をインストールしてみた</title><link rel=canonical href=https://ress.39.gy/post/pleroma/><link rel=stylesheet href=/scss/style.min.css><meta property="og:title" content="Amazon Lightsail に Pleroma をインストールしてみた"><meta property="og:description" content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta property="og:url" content="https://ress.39.gy/post/pleroma/"><meta property="og:site_name" content="ress.39.gy"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="AWS"><meta property="article:tag" content="Amazon S3"><meta property="article:tag" content="Amazon Lightsail"><meta property="article:tag" content="Pleroma"><meta property="article:published_time" content="2018-10-08T20:45:00+09:00"><meta property="article:modified_time" content="2020-10-08T16:17:54+09:00"><meta property="og:image" content="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png"><meta name=twitter:title content="Amazon Lightsail に Pleroma をインストールしてみた"><meta name=twitter:description content="今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png"><link rel=preconnect href=https://res.cloudinary.com/><script async src="https://www.googletagmanager.com/gtag/js?id=G-89ZKVWK5H2"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-89ZKVWK5H2');</script></head><body><script>(function(){const colorSchemeKey='StackColorScheme';if(!localStorage.getItem(colorSchemeKey)){localStorage.setItem(colorSchemeKey,"auto");}})();</script><script>(function(){const colorSchemeKey='StackColorScheme';const colorSchemeItem=localStorage.getItem(colorSchemeKey);const supportDarkMode=window.matchMedia('(prefers-color-scheme: dark)').matches===true;if(colorSchemeItem=='dark'||colorSchemeItem==='auto'&&supportDarkMode){document.body.dataset.scheme='dark';}else{document.body.dataset.scheme='light';}})();</script><div class="container main-container flex on-phone--column extended article-page with-toolbar"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=メニューを開く・閉じる>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header class=site-info><figure class=site-avatar><img src=/img/avatar_hua3d9c57f11aa6bec7822838cfcfce9d1_118733_300x0_resize_box_2.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+<span class=emoji>🦋</span></figure><h1 class=site-name><a href=https://ress.39.gy/>ress.39.gy</a></h1><h2 class=site-description>noob から hacker になりたい</h2></header><ol class=menu id=main-menu><li><a href=/><span>Home</span></a></li><li><a href=/about><span>About</span></a></li><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>ダークモード</span></li></ol></aside><main class="main full-width"><div id=article-toolbar><a href=https://ress.39.gy/ class=back-home><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="15 6 9 12 15 18"/></svg><span>Back</span></a></div><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/post/pleroma/><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/pleroma/thumbnail.png loading=lazy alt="Featured image of post Amazon Lightsail に Pleroma をインストールしてみた"></a></div><div class=article-details><header class=article-category><a href=/categories/tech/>tech</a></header><h2 class=article-title><a href=/post/pleroma/>Amazon Lightsail に Pleroma をインストールしてみた</a></h2><footer class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--published>Oct 08, 2018</time></footer></div></header><section class=article-content><p>今回は利用料金が安くなった Amazon Lightsail を使って Pleroma インスタンスを建ててみたいと思います。
 ついでに最近利用できるようになった Amazon S3 にメディアを保存する機能も使用します。</p><p>自分がやったことを軽くまとめただけなので足りない情報など各自補ってください</p><h2 id=tldr>TL;DR</h2><ul><li>Amazon Lightsail<ul><li>OS: Ubuntu LTS 16.04.5</li></ul></li><li>Amazon S3<ul><li>Static website hosting 有効化すること</li></ul></li></ul><h2 id=setup>Setup</h2><p>事前に必要なものをインストールしていきます。
-ついでにタイムゾーンと言語設定を日本に変更します。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>apt update
+ついでにタイムゾーンと言語設定を日本に変更します。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>apt update
 apt -y dist-upgrade
 apt -y autoremove
 
 apt -y install language-pack-ja
-update-locale LANG<span style=color:#f92672>=</span>ja_JP.UTF-8
+update-locale <span class=nv>LANG</span><span class=o>=</span>ja_JP.UTF-8
 
 ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
 apt -y install git build-essential openssl ssh sudo
 </code></pre></div><h2 id=caddy>Caddy</h2><p>今回リバースプロキシには <a class=link href=https://caddyserver.com/ target=_blank rel=noopener>Caddy</a> を使用します。
-Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl https://getcaddy.com | bash -s personal
+Caddy は自動的に Let’s Encrypt で HTTPS を使用する HTTP/2 対応のウェブサーバーです。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>curl https://getcaddy.com <span class=p>|</span> bash -s personal
 
 chown root:root /usr/local/bin/caddy
-chmod <span style=color:#ae81ff>755</span> /usr/local/bin/caddy
-setcap <span style=color:#e6db74>&#39;cap_net_bind_service=+ep&#39;</span> /usr/local/bin/caddy
+chmod <span class=m>755</span> /usr/local/bin/caddy
+setcap <span class=s1>&#39;cap_net_bind_service=+ep&#39;</span> /usr/local/bin/caddy
 
-<span style=color:#75715e># グループ・ユーザーが存在しない場合のみ実行してください。</span>
-<span style=color:#75715e># グループ一覧: /etc/group</span>
-<span style=color:#75715e># ユーザー一覧: /etc/passwd</span>
-groupadd --system -g <span style=color:#ae81ff>33</span> www-data
-useradd <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  -g www-data --no-user-group <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  --home-dir /var/www --no-create-home <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  --shell /usr/sbin/nologin <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  --system --uid <span style=color:#ae81ff>33</span> www-data
+<span class=c1># グループ・ユーザーが存在しない場合のみ実行してください。</span>
+<span class=c1># グループ一覧: /etc/group</span>
+<span class=c1># ユーザー一覧: /etc/passwd</span>
+groupadd --system -g <span class=m>33</span> www-data
+useradd <span class=se>\
+</span><span class=se></span>  -g www-data --no-user-group <span class=se>\
+</span><span class=se></span>  --home-dir /var/www --no-create-home <span class=se>\
+</span><span class=se></span>  --shell /usr/sbin/nologin <span class=se>\
+</span><span class=se></span>  --system --uid <span class=m>33</span> www-data
 
-<span style=color:#75715e># 使用するフォルダを用意します</span>
+<span class=c1># 使用するフォルダを用意します</span>
 mkdir -p /etc/caddy
 chown -R root:root /etc/caddy
 mkdir -p /etc/ssl/caddy
 chown -R root:www-data /etc/ssl/caddy
-chmod <span style=color:#ae81ff>770</span> /etc/ssl/caddy
+chmod <span class=m>770</span> /etc/ssl/caddy
 
-<span style=color:#75715e># 設定ファイルを作成します</span>
-<span style=color:#75715e># domain.tld など実際に使用する環境に合わせて変更してください</span>
-cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/caddy/Caddyfile
-</span><span style=color:#e6db74>http:// {
-</span><span style=color:#e6db74>  gzip
-</span><span style=color:#e6db74>  root /var/www/html
-</span><span style=color:#e6db74>}
-</span><span style=color:#e6db74>
-</span><span style=color:#e6db74>social.domain.tld {
-</span><span style=color:#e6db74>  gzip
-</span><span style=color:#e6db74>
-</span><span style=color:#e6db74>  tls social@domain.tld
-</span><span style=color:#e6db74>
-</span><span style=color:#e6db74>  proxy / localhost:4000 {
-</span><span style=color:#e6db74>    websocket
-</span><span style=color:#e6db74>    transparent
-</span><span style=color:#e6db74>  }
-</span><span style=color:#e6db74>}
-</span><span style=color:#e6db74>EOL</span>
+<span class=c1># 設定ファイルを作成します</span>
+<span class=c1># domain.tld など実際に使用する環境に合わせて変更してください</span>
+cat <span class=s>&lt;&lt;EOL &gt; /etc/caddy/Caddyfile
+</span><span class=s>http:// {
+</span><span class=s>  gzip
+</span><span class=s>  root /var/www/html
+</span><span class=s>}
+</span><span class=s>
+</span><span class=s>social.domain.tld {
+</span><span class=s>  gzip
+</span><span class=s>
+</span><span class=s>  tls social@domain.tld
+</span><span class=s>
+</span><span class=s>  proxy / localhost:4000 {
+</span><span class=s>    websocket
+</span><span class=s>    transparent
+</span><span class=s>  }
+</span><span class=s>}
+</span><span class=s>EOL</span>
 
-<span style=color:#75715e># 公開用フォルダを作成します</span>
+<span class=c1># 公開用フォルダを作成します</span>
 mkdir -p /var/www/html
-cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /var/www/html/index.html
-</span><span style=color:#e6db74>&lt;h1&gt;Hello World!&lt;/h1&gt;
-</span><span style=color:#e6db74>EOL</span>
+cat <span class=s>&lt;&lt;EOL &gt; /var/www/html/index.html
+</span><span class=s>&lt;h1&gt;Hello World!&lt;/h1&gt;
+</span><span class=s>EOL</span>
 chown -R www-data:www-data /var/www
-chmod <span style=color:#ae81ff>555</span> /var/www
+chmod <span class=m>555</span> /var/www
 
-<span style=color:#75715e># systemd を設定します</span>
+<span class=c1># systemd を設定します</span>
 curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
 chown root:root /etc/systemd/system/caddy.service
-chmod <span style=color:#ae81ff>644</span> /etc/systemd/system/caddy.service
+chmod <span class=m>644</span> /etc/systemd/system/caddy.service
 systemctl daemon-reload
 systemctl start caddy.service
-systemctl enable caddy.service
+systemctl <span class=nb>enable</span> caddy.service
 </code></pre></div><p>サーバーはこれで用意できるのであとポート設定などは各自調べてください</p><h2 id=postgresql>postgresql</h2><p>データベースをインストールします。
-今回は PostgreSQL 10 を使います。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; /etc/apt/sources.list.d/pgdg.list
-</span><span style=color:#e6db74>deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
-</span><span style=color:#e6db74>EOL</span>
+今回は PostgreSQL 10 を使います。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>cat <span class=s>&lt;&lt;EOL &gt; /etc/apt/sources.list.d/pgdg.list
+</span><span class=s>deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main
+</span><span class=s>EOL</span>
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class=p>|</span> apt-key add -
 apt update
 
 apt install postgresql-10 postgresql-contrib-10
-</code></pre></div><h2 id=elixirerlang>Elixir/Erlang</h2><p>Pleroma を実行する Elixir/Erlang をインストールします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb <span style=color:#f92672>&amp;&amp;</span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
+</code></pre></div><h2 id=elixirerlang>Elixir/Erlang</h2><p>Pleroma を実行する Elixir/Erlang をインストールします。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>wget -P /tmp/ https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb <span class=o>&amp;&amp;</span> sudo dpkg -i /tmp/erlang-solutions_1.0_all.deb
 apt update
 
 apt -y install elixir erlang-dev erlang-parsetools erlang-xmerl erlang-tools
-</code></pre></div><h2 id=pleroma>pleroma</h2><p>ユーザーを追加しソースコードを git でダウンロードします。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>adduser pleroma
+</code></pre></div><h2 id=pleroma>pleroma</h2><p>ユーザーを追加しソースコードを git でダウンロードします。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>adduser pleroma
 usermod -aG sudo pleroma
 
 su pleroma
-cd ~
+<span class=nb>cd</span> ~
 git clone https://git.pleroma.social/pleroma/pleroma
-cd pleroma/
-</code></pre></div><p>依存関係をダウンロードします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mix deps.get
-</code></pre></div><p>設定ファイルを作成します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># まずは自動生成</span>
+<span class=nb>cd</span> pleroma/
+</code></pre></div><p>依存関係をダウンロードします</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>mix deps.get
+</code></pre></div><p>設定ファイルを作成します</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh><span class=c1># まずは自動生成</span>
 mix generate_config
 cp config/generated_config.exs config/prod.secret.exs
-</code></pre></div><p><code>config/prod.secret.exs</code> を次項のサンプルを例に編集します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>vi config/prod.secret.exs
-</code></pre></div><p>データベースの設定をします</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo su postgres -c <span style=color:#e6db74>&#39;psql -f config/setup_db.psql&#39;</span>
-MIX_ENV<span style=color:#f92672>=</span>prod mix ecto.migrate
-</code></pre></div><h3 id=sample-config>sample config</h3><p>見やすいように私は設定の順序を変更してます</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-elixir data-lang=elixir><span style=color:#f92672>use</span> <span style=color:#a6e22e>Mix.Config</span>
+</code></pre></div><p><code>config/prod.secret.exs</code> を次項のサンプルを例に編集します</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>vi config/prod.secret.exs
+</code></pre></div><p>データベースの設定をします</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>sudo su postgres -c <span class=s1>&#39;psql -f config/setup_db.psql&#39;</span>
+<span class=nv>MIX_ENV</span><span class=o>=</span>prod mix ecto.migrate
+</code></pre></div><h3 id=sample-config>sample config</h3><p>見やすいように私は設定の順序を変更してます</p><div class=highlight><pre class=chroma><code class=language-elixir data-lang=elixir><span class=kn>use</span> <span class=nc>Mix.Config</span>
 
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Web.Endpoint</span>,
-   <span style=color:#e6db74>url</span>: [<span style=color:#e6db74>host</span>: <span style=color:#e6db74>&#34;インスタンスURL&#34;</span>, <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https&#34;</span>, <span style=color:#e6db74>port</span>: <span style=color:#ae81ff>443</span>],
-   <span style=color:#e6db74>secret_key_base</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=nc>Pleroma.Web.Endpoint</span><span class=p>,</span>
+   <span class=ss>url</span><span class=p>:</span> <span class=p>[</span><span class=ss>host</span><span class=p>:</span> <span class=s2>&#34;インスタンスURL&#34;</span><span class=p>,</span> <span class=ss>scheme</span><span class=p>:</span> <span class=s2>&#34;https&#34;</span><span class=p>,</span> <span class=ss>port</span><span class=p>:</span> <span class=mi>443</span><span class=p>],</span>
+   <span class=ss>secret_key_base</span><span class=p>:</span> <span class=s2>&#34;なんとか&#34;</span>
 
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Repo</span>,
-  <span style=color:#e6db74>adapter</span>: <span style=color:#a6e22e>Ecto.Adapters.Postgres</span>,
-  <span style=color:#e6db74>username</span>: <span style=color:#e6db74>&#34;pleroma&#34;</span>,
-  <span style=color:#e6db74>password</span>: <span style=color:#e6db74>&#34;なんとか&#34;</span>,
-  <span style=color:#e6db74>database</span>: <span style=color:#e6db74>&#34;pleroma_dev&#34;</span>,
-  <span style=color:#e6db74>hostname</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>,
-  <span style=color:#e6db74>pool_size</span>: <span style=color:#ae81ff>10</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=nc>Pleroma.Repo</span><span class=p>,</span>
+  <span class=ss>adapter</span><span class=p>:</span> <span class=nc>Ecto.Adapters.Postgres</span><span class=p>,</span>
+  <span class=ss>username</span><span class=p>:</span> <span class=s2>&#34;pleroma&#34;</span><span class=p>,</span>
+  <span class=ss>password</span><span class=p>:</span> <span class=s2>&#34;なんとか&#34;</span><span class=p>,</span>
+  <span class=ss>database</span><span class=p>:</span> <span class=s2>&#34;pleroma_dev&#34;</span><span class=p>,</span>
+  <span class=ss>hostname</span><span class=p>:</span> <span class=s2>&#34;localhost&#34;</span><span class=p>,</span>
+  <span class=ss>pool_size</span><span class=p>:</span> <span class=mi>10</span>
 
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:instance</span>,
-  <span style=color:#e6db74>name</span>: <span style=color:#e6db74>&#34;インスタンス名&#34;</span>,
-  <span style=color:#e6db74>email</span>: <span style=color:#e6db74>&#34;メールアドレス&#34;</span>,
-  <span style=color:#e6db74>dedupe_media</span>: <span style=color:#66d9ef>false</span>,
-  <span style=color:#e6db74>limit</span>: <span style=color:#ae81ff>5000</span>,
-  <span style=color:#e6db74>registrations_open</span>: <span style=color:#66d9ef>true</span>
-<span style=color:#75715e># limit は文字数制限です</span>
-<span style=color:#75715e># registrations_open は新規登録するかの設定です</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=ss>:instance</span><span class=p>,</span>
+  <span class=ss>name</span><span class=p>:</span> <span class=s2>&#34;インスタンス名&#34;</span><span class=p>,</span>
+  <span class=ss>email</span><span class=p>:</span> <span class=s2>&#34;メールアドレス&#34;</span><span class=p>,</span>
+  <span class=ss>dedupe_media</span><span class=p>:</span> <span class=no>false</span><span class=p>,</span>
+  <span class=ss>limit</span><span class=p>:</span> <span class=mi>5000</span><span class=p>,</span>
+  <span class=ss>registrations_open</span><span class=p>:</span> <span class=no>true</span>
+<span class=c1># limit は文字数制限です</span>
+<span class=c1># registrations_open は新規登録するかの設定です</span>
 
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:media_proxy</span>,
-  <span style=color:#e6db74>enabled</span>: <span style=color:#66d9ef>false</span>,
-  <span style=color:#e6db74>redirect_on_failure</span>: <span style=color:#66d9ef>true</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=ss>:media_proxy</span><span class=p>,</span>
+  <span class=ss>enabled</span><span class=p>:</span> <span class=no>false</span><span class=p>,</span>
+  <span class=ss>redirect_on_failure</span><span class=p>:</span> <span class=no>true</span>
 
-<span style=color:#75715e># 今回東京リージョンのS3を使います</span>
-config <span style=color:#e6db74>:ex_aws</span>, <span style=color:#e6db74>:s3</span>,
-  <span style=color:#e6db74>access_key_id</span>: <span style=color:#e6db74>&#34;XXXXXXXXXXXX&#34;</span>,
-  <span style=color:#e6db74>secret_access_key</span>: <span style=color:#e6db74>&#34;YYYYYYYYYYYYYYYYYYYYY&#34;</span>,
-  <span style=color:#e6db74>region</span>: <span style=color:#e6db74>&#34;ap-northeast-1&#34;</span>,
-  <span style=color:#e6db74>scheme</span>: <span style=color:#e6db74>&#34;https://&#34;</span>
+<span class=c1># 今回東京リージョンのS3を使います</span>
+<span class=n>config</span> <span class=ss>:ex_aws</span><span class=p>,</span> <span class=ss>:s3</span><span class=p>,</span>
+  <span class=ss>access_key_id</span><span class=p>:</span> <span class=s2>&#34;XXXXXXXXXXXX&#34;</span><span class=p>,</span>
+  <span class=ss>secret_access_key</span><span class=p>:</span> <span class=s2>&#34;YYYYYYYYYYYYYYYYYYYYY&#34;</span><span class=p>,</span>
+  <span class=ss>region</span><span class=p>:</span> <span class=s2>&#34;ap-northeast-1&#34;</span><span class=p>,</span>
+  <span class=ss>scheme</span><span class=p>:</span> <span class=s2>&#34;https://&#34;</span>
 
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>,
-  <span style=color:#e6db74>bucket</span>: <span style=color:#e6db74>&#34;bucket名&#34;</span>,
-  <span style=color:#e6db74>public_endpoint</span>: <span style=color:#e6db74>&#34;s3.dualstack.ap-northeast-1.amazonaws.com&#34;</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=nc>Pleroma.Uploaders.S3</span><span class=p>,</span>
+  <span class=ss>bucket</span><span class=p>:</span> <span class=s2>&#34;bucket名&#34;</span><span class=p>,</span>
+  <span class=ss>public_endpoint</span><span class=p>:</span> <span class=s2>&#34;s3.dualstack.ap-northeast-1.amazonaws.com&#34;</span>
 
-<span style=color:#75715e># この部分でアップロード先をS3に変更します</span>
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#a6e22e>Pleroma.Upload</span>,
-  <span style=color:#e6db74>uploader</span>: <span style=color:#a6e22e>Pleroma.Uploaders.S3</span>
+<span class=c1># この部分でアップロード先をS3に変更します</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=nc>Pleroma.Upload</span><span class=p>,</span>
+  <span class=ss>uploader</span><span class=p>:</span> <span class=nc>Pleroma.Uploaders.S3</span>
 
-<span style=color:#75715e># 各機能の有効化します</span>
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:fe</span>,
-  <span style=color:#e6db74>show_instance_panel</span>: <span style=color:#66d9ef>true</span>,
-  <span style=color:#e6db74>scope_options_enabled</span>: <span style=color:#66d9ef>true</span>,
-  <span style=color:#e6db74>collapse_message_with_subject</span>: <span style=color:#66d9ef>true</span>
-config <span style=color:#e6db74>:pleroma</span>, <span style=color:#e6db74>:suggestions</span>,
-  <span style=color:#e6db74>enabled</span>: <span style=color:#66d9ef>true</span>
-</code></pre></div><p>設定についてはまた今度まとめたいと思います</p><h3 id=systemd>systemd</h3><p><code>systemd</code> を設定します</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
-</code></pre></div><p><code>/etc/systemd/system/pleroma.service</code> の <code>Environment</code> と書いてる下に <code>Environment="MIX_ENV=prod"</code> を追記します</p><p>run <code>systemctl enable --now pleroma.service</code></p><h2 id=補足説明>補足説明</h2><p>今回コピペするとすべて用意できるように <code>cat</code> コマンドを使ってファイルを作成してます。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cat <span style=color:#e6db74>&lt;&lt;EOL &gt; 書き込む対象のファイル
-</span><span style=color:#e6db74>ファイルの内容
-</span><span style=color:#e6db74>EOL</span> <span style=color:#75715e># 書き込み終了</span>
+<span class=c1># 各機能の有効化します</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=ss>:fe</span><span class=p>,</span>
+  <span class=ss>show_instance_panel</span><span class=p>:</span> <span class=no>true</span><span class=p>,</span>
+  <span class=ss>scope_options_enabled</span><span class=p>:</span> <span class=no>true</span><span class=p>,</span>
+  <span class=ss>collapse_message_with_subject</span><span class=p>:</span> <span class=no>true</span>
+<span class=n>config</span> <span class=ss>:pleroma</span><span class=p>,</span> <span class=ss>:suggestions</span><span class=p>,</span>
+  <span class=ss>enabled</span><span class=p>:</span> <span class=no>true</span>
+</code></pre></div><p>設定についてはまた今度まとめたいと思います</p><h3 id=systemd>systemd</h3><p><code>systemd</code> を設定します</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>cp /home/pleroma/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+</code></pre></div><p><code>/etc/systemd/system/pleroma.service</code> の <code>Environment</code> と書いてる下に <code>Environment="MIX_ENV=prod"</code> を追記します</p><p>run <code>systemctl enable --now pleroma.service</code></p><h2 id=補足説明>補足説明</h2><p>今回コピペするとすべて用意できるように <code>cat</code> コマンドを使ってファイルを作成してます。</p><div class=highlight><pre class=chroma><code class=language-sh data-lang=sh>cat <span class=s>&lt;&lt;EOL &gt; 書き込む対象のファイル
+</span><span class=s>ファイルの内容
+</span><span class=s>EOL</span> <span class=c1># 書き込み終了</span>
 </code></pre></div></section><footer class=article-footer><section class=article-tags><a href=/tags/aws/>AWS</a>
 <a href=/tags/amazon-s3/>Amazon S3</a>
 <a href=/tags/amazon-lightsail/>Amazon Lightsail</a>
-<a href=/tags/pleroma/>Pleroma</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><span class=article-time--modified>Last updated on Oct 08, 2020 16:17 +0900</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>Related contents</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/post/amazon-lightsail-cheaper/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png></div><div class=article-details><h2 class=article-title>Amazon Lightsail が国内最安に</h2></div></a></article><article class=has-image><a href=/post/ci-chenge/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png></div><div class=article-details><h2 class=article-title>ブログのビルドをCircleCIからGitHub Actionsに変更した</h2></div></a></article><article class=has-image><a href=/post/docker-secure/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png></div><div class=article-details><h2 class=article-title>Docker をセキュアに使うために</h2></div></a></article><article class=has-image><a href=/post/paclist-v1/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png></div><div class=article-details><h2 class=article-title>Arch Linux パッケージを選定した</h2></div></a></article><article class=has-image><a href=/post/w06-usb/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/w06-usb/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/w06-usb/thumbnail.png></div><div class=article-details><h2 class=article-title>Speed Wi-Fi NEXT W06 を USBで接続する</h2></div></a></article></div></div></aside><script src=https://utteranc.es/client.js repo=ress997/blog-comment issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><footer class=site-footer><section class=copyright>&copy; 2020 39.gy</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=1.1.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true style=display:none><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<a href=/tags/pleroma/>Pleroma</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-time><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><span class=article-time--modified>最終更新 Oct 08, 2020 16:17 +0900</span></section></footer></article><aside class=related-contents--wrapper><h2 class=section-title>関連するコンテンツ</h2><div class=related-contents><div class="flex article-list--tile"><article class=has-image><a href=/post/amazon-lightsail-cheaper/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/amazon-lightsail-cheaper/thumbnail.png></div><div class=article-details><h2 class=article-title>Amazon Lightsail が国内最安に</h2></div></a></article><article class=has-image><a href=/post/ci-chenge/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/ci-chenge/thumbnail.png></div><div class=article-details><h2 class=article-title>ブログのビルドをCircleCIからGitHub Actionsに変更した</h2></div></a></article><article class=has-image><a href=/post/docker-secure/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/docker-secure/thumbnail.png></div><div class=article-details><h2 class=article-title>Docker をセキュアに使うために</h2></div></a></article><article class=has-image><a href=/post/paclist-v1/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/paclist-v1/thumbnail.png></div><div class=article-details><h2 class=article-title>Arch Linux パッケージを選定した</h2></div></a></article><article class=has-image><a href=/post/defx/><div class=article-image><img src=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png loading=lazy data-key data-hash=https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/defx/thumbnail.png></div><div class=article-details><h2 class=article-title>Defx.nvim を使う!</h2></div></a></article></div></div></aside><script src=https://utteranc.es/client.js repo=ress997/blog-comment issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><style>.utterances{max-width:unset}</style><script>window.addEventListener('onColorSchemeChange',(e)=>{let utterances=document.querySelector('.utterances iframe');if(utterances){utterances.contentWindow.postMessage({type:'set-theme',theme:`github-${e.detail}`},'https://utteranc.es');}})</script><footer class=site-footer><section class=copyright>&copy;
+2021 ress.39.gy</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=2.0.1>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script><link rel=stylesheet href=/css/highlight/light.min.css media="(prefers-color-scheme: light)"><link rel=stylesheet href=/css/highlight/dark.min.css media="(prefers-color-scheme: dark)"></body></html>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const customFont=document.createElement('link');customFont.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";customFont.type="text/css";customFont.rel="stylesheet";document.head.appendChild(customFont);}());</script></body></html>
