@@ -73,6 +73,16 @@ name = "About"
 url = "about"
 weight = 2
 
+[[menu.main]]
+name = "Archives"
+url = "archives"
+weight = 3
+
+[[menu.main]]
+name = "Search"
+url = "search"
+weight = 4
+
 [related]
 includeNewer = true
 threshold = 60
