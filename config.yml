@@ -15,13 +15,10 @@ DefaultContentLanguage: ja
 params:
   mainSections:
     - post
-
-  dateFormat:
-    published: 'Jan 02, 2006'
-    lastUpdated: 'Jan 02, 2006 15:04 MST'
+  rssFullContent: true
 
   sidebar:
-    emoji: "\U0001F98B"
+    emoji: "🦋"
     subtitle: noob から hacker になりたい
     avatar:
       local: true
@@ -42,7 +39,6 @@ params:
 
   widgets:
     enabled:
-      - search
       - archives
       - tag-cloud
     archives:
@@ -50,6 +46,10 @@ params:
     tagCloud:
       limit: 10
 
+  opengraph:
+    twitter:
+      site: ress997
+      card: summary_large_image
   defaultImage:
     opengraph:
       enabled: false
@@ -68,15 +68,22 @@ menu:
     - name: Home
       url: /
       weight: 1
+      pre: home
+
     - name: About
       url: about
       weight: 2
+      pre: user
+
     - name: Archives
       url: archives
       weight: 3
+      pre: archives
+
     - name: Search
       url: search
       weight: 4
+      pre: search
 
 related:
   includeNewer: true
