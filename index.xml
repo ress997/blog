@@ -948,32 +948,4 @@ cp config/generated_config.exs config/prod.secret.exs
 &lt;h2 id="firebase">Firebase&lt;/h2>
 &lt;p>そこで、Firebase Hosting を使い始めました。&lt;/p>
 &lt;p>Firebase は Fastly を採用してるので世界各地にある CDN から配信されレスポンスが高速になりました。&lt;/p>
-&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item><item><title>私はこんなふうに情報収集しています!</title><link>https://ress.39.gy/post/information-gathering/</link><pubDate>Thu, 24 May 2018 16:28:00 +0900</pubDate><guid>https://ress.39.gy/post/information-gathering/</guid><description>&lt;img src="https://res.cloudinary.com/dagsofv2s/image/upload/q_auto:good/blog/post/information-gathering/thumbnail.png" alt="Featured image of post 私はこんなふうに情報収集しています!" />&lt;p>最近 Qiita のトレンドやいつも見てるサイトで、情報収集について書かれてました。&lt;/p>
-&lt;ul>
-&lt;li>&lt;!-- raw HTML omitted -->皆さんはどんな方法で情報収集してますか？私はこんな感じです - Qiita&lt;!-- raw HTML omitted -->&lt;/li>
-&lt;li>&lt;!-- raw HTML omitted -->Webデザイナーの私はこんな風に情報収集しています | Webクリエイターボックス&lt;!-- raw HTML omitted -->&lt;/li>
-&lt;/ul>
-&lt;p>私も気になりなる ＆ 私のやり方をも発信したいと思ったので書きます!&lt;/p>
-&lt;p>注意: 結構ポエム気味です&lt;/p>
-&lt;h2 id="tldr">TL;DR&lt;/h2>
-&lt;p>よく見るサイトの RSS/Atom Feed を取得してフィードリーダーで見ています。&lt;/p>
-&lt;p>RSS Feed が配信していなサイトは &lt;!-- raw HTML omitted -->Feed43&lt;!-- raw HTML omitted --> を使って情報を収取し、Twitter の発信は &lt;!-- raw HTML omitted -->Twitter Great RSS&lt;!-- raw HTML omitted --> を使って RSS を生成してます!&lt;/p>
-&lt;p>気になった記事や保存したい記事は &lt;!-- raw HTML omitted -->Instapaper&lt;!-- raw HTML omitted --> に保存して後から読むようにしてます。&lt;/p>
-&lt;h2 id="過去の私は">過去の私は&lt;/h2>
-&lt;p>最初は Twitter を &lt;!-- raw HTML omitted -->Tweetbot&lt;!-- raw HTML omitted --> や &lt;!-- raw HTML omitted -->TweetDeck&lt;!-- raw HTML omitted --> を使ってジャンルごとにタイムラインを並べて情報を収集してました。&lt;/p>
-&lt;p>そんな私に slack を試すきっかけが訪れました。&lt;/p>
-&lt;p>一通り使えるようになって &lt;!-- raw HTML omitted -->便利! もっと活用しよう&lt;!-- raw HTML omitted --> と思い情報収集を slack に集結するようになりました。&lt;/p>
-&lt;h2 id="情報収集に疲れた私は">情報収集に疲れた私は&lt;/h2>
-&lt;p>周りの環境が変化し1年半ほど使ってた slack を使わなくなりました。&lt;/p>
-&lt;p>ですが情報収集用に一人 slack を運用してましたが、slack を開くと読み込み時間が長く過去のデータを調べようと思うとログの制限があり不便でした。&lt;/p>
-&lt;p>そこで情報収集を1回やめることにしました。&lt;/p>
-&lt;h2 id="情報収集に関して考え直してみた">情報収集に関して考え直してみた&lt;/h2>
-&lt;p>一度情報収集やめて情報収集に関して考え直しました。&lt;/p>
-&lt;p>そんなときに次の記事を見つけました。&lt;/p>
-&lt;p>&lt;a href="https://qiita.com/naga3/items/18079cd07c230e448cee">https://qiita.com/naga3/items/18079cd07c230e448cee&lt;/a>&lt;/p>
-&lt;p>そこで情報収集は &lt;strong>かならなずやらないといけない&lt;/strong> や &lt;strong>何か崇高な行為&lt;/strong> ではなく &lt;strong>ただの娯楽&lt;/strong> だと割り切れるようになりました。&lt;/p>
-&lt;h2 id="これから私は">これから私は&lt;/h2>
-&lt;p>情報収集を考え直した結果これからは趣味としてやっていこうと思います。&lt;/p>
-&lt;h2 id="おまけ">おまけ&lt;/h2>
-&lt;p>ちなみにフィードリーダーは &lt;!-- raw HTML omitted -->Feedly&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->inoreader&lt;!-- raw HTML omitted --> -&amp;gt; &lt;!-- raw HTML omitted -->Miniflux&lt;!-- raw HTML omitted --> と変わっていきまた&lt;/p>
-&lt;p>Miniflux は少し前まで PHP で実装されていました。 ですが最近 Go 言語で作り直されて使いやすくなりましたので、ぜひ皆さんも使ってください!&lt;/p></description></item></channel></rss>
+&lt;p>また、 Firebase を導入するにあたって CI も導入できました。いままで netlify とまた別の CI を採用してたので CI の一本化ができ、わかりやすくなりました。&lt;/p></description></item></channel></rss>
